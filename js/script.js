@@ -58,81 +58,131 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. Dynamic Dev.to Articles Sync
+    // 3. Dynamic Dev.to Articles Sync (Anti-cache & Dual-source)
     async function loadDevToArticles() {
         const username = 'ce4vjpcode';
-        const endpoint = `https://dev.to/api/articles?username=${username}`;
+        const timestamp = Date.now();
         const container = document.querySelector('.projects-grid');
 
         if (!container) return;
 
+        let articles = [];
+
+        // Fuente 1: Dev.to REST API con cache-busting y soporte de paginación
         try {
-            const response = await fetch(endpoint);
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            const articles = await response.json();
-
-            if (Array.isArray(articles) && articles.length > 0) {
-                // Remove pre-rendered fallback devto cards to replace with fresh API data
-                document.querySelectorAll('.card[data-category="devto"]').forEach(el => el.remove());
-
-                // Find active filter
-                const activeBtn = document.querySelector('.filter-btn.active');
-                const currentFilter = activeBtn ? activeBtn.getAttribute('data-filter') : 'all';
-
-                // Insert at the top in correct order
-                const firstNonDevToCard = container.querySelector('.card:not([data-category="devto"])');
-                articles.forEach(article => {
-                    const card = document.createElement('article');
-                    card.className = 'card theme-devto';
-                    card.setAttribute('data-category', 'devto');
-
-                    // Check if hidden by current filter
-                    if (currentFilter !== 'all' && currentFilter !== 'devto') {
-                        card.classList.add('is-hidden');
-                    }
-
-                    const coverHtml = article.cover_image 
-                        ? `<img src="${article.cover_image}" alt="${article.title}" class="article-cover" loading="lazy">`
-                        : '';
-
-                    const tagsHtml = (article.tag_list && article.tag_list.length > 0)
-                        ? `<div class="article-tags">${article.tag_list.map(t => `<span class="tag-pill">#${t}</span>`).join('')}</div>`
-                        : '';
-
-                    const readingTime = article.reading_time_minutes ? `${article.reading_time_minutes} min de lectura` : 'Lectura rápida';
-                    const dateFormatted = article.readable_publish_date || 'Reciente';
-
-                    card.innerHTML = `
-                        <div class="card-top">
-                            <span class="card-icon">✍️</span>
-                            <span class="badge badge-devto">Dev.to · Artículo</span>
-                        </div>
-                        ${coverHtml}
-                        <h2 class="card-title">${article.title}</h2>
-                        <div class="article-meta">
-                            <span>📅 ${dateFormatted}</span>
-                            <span>⏱️ ${readingTime}</span>
-                        </div>
-                        <p class="card-desc">${article.description || ''}</p>
-                        ${tagsHtml}
-                        <div class="card-actions">
-                            <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                Leer en Dev.to
-                            </a>
-                        </div>
-                    `;
-
-                    if (firstNonDevToCard) {
-                        container.insertBefore(card, firstNonDevToCard);
-                    } else {
-                        container.appendChild(card);
-                    }
-                    attachTiltEffect(card);
-                });
+            const response = await fetch(`https://dev.to/api/articles?username=${username}&per_page=30&_t=${timestamp}`, {
+                cache: 'no-store',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                if (Array.isArray(data) && data.length > 0) {
+                    articles = data.map(item => ({
+                        title: item.title,
+                        url: item.url,
+                        cover_image: item.cover_image,
+                        description: item.description,
+                        readable_date: item.readable_publish_date || 'Reciente',
+                        reading_time: item.reading_time_minutes ? `${item.reading_time_minutes} min de lectura` : 'Lectura rápida',
+                        tags: item.tag_list || []
+                    }));
+                }
             }
         } catch (err) {
-            console.warn('No se pudieron cargar artículos en vivo desde Dev.to (usando fallback offline):', err);
+            console.warn('Dev.to REST API en espera, intentando feed RSS...', err);
+        }
+
+        // Fuente 2: Respaldo RSS Feed en tiempo real si la API REST está rezagada
+        if (articles.length === 0) {
+            try {
+                const rssResponse = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdev.to%2Ffeed%2F${username}&_t=${timestamp}`, {
+                    cache: 'no-store'
+                });
+                if (rssResponse.ok) {
+                    const rssData = await rssResponse.json();
+                    if (rssData.status === 'ok' && Array.isArray(rssData.items) && rssData.items.length > 0) {
+                        articles = rssData.items.map(item => {
+                            const tempDiv = document.createElement('div');
+                            tempDiv.innerHTML = item.description || '';
+                            const plainDesc = tempDiv.textContent || tempDiv.innerText || '';
+                            const cleanDesc = plainDesc.substring(0, 180).trim() + '...';
+
+                            const dateObj = new Date(item.pubDate);
+                            const dateFormatted = isNaN(dateObj) ? 'Reciente' : dateObj.toLocaleDateString('es-ES', { month: 'short', day: 'numeric' });
+
+                            return {
+                                title: item.title,
+                                url: item.link,
+                                cover_image: item.thumbnail || '',
+                                description: cleanDesc,
+                                readable_date: dateFormatted,
+                                reading_time: '3 min de lectura',
+                                tags: item.categories || []
+                            };
+                        });
+                    }
+                }
+            } catch (err) {
+                console.warn('No se pudo sincronizar el feed RSS:', err);
+            }
+        }
+
+        // Renderizar los artículos obtenidos
+        if (articles.length > 0) {
+            // Eliminar tarjetas de artículos previas para reemplazar con la lista fresca
+            document.querySelectorAll('.card[data-category="devto"]').forEach(el => el.remove());
+
+            const activeBtn = document.querySelector('.filter-btn.active');
+            const currentFilter = activeBtn ? activeBtn.getAttribute('data-filter') : 'all';
+            const firstNonDevToCard = container.querySelector('.card:not([data-category="devto"])');
+
+            articles.forEach(article => {
+                const card = document.createElement('article');
+                card.className = 'card theme-devto';
+                card.setAttribute('data-category', 'devto');
+
+                if (currentFilter !== 'all' && currentFilter !== 'devto') {
+                    card.classList.add('is-hidden');
+                }
+
+                const coverHtml = article.cover_image 
+                    ? `<img src="${article.cover_image}" alt="${article.title}" class="article-cover" loading="lazy">`
+                    : '';
+
+                const tagsHtml = (article.tags && article.tags.length > 0)
+                    ? `<div class="article-tags">${article.tags.map(t => `<span class="tag-pill">#${t}</span>`).join('')}</div>`
+                    : '';
+
+                card.innerHTML = `
+                    <div class="card-top">
+                        <span class="card-icon">✍️</span>
+                        <span class="badge badge-devto">Dev.to · Artículo</span>
+                    </div>
+                    ${coverHtml}
+                    <h2 class="card-title">${article.title}</h2>
+                    <div class="article-meta">
+                        <span>📅 ${article.readable_date}</span>
+                        <span>⏱️ ${article.reading_time}</span>
+                    </div>
+                    <p class="card-desc">${article.description || ''}</p>
+                    ${tagsHtml}
+                    <div class="card-actions">
+                        <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            Leer en Dev.to
+                        </a>
+                    </div>
+                `;
+
+                if (firstNonDevToCard) {
+                    container.insertBefore(card, firstNonDevToCard);
+                } else {
+                    container.appendChild(card);
+                }
+                attachTiltEffect(card);
+            });
         }
     }
 
