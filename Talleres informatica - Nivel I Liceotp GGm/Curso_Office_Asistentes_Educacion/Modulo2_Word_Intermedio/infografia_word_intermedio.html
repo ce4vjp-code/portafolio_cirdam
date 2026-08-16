@@ -1,0 +1,352 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Word Intermedio - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #0f172a;
+            --primary-light: #2563eb;
+            --purple: #7e22ce;
+            --purple-light: #f3e8ff;
+            --accent: #d97706;
+            --accent-light: #fef3c7;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .infographic-header {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e3a8a 100%);
+            color: white;
+            padding: 36px 40px;
+            position: relative;
+        }
+
+        .infographic-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #a855f7, #3b82f6, #10b981);
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .infographic-header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .infographic-header p {
+            font-size: 15px;
+            color: #cbd5e1;
+            max-width: 800px;
+        }
+
+        .content-body {
+            padding: 36px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+
+        .section-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--purple);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .section-title h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        /* Flow container */
+        .flow-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .flow-step {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px 14px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .flow-step.active {
+            border-color: var(--purple);
+            background: #faf5ff;
+        }
+
+        .step-num {
+            width: 28px;
+            height: 28px;
+            background: var(--purple);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .flow-step h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+        }
+
+        .flow-step p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.35;
+        }
+
+        /* 3-Col cards */
+        .grid-3col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .tool-card {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+            background: #ffffff;
+        }
+
+        .tool-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tool-card ul {
+            list-style: none;
+            font-size: 12.5px;
+            color: var(--text-main);
+        }
+
+        .tool-card li {
+            margin-bottom: 6px;
+            display: flex;
+            gap: 6px;
+        }
+
+        .infographic-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .btn-action {
+            background: var(--purple);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @media (max-width: 850px) {
+            .flow-container, .grid-3col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="infographic-header">
+            <span class="tag">Módulo 2 • Gestión Avanzada</span>
+            <h1>Word Intermedio: Flujos de Automatización Escolar</h1>
+            <p>Liceo TP Gonzalo Guglielmi M • Estrategias visuales para emitir comunicaciones masivas, certificados oficiales, informes estructurados con índices y revisión en equipo.</p>
+        </div>
+
+        <div class="content-body">
+            
+            <!-- SECCIÓN 1: Flujo de Combinación de Correspondencia -->
+            <div>
+                <div class="section-title">
+                    <div class="section-badge">1</div>
+                    <h2>Flujo Oficial: Cómo emitir 50 citaciones a apoderados en 1 minuto</h2>
+                </div>
+
+                <div class="flow-container">
+                    <div class="flow-step">
+                        <div class="step-num">1</div>
+                        <h3>1. Redactar Modelo</h3>
+                        <p>Escribe el texto de la citación dejando los espacios para el nombre, RUT, curso y fecha.</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num">2</div>
+                        <h3>2. Vincular Nómina</h3>
+                        <p>En <em>Correspondencia</em>, selecciona la lista de Excel con los datos de los apoderados del liceo.</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num">3</div>
+                        <h3>3. Insertar Campos</h3>
+                        <p>Inserta <code>«Nombre_Apoderado»</code> y <code>«Estudiante»</code> en los lugares correspondientes.</p>
+                    </div>
+                    <div class="flow-step active">
+                        <div class="step-num">4</div>
+                        <h3>4. Finalizar y Combinar</h3>
+                        <p>Haz clic en <strong>Finalizar y combinar</strong>. Word creará automáticamente las 50 cartas listas para imprimir o enviar en PDF.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 2: Jerarquía de Estilos y Secciones -->
+            <div>
+                <div class="section-title">
+                    <div class="section-badge">2</div>
+                    <h2>Arquitectura de Documentos Largos (Reglamentos y Planes UTP)</h2>
+                </div>
+
+                <div class="grid-3col">
+                    <div class="tool-card" style="background:#faf5ff; border-color:#e9d5ff;">
+                        <h3 style="color:#6b21a8;">📑 Estilos e Índices</h3>
+                        <ul>
+                            <li><span>•</span> <strong>Título 1:</strong> Para Capítulos o Títulos Mayores (Ej: Capítulo I: De la Matrícula).</li>
+                            <li><span>•</span> <strong>Título 2:</strong> Para Artículos o Secciones (Ej: Artículo 5: Asistencia).</li>
+                            <li><span>•</span> <strong>Índice Automático:</strong> Se genera con 1 clic en <em>Referencias &gt; Tabla de contenido</em>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tool-card" style="background:#eff6ff; border-color:#bfdbfe;">
+                        <h3 style="color:#1e40af;">📐 Saltos de Sección</h3>
+                        <ul>
+                            <li><span>•</span> <strong>Página Horizontal:</strong> Permite girar solo 1 hoja en medio de un informe para una tabla ancha.</li>
+                            <li><span>•</span> <strong>Desvincular Encabezado:</strong> Evita que la portada o carátula lleve número de página.</li>
+                            <li><span>•</span> <strong>Ubicación:</strong> <em>Disposición &gt; Saltos &gt; Página siguiente</em>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tool-card" style="background:#fffbeb; border-color:#fde68a;">
+                        <h3 style="color:#b45309;">🖼️ Logos y Firmas</h3>
+                        <ul>
+                            <li><span>•</span> <strong>Ajuste 'Delante del texto':</strong> Permite arrastrar el logo o la firma a cualquier rincón libremente.</li>
+                            <li><span>•</span> <strong>Color Transparente:</strong> Quita el recuadro blanco de la foto de la firma del director.</li>
+                            <li><span>•</span> <strong>Membrete Fijo:</strong> Insértalo dentro del encabezado para protegerlo.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 3: Plantillas y Control de Cambios -->
+            <div>
+                <div class="section-title">
+                    <div class="section-badge">3</div>
+                    <h2>Seguridad y Trabajo Colaborativo</h2>
+                </div>
+
+                <div class="grid-3col">
+                    <div class="tool-card">
+                        <h3>🎓 Plantillas .dotx</h3>
+                        <p style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">Nunca más arruines el certificado original del liceo.</p>
+                        <p style="font-size:12px;">Al guardar como <code>.dotx</code>, cada vez que abras la plantilla se creará un "Documento 1" nuevo, protegiendo el diseño maestro.</p>
+                    </div>
+
+                    <div class="tool-card">
+                        <h3>✏️ Control de Cambios</h3>
+                        <p style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">Revisión conjunta entre Inspectoría y Dirección.</p>
+                        <p style="font-size:12px;">Word subraya las modificaciones en color para que el equipo apruebe o rechace las sugerencias de manera transparente.</p>
+                    </div>
+
+                    <div class="tool-card">
+                        <h3>💬 Comentarios Digitales</h3>
+                        <p style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">Notas al margen sin alterar el texto.</p>
+                        <p style="font-size:12px;">Permite consultar dudas ("¿Falta el RUT de este apoderado?") en un globo lateral sin desconfigurar el oficio.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="infographic-footer">
+            <span>© Liceo TP Gonzalo Guglielmi M • Plan de Capacitación Digital 2026</span>
+            <button class="btn-action" onclick="window.print()">🖨️ Imprimir Infografía</button>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Rápida: Excel Intermedio - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #065f46;
+            --primary-dark: #022c22;
+            --primary-light: #059669;
+            --teal: #0f766e;
+            --accent: #d97706;
+            --accent-light: #fef3c7;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #cbd5e1;
+            color: var(--text-main);
+            line-height: 1.35;
+            font-size: 13px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .sheet-container {
+            width: 216mm;
+            min-height: 279mm;
+            background: var(--surface);
+            padding: 16mm 14mm;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .header-title h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .header-title p {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .badge {
+            background: #ccfbf1;
+            color: var(--teal);
+            border: 1px solid #99f6e4;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            flex-grow: 1;
+        }
+
+        .card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1.5px solid var(--border);
+        }
+
+        .card-header svg {
+            width: 16px;
+            height: 16px;
+            color: var(--teal);
+        }
+
+        .card-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .formula-box {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-left: 3px solid var(--teal);
+            border-radius: 4px;
+            padding: 6px 8px;
+            margin-bottom: 6px;
+            font-size: 11px;
+        }
+
+        .formula-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: #0f766e;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .tip-item {
+            margin-bottom: 5px;
+            font-size: 11px;
+            display: flex;
+            gap: 6px;
+            align-items: flex-start;
+        }
+
+        .tip-bullet {
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        .golden-box {
+            background: linear-gradient(135deg, #0f766e, #064e3b);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .golden-text h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #fcd34d;
+            margin-bottom: 2px;
+        }
+
+        .golden-text p {
+            font-size: 11px;
+            opacity: 0.95;
+            line-height: 1.3;
+        }
+
+        footer {
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10.5px;
+            color: var(--text-muted);
+        }
+
+        .btn-print {
+            background: var(--teal);
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .sheet-container { width: 100%; min-height: 100vh; box-shadow: none; padding: 8mm; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sheet-container">
+        <!-- Encabezado -->
+        <header>
+            <div class="header-title">
+                <h1>Excel 2019 Intermedio: Hoja de Referencia Rápida</h1>
+                <p>Liceo TP Gonzalo Guglielmi M • Módulo 4: Automatización y Análisis de Datos</p>
+            </div>
+            <div class="badge">Nivel Intermedio</div>
+        </header>
+
+        <div class="grid-2col">
+            
+            <!-- Columna 1: Fórmulas Lógicas y Búsqueda -->
+            <div style="display: flex; flex-direction: column; gap: 9px;">
+                
+                <!-- Tarjeta 1: Función SI -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <h2>Función SI (Condicionales Escolares)</h2>
+                    </div>
+                    <div class="formula-box">
+                        <span class="formula-code">=SI(F4>=4.0; "Aprobado"; "Reprobado")</span>
+                        <div>Evalúa si el promedio de la celda F4 es mayor o igual a 4.0 para asignar estado académico.</div>
+                    </div>
+                    <div class="formula-box">
+                        <span class="formula-code">=SI(H4<85%; "Alerta Inasistencia"; "Asistencia Regular")</span>
+                        <div>Genera alerta automática para Inspectoría si el porcentaje es inferior al 85% mínimo legal.</div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: BUSCARV y BUSCARX -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <h2>Búsqueda Automática de Alumnos por RUN</h2>
+                    </div>
+                    <div class="formula-box">
+                        <span class="formula-code">=BUSCARV(B2; A4:E100; 2; FALSO)</span>
+                        <div>Busca el RUN escrito en B2 dentro de la tabla (A4:E100) y trae automáticamente el <strong>Nombre del Alumno</strong> (columna 2). El <code>FALSO</code> asegura coincidencia exacta.</div>
+                    </div>
+                    <div class="formula-box">
+                        <span class="formula-code">=BUSCARX(B2; A4:A100; C4:C100)</span>
+                        <div>En Excel 2019/365: Busca el RUN en la columna A y devuelve el <strong>Apoderado</strong> de la columna C directamente.</div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Validación de Datos (Listas Desplegables) -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        <h2>Listas Desplegables en Celdas</h2>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">1.</span>
+                        <div>Selecciona las celdas donde quieres la lista (ej: columna Curso).</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">2.</span>
+                        <div>Ve a pestaña <strong>Datos &gt; Validación de datos</strong>.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">3.</span>
+                        <div>En <em>Permitir:</em> elige <strong>Lista</strong> y en <em>Origen:</em> escribe separado por punto y coma: <code>1° Medio A; 2° Medio B; 3° Medio TP Electricidad; 4° Medio TP Mecánica</code>.</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Columna 2: Formato Condicional, Tablas Dinámicas y Gráficos -->
+            <div style="display: flex; flex-direction: column; gap: 9px;">
+                
+                <!-- Tarjeta 4: Formato Condicional (Notas Rojas) -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <h2>Formato Condicional (Semáforo de Notas)</h2>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">›</span>
+                        <div><strong>Notas Rojas (&lt; 4.0):</strong> Selecciona las notas &gt; <em>Inicio &gt; Formato condicional &gt; Reglas para resaltar celdas &gt; Es menor que...</em> escribe <code>4.0</code> y elige <strong>Relleno rojo claro con texto rojo oscuro</strong>.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">›</span>
+                        <div><strong>Notas Destacadas (&gt;= 6.0):</strong> Elige <em>Es mayor o igual que...</em> <code>6.0</code> con relleno verde suave.</div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 5: Tablas Dinámicas Escolares -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                        <h2>Tablas Dinámicas (Resumen UTP en 3 Pasos)</h2>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">1.</span>
+                        <div>Haz clic dentro de tu planilla de 200 estudiantes.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">2.</span>
+                        <div>Pestaña <strong>Insertar &gt; Tabla dinámica &gt; Aceptar</strong>.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">3.</span>
+                        <div>Arrastra <code>Especialidad TP</code> a <strong>Filas</strong>, <code>Situación</code> a <strong>Columnas</strong> y <code>RUN</code> a <strong>Valores</strong> para contar cuántos aprobados hay por carrera técnica.</div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 6: Gráficos de Asistencia -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                        <h2>Gráficos para Consejo de Profesores</h2>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">›</span>
+                        <div>Selecciona la tabla resumen &gt; <em>Insertar &gt; Gráfico de Columnas 2D</em> o <em>Circular</em>.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">›</span>
+                        <div>Haz clic en el signo <strong>[+]</strong> junto al gráfico y marca <strong>Etiquetas de datos</strong> para mostrar los porcentajes exactos sobre las barras.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Regla de Oro -->
+        <div class="golden-box">
+            <div style="font-size:22px;">💡</div>
+            <div class="golden-text">
+                <h3>Regla de Oro en Excel Intermedio: "Automatiza la Decisión con la Función SI"</h3>
+                <p>Usa <code>=SI(F4>=4.0; "Aprobado"; "Reprobado")</code> y deja que Excel califique a los 400 alumnos del liceo en un solo segundo sin riesgo de error humano.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <span>Liceo TP Gonzalo Guglielmi M • Módulo 4: Excel Intermedio</span>
+            <button class="btn-print no-print" onclick="window.print()">🖨️ Imprimir Hoja de Referencia (1 Hoja)</button>
+            <span>Material Diseñado para Asistentes de la Educación</span>
+        </footer>
+    </div>
+
+</body>
+</html>

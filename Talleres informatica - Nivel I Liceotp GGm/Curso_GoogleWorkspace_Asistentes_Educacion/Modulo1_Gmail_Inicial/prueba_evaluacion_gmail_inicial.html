@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación Escrita: Gmail Inicial - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c5221f;
+            --primary-dark: #8c1b18;
+            --border: #cbd5e1;
+            --text: #1e293b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text);
+            line-height: 1.45;
+            font-size: 13.5px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .test-paper {
+            width: 216mm;
+            background: #ffffff;
+            padding: 16mm 14mm;
+            border-radius: 4px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-box {
+            border: 2px solid var(--primary);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 18px;
+        }
+
+        .school-title {
+            text-align: center;
+            border-bottom: 1.5px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .school-title h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .school-title p {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .student-data-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 8px 16px;
+            font-size: 12.5px;
+        }
+
+        .data-field {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+        }
+
+        .line {
+            flex-grow: 1;
+            border-bottom: 1px solid #94a3b8;
+            height: 14px;
+        }
+
+        .scores-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            text-align: center;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            padding: 6px;
+            border-radius: 4px;
+            margin-top: 8px;
+            font-size: 11.5px;
+        }
+
+        .section-header {
+            background: var(--primary);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            margin: 16px 0 10px 0;
+            text-transform: uppercase;
+        }
+
+        .question-item {
+            margin-bottom: 12px;
+            padding-left: 4px;
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .options-list {
+            list-style: none;
+            padding-left: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .radio-circle {
+            width: 14px;
+            height: 14px;
+            border: 1.5px solid #64748b;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .tf-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 6px;
+        }
+
+        .tf-table th, .tf-table td {
+            border: 1px solid #cbd5e1;
+            padding: 6px 8px;
+            font-size: 12.5px;
+        }
+
+        .tf-table th { background: #f1f5f9; font-weight: 700; }
+        .tf-cell { text-align: center; width: 45px; }
+
+        .case-box {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-left: 4px solid var(--primary);
+            padding: 10px 12px;
+            border-radius: 0 4px 4px 0;
+            font-size: 12.5px;
+            margin-bottom: 8px;
+        }
+
+        .answer-lines {
+            border-bottom: 1px dashed #94a3b8;
+            height: 24px;
+            margin-top: 6px;
+        }
+
+        .teacher-key {
+            margin-top: 30px;
+            padding: 16px;
+            background: #fffbeb;
+            border: 1.5px solid #fde68a;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        .teacher-key h3 { color: #b45309; font-family: 'Outfit', sans-serif; font-size: 14px; margin-bottom: 8px; }
+
+        .btn-print {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .test-paper { width: 100%; box-shadow: none; padding: 6mm 8mm; }
+            .btn-print, .no-print { display: none !important; }
+            .teacher-key { page-break-before: always; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="test-paper">
+        
+        <!-- Encabezado -->
+        <div class="header-box">
+            <div class="school-title">
+                <h1>Liceo TP Gonzalo Guglielmi M</h1>
+                <p>Google Workspace para Asistentes de la Educación • Evaluación Módulo 1: Gmail Inicial</p>
+            </div>
+            
+            <div class="student-data-grid">
+                <div class="data-field"><strong>Nombre Funcionario(a):</strong> <div class="line"></div></div>
+                <div class="data-field"><strong>Fecha:</strong> <div class="line"></div></div>
+                <div class="data-field"><strong>Cargo / Función en el Liceo:</strong> <div class="line"></div></div>
+                <div class="data-field"><strong>Exigencia:</strong> 60% (Nota 4.0 con 18 pts)</div>
+            </div>
+
+            <div class="scores-box">
+                <div><strong>Puntaje Ideal:</strong> 30 Puntos</div>
+                <div><strong>Puntaje Obtenido:</strong> _______ Pts</div>
+                <div><strong>Calificación Final:</strong> _______</div>
+            </div>
+        </div>
+
+        <p style="font-size: 11.5px; color: #64748b; margin-bottom: 12px;">
+            <strong>Instrucciones:</strong> Lea atentamente cada pregunta sobre comunicación escolar institucional. Dispone de 45 minutos para responder.
+        </p>
+
+        <!-- SECCIÓN I: SELECCIÓN MÚLTIPLE -->
+        <div class="section-header">Ítem I: Selección Múltiple (2 pts c/u - Total: 12 Pts)</div>
+
+        <div class="question-item">
+            <div class="question-text">1. ¿En qué campo de destinatarios deben ingresarse los correos de 40 apoderados para cumplir con la ley de protección de datos personales?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) Para</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) Cc (Con Copia)</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) Cco (Copia Oculta)</span></li>
+            </ul>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">2. ¿Qué atajo de teclado permite insertar un hipervínculo que lleve al sitio web oficial (https://liceotpggm.cl)?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) Ctrl + C</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) Ctrl + K</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) Ctrl + G</span></li>
+            </ul>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">3. ¿Cuál es el tamaño máximo permitido para adjuntar un archivo directamente en Gmail antes de enviarlo por Google Drive?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) 10 MB</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) 25 MB</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) 50 MB</span></li>
+            </ul>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">4. Si necesitas encontrar rápidamente todas las circulares en formato PDF recibidas de Dirección, ¿qué comando escribes en el buscador?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) filename:pdf</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) buscar pdf</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) ver archivos</span></li>
+            </ul>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">5. ¿Por qué es una buena práctica docente estructurar el asunto del correo como [CIRCULAR N°1] Inicio de Clases?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) Porque permite identificar de inmediato la urgencia y tipo de documento sin abrir el correo.</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) Porque hace que el correo no ocupe espacio.</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) Porque el navegador lo exige.</span></li>
+            </ul>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">6. ¿Qué función cumplen las Etiquetas con color en Gmail?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) Clasificar visualmente los mensajes por departamento (Inspectoría, UTP, CRA) sin moverlos de lugar.</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) Borrar los correos antiguos.</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) Bloquear a los remitentes.</span></li>
+            </ul>
+        </div>
+
+        <!-- SECCIÓN II: VERDADERO O FALSO -->
+        <div class="section-header">Ítem II: Verdadero o Falso (2 pts c/u - Total: 8 Pts)</div>
+
+        <table class="tf-table">
+            <thead>
+                <tr><th class="tf-cell">V/F</th><th>Afirmación</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="tf-cell">____</td>
+                    <td>Si envías un correo a un apoderado usando el campo "Para", todos los demás apoderados podrán ver su dirección de correo y responderle.</td>
+                </tr>
+                <tr>
+                    <td class="tf-cell">____</td>
+                    <td>La Firma Institucional de Gmail se debe escribir a mano cada vez que se redacta un correo nuevo.</td>
+                </tr>
+                <tr>
+                    <td class="tf-cell">____</td>
+                    <td>Al marcar un correo con la Estrella amarilla, este se almacena automáticamente en la sección "Destacados" como recordatorio de prioridad.</td>
+                </tr>
+                <tr>
+                    <td class="tf-cell">____</td>
+                    <td>Las circulares y oficios oficiales siempre deben adjuntarse en formato PDF para garantizar la inalterabilidad de la firma y el formato.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- SECCIÓN III: CASO PRÁCTICO -->
+        <div class="section-header">Ítem III: Aplicación Práctica en Contexto Escolar (10 Pts)</div>
+
+        <div class="case-box">
+            <strong>Situación Escolar:</strong> El Encargado de Informática (Cristian Valdebenito L.) te solicita enviar la Circular de Talleres TP a los 35 apoderados del 3° Medio TP, con copia informativa al Inspector General y adjuntando el horario en PDF.
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">1. Indica exactamente qué colocarías en cada uno de los campos de envío de Gmail: (6 pts)</div>
+            <div style="font-size:12px; margin-top:4px;">• <strong>Para:</strong> ____________________________________________________________________</div>
+            <div style="font-size:12px; margin-top:4px;">• <strong>Cc:</strong> ______________________________________________________________________</div>
+            <div style="font-size:12px; margin-top:4px;">• <strong>Cco:</strong> _____________________________________________________________________</div>
+            <div style="font-size:12px; margin-top:4px;">• <strong>Asunto estructurado:</strong> ___________________________________________________________</div>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">2. ¿Qué pasos sigues para configurar tu firma institucional automática con el nombre del Liceo TP Gonzalo Guglielmi M y el sitio https://liceotpggm.cl? (4 pts)</div>
+            <div class="answer-lines"></div>
+            <div class="answer-lines"></div>
+        </div>
+
+        <!-- PAUTA DOCENTE -->
+        <div class="teacher-key no-print">
+            <h3>🔑 Pauta de Corrección y Clave Docente (Uso Exclusivo del Relator)</h3>
+            <p><strong>Ítem I:</strong> 1-c | 2-b | 3-b | 4-a | 5-a | 6-a (12 pts)</p>
+            <p><strong>Ítem II:</strong> 1-V | 2-F (La firma se configura una sola vez en Ajustes > General y aparece sola) | 3-V | 4-V (8 pts)</p>
+            <p><strong>Ítem III:</strong> 1: Para: correo de secretaría/propio; Cc: inspectoriageneral@liceotpggm.cl; Cco: lista de 35 correos de apoderados; Asunto: [CIRCULAR N°...] Horarios Talleres TP 2026 - Liceo TP Gonzalo Guglielmi M (6 pts). 2: Ir a Configuración (Engranaje) > Ver todos los ajustes > Pestaña General > sección Firma > Crear nueva firma institucional, escribir datos con formato y enlace a https://liceotpggm.cl, definir como predeterminada y Guardar Cambios (4 pts).</p>
+        </div>
+
+    </div>
+
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir Prueba Alumnos</button>
+
+</body>
+</html>

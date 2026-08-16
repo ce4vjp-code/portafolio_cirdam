@@ -1,0 +1,1200 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Completo: Word 2019 Inicial - Asistentes de la Educación</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #0f172a;
+            --primary-light: #2563eb;
+            --accent: #d97706;
+            --accent-light: #fef3c7;
+            --teal: #0d9488;
+            --teal-light: #ccfbf1;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --success: #059669;
+            --success-light: #ecfdf5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* Layout with Sidebar */
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 290px;
+            background: #0f172a;
+            color: #e2e8f0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 24px 18px;
+            flex-shrink: 0;
+            border-right: 1px solid #1e293b;
+        }
+
+        .sidebar-brand {
+            padding-bottom: 18px;
+            border-bottom: 1px solid #334155;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-brand h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: #60a5fa;
+            letter-spacing: -0.3px;
+        }
+
+        .sidebar-brand p {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .nav-group-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #64748b;
+            font-weight: 700;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            padding-left: 8px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 7px 10px;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.08);
+            color: #ffffff;
+            transform: translateX(3px);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex-grow: 1;
+            padding: 40px 50px;
+            max-width: 1050px;
+            background: #ffffff;
+        }
+
+        /* Hero Header */
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #0f172a 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 25px rgba(30, 58, 138, 0.15);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #cbd5e1;
+            max-width: 800px;
+        }
+
+        /* Typography & Section Styles */
+        h2.section-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            color: var(--primary-dark);
+            margin-top: 40px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3.topic-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            color: var(--primary);
+            margin-top: 32px;
+            margin-bottom: 14px;
+            padding-left: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        p {
+            margin-bottom: 14px;
+            color: var(--text-main);
+        }
+
+        ul, ol {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        /* Analogía Box */
+        .analogy-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-left: 5px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin: 18px 0 24px 0;
+        }
+
+        .analogy-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: #b45309;
+            margin-bottom: 6px;
+        }
+
+        .analogy-box p {
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #78350f;
+        }
+
+        .analogy-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Exercise Cards */
+        .exercise-card {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            position: relative;
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1.5px solid #e2e8f0;
+        }
+
+        .exercise-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .exercise-badge {
+            background: #e0e7ff;
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .exercise-context {
+            background: #ffffff;
+            border-left: 3px solid var(--teal);
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            font-size: 13.5px;
+            color: #0f766e;
+            margin-bottom: 14px;
+        }
+
+        .step-list {
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        .step-list li {
+            margin-bottom: 8px;
+        }
+
+        .expected-result {
+            margin-top: 14px;
+            background: var(--success-light);
+            border: 1px solid #a7f3d0;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #065f46;
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        /* Keyboard tags */
+        .kbd {
+            font-family: 'JetBrains Mono', monospace;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-bottom: 2px solid #94a3b8;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        /* Code & Pre */
+        pre {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 14px 18px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            overflow-x: auto;
+            margin: 12px 0 16px 0;
+            line-height: 1.45;
+        }
+
+        /* Tables */
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .custom-table th {
+            background: #1e3a8a;
+            color: white;
+            padding: 12px 14px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .custom-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .custom-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .custom-table tr:hover {
+            background: #eff6ff;
+        }
+
+        /* Quiz Box */
+        .quiz-card {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-bottom: 18px;
+        }
+
+        .quiz-question {
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+
+        .quiz-options {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 10px;
+        }
+
+        .quiz-options li {
+            padding: 8px 12px;
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            font-size: 13.5px;
+            transition: 0.15s;
+            cursor: pointer;
+        }
+
+        .quiz-options li:hover {
+            background: #e0e7ff;
+            border-color: #818cf8;
+        }
+
+        .quiz-feedback {
+            background: #eff6ff;
+            border-left: 3px solid var(--primary-light);
+            padding: 8px 12px;
+            font-size: 13px;
+            color: #1e40af;
+            border-radius: 0 4px 4px 0;
+            margin-top: 8px;
+        }
+
+        /* Action Buttons */
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 10px;
+            margin-top: 8px;
+        }
+
+        .btn-link:hover {
+            background: var(--primary-light);
+        }
+
+        /* Print styles */
+        @media print {
+            .sidebar, .btn-link, .no-print {
+                display: none !important;
+            }
+            .page-wrapper {
+                display: block;
+            }
+            .main-content {
+                padding: 0;
+                max-width: 100%;
+            }
+            .hero {
+                padding: 20px;
+                background: #1e3a8a !important;
+                color: white !important;
+                -webkit-print-color-adjust: exact;
+            }
+            .exercise-card, .analogy-box, .custom-table {
+                break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .page-wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .main-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <!-- Barra Lateral de Navegación -->
+        <aside class="sidebar no-print">
+            <div class="sidebar-brand">
+                <h2>Liceo TP Gonzalo Guglielmi M</h2>
+                <p>Plan de Capacitación Digital 2026</p>
+            </div>
+
+            <div class="nav-group-title">Módulo 1: Word Inicial</div>
+            <ul class="nav-links">
+                <li><a href="#presentacion">1. Enfoque Andragógico</a></li>
+                <li><a href="#objetivos">2. Objetivos de Aprendizaje</a></li>
+                <li><a href="#tiempos">3. Tiempos y Temario</a></li>
+                <li><a href="#tema1">Tema 1: Entorno y Herramientas</a></li>
+                <li><a href="#tema2">Tema 2: Guardar y PDF</a></li>
+                <li><a href="#tema3">Tema 3: Formato de Texto</a></li>
+                <li><a href="#tema4">Tema 4: Listas y Viñetas</a></li>
+                <li><a href="#tema5">Tema 5: Tablas Escolares</a></li>
+                <li><a href="#tema6">Tema 6: Ortografía F7</a></li>
+                <li><a href="#tema7">Tema 7: Márgenes e Impresión</a></li>
+                <li><a href="#tema8">Tema 8: Encabezado y Pie</a></li>
+                <li><a href="#proyecto">Proyecto Integrador</a></li>
+                <li><a href="#rubrica">Pauta de Evaluación</a></li>
+                <li><a href="#cuestionario">Cuestionario de Salida</a></li>
+                <li><a href="#recursos">Recursos Visuales</a></li>
+            </ul>
+
+            <div class="nav-group-title">Recursos Adicionales</div>
+            <div style="padding: 6px 10px;">
+                <a href="guia_rapida_atajos_word_inicial.html" target="_blank" class="btn-link" style="width: 100%; justify-content: center; margin-bottom: 6px;">📄 Hoja de Atajos</a>
+                <a href="infografia_word_inicial.html" target="_blank" class="btn-link" style="width: 100%; justify-content: center; background:#0d9488;">📊 Infografía Visual</a>
+            </div>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            
+            <!-- Hero Header -->
+            <div class="hero">
+                <span class="hero-badge">Manual Docente y Guía del Participante</span>
+                <h1>Microsoft Word 2019: Nivel Inicial</h1>
+                <p>Capacitación práctica orientada a las funciones administrativas, de inspectoría, secretaría y biblioteca CRA de los establecimientos educacionales de Chile.</p>
+            </div>
+
+            <!-- 1. Presentación -->
+            <section id="presentacion">
+                <h2 class="section-header">1. Presentación y Enfoque Andragógico del Módulo</h2>
+                <p>Este módulo está diseñado especialmente para los <strong>Asistentes de la Educación</strong> de establecimientos educacionales de Chile (personal administrativo, inspectores de patio y nivel, secretarias de rectoría/dirección, encargados de biblioteca y CRA, coordinadores de talleres y personal de apoyo de convivencia escolar).</p>
+                <p>Reconociendo que los participantes son adultos con diversos niveles de cercanía a la tecnología y con responsabilidades laborales inmediatas, la metodología de este curso se fundamenta en los siguientes principios:</p>
+                <ul>
+                    <li><strong>Cero tecnicismos innecesarios:</strong> Los conceptos se explican utilizando analogías de la vida escolar cotidiana (archivadores, casilleros, mesones de trabajo, actas de inspectoría).</li>
+                    <li><strong>Utilidad práctica desde el minuto 1:</strong> Cada ejercicio responde a una necesidad real del liceo (citar a un apoderado, redactar un oficio ordinario, registrar turnos de patio o inventariar libros del CRA).</li>
+                    <li><strong>Seguridad emocional y autonomía:</strong> Se enseña a perder el miedo al error mediante atajos de rescate (<span class="kbd">Ctrl</span> + <span class="kbd">Z</span>), guardado automático y pautas de autoverificación del resultado esperado.</li>
+                </ul>
+            </section>
+
+            <!-- 2. Objetivos -->
+            <section id="objetivos">
+                <h2 class="section-header">2. Objetivos de Aprendizaje</h2>
+                <p>Al finalizar el <strong>Módulo 1: Word Inicial</strong>, las y los participantes serán capaces de:</p>
+                <ol>
+                    <li><strong>Reconocer y navegar</strong> con confianza por la interfaz de Microsoft Word 2019, identificando la Cinta de Opciones, la Barra de Acceso Rápido y el Control de Zoom.</li>
+                    <li><strong>Crear, guardar de manera organizada y abrir</strong> documentos escolares en carpetas locales o unidades externas (pendrives), exportando además a formato <strong>PDF</strong>.</li>
+                    <li><strong>Aplicar formatos profesionales de texto y párrafo</strong> (fuentes institucionales, tamaños, alineación, interlineado y sangrías) según las normas protocolares del establecimiento.</li>
+                    <li><strong>Construir listas con viñetas y esquemas numerados</strong> para pautas de cotejo, normativas de convivencia y listados de materiales.</li>
+                    <li><strong>Diseñar y estructurar tablas simples y funcionales</strong> con encabezados diferenciados, ajuste de celdas y bordes claros para registros escolares.</li>
+                    <li><strong>Utilizar el corrector ortográfico y gramatical (F7)</strong> y las herramientas de idioma para emitir comunicaciones formales sin faltas.</li>
+                    <li><strong>Configurar páginas e impresión</strong> (márgenes, orientación y tamaños oficiales chilenos: Carta vs. Oficio), evitando mermas y errores en la fotocopiadora.</li>
+                    <li><strong>Insertar encabezados y pies de página oficiales</strong> con membrete, logotipo y numeración automática "Página X de Y".</li>
+                </ol>
+            </section>
+
+            <!-- 3. Tiempos -->
+            <section id="tiempos">
+                <h2 class="section-header">3. Secuencia de Temas y Distribución de Tiempos</h2>
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Unidad / Tema</th>
+                            <th>Contenidos Principales</th>
+                            <th style="width: 130px; text-align: center;">Tiempo Estimado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tema 1</strong></td>
+                            <td>Entorno, interfaz y barra de acceso rápido en Word 2019</td>
+                            <td style="text-align: center;">15 min</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tema 2</strong></td>
+                            <td>Creación, guardado eficiente (.docx y .pdf) y apertura de archivos</td>
+                            <td style="text-align: center;">20 min</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tema 3</strong></td>
+                            <td>Formato de fuente y párrafo (alineación, interlineado y sangrías)</td>
+                            <td style="text-align: center;">25 min</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tema 4</strong></td>
+                            <td>Listas y viñetas personalizadas para pautas escolares</td>
+                            <td style="text-align: center;">15 min</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tema 5</strong></td>
+                            <td>Tablas simples para registros de Inspectoría y CRA</td>
+                            <td style="text-align: center;">25 min</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tema 6</strong></td>
+                            <td>Ortografía, gramática y sinónimos formales (F7)</td>
+                            <td style="text-align: center;">15 min</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tema 7</strong></td>
+                            <td>Configuración de página e impresión económica (Carta vs. Oficio)</td>
+                            <td style="text-align: center;">20 min</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tema 8</strong></td>
+                            <td>Encabezados institucionales y pies de página con numeración</td>
+                            <td style="text-align: center;">15 min</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Proyecto Integrador</strong></td>
+                            <td>Actividad integradora final combinada</td>
+                            <td style="text-align: center;">30 min</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Evaluación y Cierre</strong></td>
+                            <td>Pauta de cotejo, retroalimentación y cuestionario de salida</td>
+                            <td style="text-align: center;">20 min</td>
+                        </tr>
+                        <tr style="background:#eff6ff; font-weight: bold;">
+                            <td colspan="2">Tiempo Total Sesión Integral Módulo 1</td>
+                            <td style="text-align: center; color: var(--primary);">200 min (~3h 20m)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- TEMA 1 -->
+            <section id="tema1">
+                <h3 class="topic-header">TEMA 1: Entorno de Trabajo y Barra de Herramientas</h3>
+                
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Mesón de Trabajo de la Oficina</div>
+                    <p>Imaginemos que Word es el <strong>mesón de trabajo de la oficina de Inspectoría o Secretaría</strong>.</p>
+                    <p>• La <strong>Cinta de Opciones</strong> (arriba) es el cajón de herramientas organizado por etiquetas (<em>Inicio</em> para lápices y destacadores; <em>Insertar</em> para corchetes y fotos; <em>Disposición</em> para medir el papel).</p>
+                    <p>• La <strong>Barra de Acceso Rápido</strong> (arriba a la izquierda) es el estante que tenemos a mano sobre el mesón donde dejamos lo que más usamos: el botón de <em>Guardar</em> y la flechita mágica de <em>Deshacer</em> (para borrar el último descuido).</p>
+                    <p>• La <strong>Barra de Estado</strong> (abajo) es el contador que nos avisa en qué página estamos y cuántas palabras llevamos escritas.</p>
+                </div>
+
+                <pre>
++-------------------------------------------------------------------------------+
+|  [Guardar] [Deshacer]  Documento1 - Word                             [_] [o] [X] |
++-------------------------------------------------------------------------------+
+|  [Archivo]  [Inicio]  [Insertar]  [Disposición]  [Revisar]  [Vista]           |
+|  | Negrita | Cursiva | Calibri 11 | Centrar | Justificar | Viñetas |          |
++-------------------------------------------------------------------------------+
+|                                                                               |
+|       [ ÁREA DE TRABAJO - HOJA DE PAPEL EN BLANCO ]                           |
+|                                                                               |
++-------------------------------------------------------------------------------+
+|  Página 1 de 1    120 palabras    Español (Chile)            [ - ] 100% [ + ]  |
++-------------------------------------------------------------------------------+
+                </pre>
+
+                <!-- Ejercicio 1.1 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio Guiado 1.1: Personalizar la Barra de Acceso Rápido</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <div class="exercise-context">
+                        <strong>Situación escolar:</strong> En el liceo se imprimen y guardan circulares todo el día. Necesitas tener a un solo clic el guardado inmediato y la vista previa de impresión.
+                    </div>
+                    <ol class="step-list">
+                        <li>Abre Microsoft Word 2019 (Inicio &gt; Word o doble clic en el icono azul con la <strong>W</strong>).</li>
+                        <li>Haz clic en la opción <strong>Documento en blanco</strong>.</li>
+                        <li>Dirige la vista a la esquina superior izquierda (encima de la palabra <em>Archivo</em>). Verás una pequeña flechita hacia abajo (botón <em>Personalizar barra de herramientas de acceso rápido</em>).</li>
+                        <li>Haz clic sobre esa flecha y selecciona con un clic la opción <strong>Impresión rápida</strong> y luego <strong>Vista previa e imprimir</strong>.</li>
+                        <li>Observa cómo aparecen los iconos directos en la barra superior.</li>
+                    </ol>
+                    <div class="expected-result">
+                        <span>✅</span>
+                        <div><strong>Resultado esperado:</strong> Tu barra superior ahora tiene visibles los iconos de disco (Guardar), flecha curva (Deshacer), lupa con hoja (Vista previa) y la impresora.</div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio 1.2 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio Guiado 1.2: Ajuste de Zoom y Visualización de la Regla</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <div class="exercise-context">
+                        <strong>Situación escolar:</strong> Un asistente de inspectoría necesita ver el documento al 100% de tamaño real y asegurarse de que la regla esté activa para alinear el texto de un memorándum.
+                    </div>
+                    <ol class="step-list">
+                        <li>En el documento en blanco, dirígete a la pestaña <strong>Vista</strong> en la Cinta de Opciones.</li>
+                        <li>En el grupo <em>Mostrar</em>, marca la casilla de verificación llamada <strong>Regla</strong>. Verás aparecer una regla graduada en centímetros en la parte superior y lateral izquierda de la hoja.</li>
+                        <li>En la esquina inferior derecha de la pantalla, localiza la barra deslizadora de <strong>Zoom</strong>.</li>
+                        <li>Haz clic en el signo <strong>[+]</strong> hasta alcanzar el <strong>120%</strong> para una lectura cómoda y descansada para la vista. Luego haz clic en el botón <strong>100%</strong> de la pestaña <em>Vista</em>.</li>
+                    </ol>
+                    <div class="expected-result">
+                        <span>✅</span>
+                        <div><strong>Resultado esperado:</strong> La hoja muestra la regla superior marcada con los márgenes y el tamaño de visualización es claro y nítido al 100%.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TEMA 2 -->
+            <section id="tema2">
+                <h3 class="topic-header">TEMA 2: Crear, Guardar y Abrir Documentos (.docx y .pdf)</h3>
+                
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Archivador de Palanca</div>
+                    <p>Crear y guardar un archivo es como <strong>rotular y guardar una carpeta dentro del archivador de palanca del liceo</strong>.</p>
+                    <p>• Si no le pones nombre a la carpeta, queda como "Documento 1" y se perderá entre cientos de papeles.</p>
+                    <p>• <strong>Guardar Como:</strong> Es cuando bautizas el archivo por primera vez y decides en qué casillero (carpeta <em>Año Escolar 2026 / Circulares</em>) lo dejas.</p>
+                    <p>• <strong>Guardar (<span class="kbd">Ctrl</span> + <span class="kbd">G</span>):</strong> Es meter una nueva hoja a la carpeta que ya tiene nombre.</p>
+                    <p>• <strong>Exportar a PDF:</strong> Es como sacar una fotocopia plastificada y timbrada; nadie puede alterarle el texto al enviarla por WhatsApp o correo electrónico a los apoderados.</p>
+                </div>
+
+                <!-- Ejercicio 2.1 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio Guiado 2.1: Crear y Guardar el Primer Oficio en Carpeta Escolar</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <div class="exercise-context">
+                        <strong>Situación escolar:</strong> La encargada de secretaría debe redactar el primer memorándum del semestre y guardarlo ordenadamente en su computador.
+                    </div>
+                    <ol class="step-list">
+                        <li>Con un documento nuevo abierto, escribe el siguiente texto:
+                            <pre>MEMORÁNDUM N° 01/2026
+DE: Secretaría de Dirección
+A: Todo el Personal Asistente de la Educación
+FECHA: 10 de Marzo de 2026
+MAT: Entrega de credenciales institucionales.</pre>
+                        </li>
+                        <li>Ve a la pestaña <strong>Archivo</strong> (esquina superior izquierda) y haz clic en <strong>Guardar como</strong>.</li>
+                        <li>Haz clic en <strong>Examinar</strong> (icono de carpeta amarilla).</li>
+                        <li>En la ventana que se abre, selecciona en la columna izquierda la carpeta <strong>Documentos</strong>.</li>
+                        <li>En la casilla <em>Nombre de archivo:</em>, borra lo que aparezca y escribe: <code>Memo_01_Credenciales_2026</code>.</li>
+                        <li>Haz clic en el botón <strong>Guardar</strong>.</li>
+                    </ol>
+                    <div class="expected-result">
+                        <span>✅</span>
+                        <div><strong>Resultado esperado:</strong> En la barra de título superior de Word ya no dice "Documento 1", sino <code>Memo_01_Credenciales_2026.docx - Word</code>.</div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio 2.2 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio Guiado 2.2: Exportar a Formato PDF para WhatsApp de Apoderados</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <div class="exercise-context">
+                        <strong>Situación escolar:</strong> Inspectoría General necesita enviar una circular a los apoderados en formato PDF para que ningún dato pueda ser modificado en los celulares.
+                    </div>
+                    <ol class="step-list">
+                        <li>Con el archivo <code>Memo_01_Credenciales_2026.docx</code> abierto en pantalla, haz clic en <strong>Archivo</strong>.</li>
+                        <li>Haz clic en <strong>Exportar</strong> (o <em>Guardar como</em>).</li>
+                        <li>Selecciona el botón grande que dice <strong>Crear documento PDF/XPS</strong>.</li>
+                        <li>Verifica que en <em>Tipo:</em> diga <code>PDF (*.pdf)</code>.</li>
+                        <li>Haz clic en el botón <strong>Publicar</strong>.</li>
+                    </ol>
+                    <div class="expected-result">
+                        <span>✅</span>
+                        <div><strong>Resultado esperado:</strong> Se abre automáticamente el lector de PDF mostrando el memorándum listo para ser compartido de forma segura e inalterable.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TEMA 3 -->
+            <section id="tema3">
+                <h3 class="topic-header">TEMA 3: Formato de Fuente y Párrafo (Estilo Institucional)</h3>
+                
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: La Presentación Personal del Documento</div>
+                    <p>El formato de texto es la <strong>presentación formal del oficio o acta</strong>.</p>
+                    <p>• <strong>Fuente:</strong> En el liceo usamos fuentes formales como <em>Arial</em>, <em>Calibri</em> o <em>Times New Roman</em>.</p>
+                    <p>• <strong>Negrita (<span class="kbd">Ctrl</span> + <span class="kbd">N</span>):</strong> Es como pasar el marcador destacador sobre las fechas o nombres clave.</p>
+                    <p>• <strong>Alineación Justificada (<span class="kbd">Ctrl</span> + <span class="kbd">J</span>):</strong> Es emparejar los márgenes izquierdo y derecho para que el oficio quede recto.</p>
+                    <p>• <strong>Interlineado:</strong> Es el espacio entre renglones para que el texto respire y el inspector o director pueda firmar.</p>
+                </div>
+
+                <!-- Ejercicio 3.1 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio Guiado 3.1: Formateo de una Citación Urgente de Apoderado</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <div class="exercise-context">
+                        <strong>Situación escolar:</strong> Un paradocente debe dejar lista una citación para un apoderado con tipografía clara y destacando los datos urgentes.
+                    </div>
+                    <ol class="step-list">
+                        <li>En una hoja nueva, escribe el siguiente texto:
+                            <pre>CITACIÓN DE APODERADO
+Estimado(a) apoderado(a): Se solicita su presencia con carácter de urgente para el día Jueves 19 de Marzo a las 09:30 horas en la oficina de Inspectoría General, para tratar asuntos relacionados con la asistencia y rendimiento de su pupilo(a).
+Atentamente, Inspectoría General.</pre>
+                        </li>
+                        <li>Selecciona el título <code>"CITACIÓN DE APODERADO"</code>.</li>
+                        <li>En la pestaña <strong>Inicio</strong>: cambia a <strong>Arial</strong>, tamaño <strong>14</strong>, <strong>Negrita</strong> y <strong>Centrado</strong> (<span class="kbd">Ctrl</span> + <span class="kbd">T</span>).</li>
+                        <li>Selecciona el párrafo del cuerpo: cambia a <strong>Arial 11</strong> y haz clic en <strong>Justificar</strong> (<span class="kbd">Ctrl</span> + <span class="kbd">J</span>).</li>
+                        <li>Selecciona <code>"Jueves 19 de Marzo a las 09:30 horas"</code> y aplica <strong>Negrita</strong> y <strong>Subrayado</strong> (<span class="kbd">Ctrl</span> + <span class="kbd">S</span>).</li>
+                    </ol>
+                    <div class="expected-result">
+                        <span>✅</span>
+                        <div><strong>Resultado esperado:</strong> El título queda centrado y destacado en tamaño 14; el texto queda parejo (justificado) y la fecha de citación resalta de inmediato.</div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio 3.2 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio Guiado 3.2: Ajuste de Interlineado y Espaciado en un Acta</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <div class="exercise-context">
+                        <strong>Situación escolar:</strong> La secretaria de UTP redacta un acta de reunión pero las líneas quedaron muy pegadas.
+                    </div>
+                    <ol class="step-list">
+                        <li>Selecciona todo el texto del documento con <span class="kbd">Ctrl</span> + <span class="kbd">E</span>.</li>
+                        <li>En la pestaña <strong>Inicio</strong> (grupo <em>Párrafo</em>), haz clic en <strong>Espacio entre líneas y párrafos</strong> y elige <strong>1,15</strong>.</li>
+                        <li>Vuelve a hacer clic y selecciona <strong>Agregar espacio después del párrafo</strong> (6 pt).</li>
+                        <li>Selecciona la firma final ("Atentamente...") y haz clic en <strong>Alinear a la derecha</strong> (<span class="kbd">Ctrl</span> + <span class="kbd">D</span>).</li>
+                    </ol>
+                    <div class="expected-result">
+                        <span>✅</span>
+                        <div><strong>Resultado esperado:</strong> El texto respira adecuadamente con interlineado 1,15 y la firma se posiciona en el extremo derecho.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TEMA 4 -->
+            <section id="tema4">
+                <h3 class="topic-header">TEMA 4: Listas y Viñetas para Pautas Escolares</h3>
+                
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Checklist de Patio y Taller</div>
+                    <p>• <strong>Viñetas (puntos o checks):</strong> Cuando el orden no altera el resultado (lista de útiles del CRA o materiales de aseo).</p>
+                    <p>• <strong>Numeración (1, 2, 3...):</strong> Cuando hay un orden estricto o protocolo secuencial (Pasos para evacuar ante simulacro de sismo).</p>
+                </div>
+
+                <!-- Ejercicio 4.1 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio Guiado 4.1: Lista de Materiales para el Taller del CRA</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Escribe el título: <code>MATERIALES SOLICITADOS PARA TALLER CRA:</code> y presiona Enter.</li>
+                        <li>Escribe: 1 Tijera punta roma / 2 Pegamentos en barra / 1 Caja de 12 lápices / 1 Regla 30 cm / 1 Cuaderno universitario.</li>
+                        <li>Selecciona las 5 líneas y haz clic en la flechita de <strong>Viñetas</strong> en la pestaña <em>Inicio</em>.</li>
+                        <li>Elige la viñeta con visto bueno (<code>✓</code>) o punto negro relleno.</li>
+                    </ol>
+                    <div class="expected-result">
+                        <span>✅</span>
+                        <div><strong>Resultado esperado:</strong> Lista alineada con viñetas estilizadas y sangría automática perfecta.</div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio 4.2 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio Guiado 4.2: Protocolo de Atrasos con Numeración Automática</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Escribe los pasos de atraso: Presentarse en ventanilla / Registrar hora / Recibir pase / Entregar pase a profesor.</li>
+                        <li>Selecciona las 4 líneas y haz clic en <strong>Numeración</strong> (<code>1. 2. 3.</code>).</li>
+                        <li>Al final del paso 2 presiona <code>Enter</code> y agrega: <em>Solicitar la firma del inspector de turno</em>. Observa cómo Word renumera solo del 1 al 5.</li>
+                    </ol>
+                    <div class="expected-result">
+                        <span>✅</span>
+                        <div><strong>Resultado esperado:</strong> Numeración correlativa automática que se reajusta sola ante cualquier cambio.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TEMA 5 -->
+            <section id="tema5">
+                <h3 class="topic-header">TEMA 5: Tablas Simples para Registros de Inspectoría y CRA</h3>
+                
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: La Cuadrícula del Libro de Clases</div>
+                    <p>• <strong>Columnas:</strong> Verticales (de arriba a abajo, como las columnas del gimnasio).</p>
+                    <p>• <strong>Filas:</strong> Horizontales (de izquierda a derecha, como los renglones del libro).</p>
+                    <p>• <strong>Celda:</strong> Cada cajita individual donde anotamos un RUT o un nombre.</p>
+                </div>
+
+                <!-- Ejercicio 5.1 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio Guiado 5.1: Crear Tabla de Turnos de Patio de Asistentes</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Ve a <strong>Insertar &gt; Tabla</strong> y selecciona una cuadrícula de <strong>4 columnas y 5 filas</strong> (4x5).</li>
+                        <li>Encabezados: <code>Sector / Zona</code> | <code>Recreo 1 (10:00)</code> | <code>Almuerzo (13:00)</code> | <code>Funcionario Responsable</code>.</li>
+                        <li>Selecciona la primera fila, aplica <strong>Negrita</strong> y <strong>Centrado</strong>.</li>
+                        <li>En <em>Diseño de tabla &gt; Sombreado</em>, aplica color azul oscuro y texto en <strong>Blanco</strong> para alto contraste.</li>
+                    </ol>
+                    <div class="expected-result">
+                        <span>✅</span>
+                        <div><strong>Resultado esperado:</strong> Tabla 4x5 con encabezado destacado en azul institucional y celdas legibles.</div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio 5.2 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio Guiado 5.2: Registro de Préstamo de Notebooks y Libros del CRA</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Inserta una tabla de 5 columnas y 4 filas: <code>N° Equipo</code> | <code>Docente / RUT</code> | <code>Hora Entrega</code> | <code>Hora Devolución</code> | <code>Firma Receptor</code>.</li>
+                        <li>Coloca el cursor sobre la línea divisoria de columnas hasta ver la doble flecha <code>↔</code> y arrastra para dar más ancho a la columna de Firmas.</li>
+                        <li>Para agregar una nueva fila al final: presiona la tecla <span class="kbd">Tab</span> en la última casilla abajo a la derecha.</li>
+                    </ol>
+                    <div class="expected-result">
+                        <span>✅</span>
+                        <div><strong>Resultado esperado:</strong> Columnas con espacio suficiente para firmas manuales y fila adicional creada con Tab.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TEMA 6 -->
+            <section id="tema6">
+                <h3 class="topic-header">TEMA 6: Ortografía, Gramática y Redacción Formal (F7)</h3>
+                
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Revisor de Estilo Institucional</div>
+                    <p>• Línea roja ondulada: Palabra con error ortográfico o no reconocida por el diccionario chileno.</p>
+                    <p>• Línea azul ondulada: Error de concordancia gramatical o doble espacio.</p>
+                    <p>• Presionar <span class="kbd">F7</span>: Revisa todo el documento de punta a punta en 1 segundo antes de imprimir.</p>
+                </div>
+
+                <!-- Ejercicio 6.1 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio Guiado 6.1: Corrección de un Comunicado Escolar con F7</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Copia este texto con errores: <em>"El liceo informara a los apoderados que la reunion se realisara el proximo miercoles en el jimnasio del establesimiento."</em></li>
+                        <li>Presiona la tecla <span class="kbd">F7</span> en tu teclado (o ve a <em>Revisar &gt; Ortografía y gramática</em>).</li>
+                        <li>Acepta las sugerencias automáticas de Word: <code>informará</code>, <code>reunión</code>, <code>realizará</code>, <code>miércoles</code>, <code>gimnasio</code>, <code>establecimiento</code>.</li>
+                    </ol>
+                    <div class="expected-result">
+                        <span>✅</span>
+                        <div><strong>Resultado esperado:</strong> Texto 100% corregido y sin líneas onduladas rojas ni azules.</div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio 6.2 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio Guiado 6.2: Sinónimos y Mayúsculas Rápidas</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Haz clic derecho sobre la palabra <code>problema</code> y elige en <em>Sinónimos</em>: <strong>dificultad</strong> o <strong>inconveniente</strong>.</li>
+                        <li>Escribe <code>reglamento interno escolar 2026</code>, selecciónalo y presiona <span class="kbd">Shift</span> + <span class="kbd">F3</span> para alternar mayúsculas y minúsculas al instante.</li>
+                    </ol>
+                    <div class="expected-result">
+                        <span>✅</span>
+                        <div><strong>Resultado esperado:</strong> Redacción más fluida y transformación de mayúsculas sin borrar ni reescribir.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TEMA 7 -->
+            <section id="tema7">
+                <h3 class="topic-header">TEMA 7: Configuración de Página e Impresión Económica</h3>
+                
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: Calibrar el Papel de la Fotocopiadora</div>
+                    <p>• <strong>Carta (Letter):</strong> 21,59 x 27,94 cm (comunicados e informes).</p>
+                    <p>• <strong>Oficio Chileno:</strong> 21,59 x 33,00 cm (actas oficiales y contratos). <em>¡Ojo! No usar Legal (35,56 cm) porque atasca la impresora.</em></p>
+                    <p>• <strong>Márgenes Estrechos (1,27 cm):</strong> Permite que un comunicado entre en 1 sola página, ahorrando resmas de fotocopias.</p>
+                </div>
+
+                <!-- Ejercicio 7.1 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio Guiado 7.1: Configuración de Papel Oficio y Márgenes Estrechos</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Ve a <strong>Disposición &gt; Márgenes</strong> y selecciona <strong>Estrecho</strong> (1,27 cm).</li>
+                        <li>En <strong>Tamaño</strong>, verifica que esté en Oficio chileno (21,59 x 33 cm) o configúralo en <em>Más tamaños de papel...</em></li>
+                    </ol>
+                    <div class="expected-result">
+                        <span>✅</span>
+                        <div><strong>Resultado esperado:</strong> Hoja calibrada a 33 cm con mayor área útil de texto.</div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio 7.2 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio Guiado 7.2: Vista Previa e Intervalo de Impresión</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Presiona <span class="kbd">Ctrl</span> + <span class="kbd">P</span> para abrir la Vista Previa de impresión.</li>
+                        <li>En <em>Copias</em> ingresa <code>10</code> y en <em>Páginas</em> escribe <code>3</code> para imprimir únicamente la autorización de salida.</li>
+                    </ol>
+                    <div class="expected-result">
+                        <span>✅</span>
+                        <div><strong>Resultado esperado:</strong> Impresión exacta de 10 copias de la página 3 sin gastar hojas de más.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TEMA 8 -->
+            <section id="tema8">
+                <h3 class="topic-header">TEMA 8: Encabezado, Pie de Página y Numeración Institucional</h3>
+                
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Membrete y Timbre Institucional</div>
+                    <p>Se diseña una sola vez y se replica automáticamente en todas las páginas del liceo.</p>
+                </div>
+
+                <!-- Ejercicio 8.1 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio Guiado 8.1: Creación del Membrete Oficial</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Haz doble clic rápido en el margen superior de la hoja para abrir el <strong>Encabezado</strong>.</li>
+                        <li>Escribe: <code>LICEO BICENTENARIO • DEPARTAMENTO DE ASISTENCIA Y CONVIVENCIA ESCOLAR</code> en Arial 9 centrado y color gris oscuro.</li>
+                        <li>Presiona <span class="kbd">Esc</span> para salir del encabezado.</li>
+                    </ol>
+                    <div class="expected-result">
+                        <span>✅</span>
+                        <div><strong>Resultado esperado:</strong> Membrete fijo y uniforme en todas las páginas del documento.</div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio 8.2 -->
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio Guiado 8.2: Numeración "Página X de Y"</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Ve a <strong>Insertar &gt; Número de página &gt; Final de página</strong>.</li>
+                        <li>Selecciona la opción <strong>Página X de Y (Negrita 2)</strong> alineada a la derecha.</li>
+                    </ol>
+                    <div class="expected-result">
+                        <span>✅</span>
+                        <div><strong>Resultado esperado:</strong> Numeración correlativa automática (ejemplo: Página 1 de 3).</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROYECTO INTEGRADOR -->
+            <section id="proyecto">
+                <h2 class="section-header">5. Actividad Integradora Final del Módulo</h2>
+                <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                    <h3 style="color: var(--primary); font-family: 'Outfit', sans-serif; font-size: 18px; margin-bottom: 8px;">Proyecto: "Elaboración del Comunicado y Planilla Oficial de Salida Pedagógica a Terreno"</h3>
+                    <p><strong>Contexto Escolar:</strong> La Dirección del Liceo aprobó una salida pedagógica al Museo de Historia Natural para 35 estudiantes de 2° Medio. Como asistente de la educación, debes elaborar el documento oficial que contiene el comunicado formal para los apoderados y la nómina de control de asistencia y autorizaciones.</p>
+                </div>
+
+                <h4 style="font-weight: 700; color: var(--primary-dark); margin-bottom: 8px;">Instrucciones Paso a Paso:</h4>
+                <ol class="step-list">
+                    <li><strong>Configuración y Guardado:</strong> Tamaño Carta, márgenes Normales, guardar como <code>Salida_Pedagógica_2Medio_[TuNombre].docx</code>.</li>
+                    <li><strong>Encabezado y Pie:</strong> Membrete institucional en Arial 9 pt y numeración "Página X de Y" a la derecha.</li>
+                    <li><strong>Cuerpo del Comunicado:</strong> Título Arial 14 Negrita Centrado Azul; párrafo justificado con interlineado 1,15.</li>
+                    <li><strong>Normas de Seguridad:</strong> Subtítulo y lista con viñetas de visto bueno (<code>✓</code>) con 3 elementos obligatorios (TNE, botella de agua, autorización firmada).</li>
+                    <li><strong>Tabla de Control:</strong> Tabla de 4 columnas y 5 filas con encabezado sombreado en azul y texto en blanco en negrita para registrar firmas.</li>
+                    <li><strong>Revisión y Exportación:</strong> Presionar <span class="kbd">F7</span> y exportar a formato <strong>PDF</strong>.</li>
+                </ol>
+            </section>
+
+            <!-- RÚBRICA -->
+            <section id="rubrica">
+                <h2 class="section-header">6. Pauta de Evaluación del Proyecto Integrador</h2>
+                <p><strong>Puntaje Total:</strong> 100 Puntos | <strong>Exigencia:</strong> 60% (60 puntos para nota 4.0 de aprobación)</p>
+
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Criterio de Evaluación</th>
+                            <th>Indicadores de Logro Observables</th>
+                            <th style="width: 120px; text-align: center;">Puntaje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Configuración y Guardado</strong></td>
+                            <td>• Configura tamaño Carta y márgenes correctos.<br>• Guarda con la nomenclatura solicitada (.docx y .pdf).</td>
+                            <td style="text-align: center; font-weight: bold;">15 pts</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Membrete y Numeración</strong></td>
+                            <td>• Inserta encabezado institucional centrado.<br>• Aplica numeración automática "Página X de Y" en pie de página.</td>
+                            <td style="text-align: center; font-weight: bold;">15 pts</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Formato de Texto y Párrafos</strong></td>
+                            <td>• Título con fuente, tamaño, color y centrado correcto.<br>• Párrafo de circular justificado, con interlineado 1,15 legible.</td>
+                            <td style="text-align: center; font-weight: bold;">20 pts</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Listas y Viñetas</strong></td>
+                            <td>• Inserta lista con viñetas estilizadas y sangría correcta.<br>• Información clara y ordenada jerárquicamente.</td>
+                            <td style="text-align: center; font-weight: bold;">15 pts</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5. Estructura y Diseño de Tabla</strong></td>
+                            <td>• Tabla de 4x5 con encabezado sombreado y texto contrastado.<br>• Ancho de columnas proporcionado para firmas manuales.</td>
+                            <td style="text-align: center; font-weight: bold;">20 pts</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6. Ortografía y Prolijidad</strong></td>
+                            <td>• Documento sin faltas ortográficas tras aplicar F7.<br>• Presentación formal acorde a un liceo de excelencia.</td>
+                            <td style="text-align: center; font-weight: bold;">15 pts</td>
+                        </tr>
+                        <tr style="background:#eff6ff; font-weight: bold;">
+                            <td colspan="2">Puntaje Total de la Evaluación</td>
+                            <td style="text-align: center; color: var(--primary);">100 pts</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- CUESTIONARIO -->
+            <section id="cuestionario">
+                <h2 class="section-header">7. Cuestionario de Cierre del Módulo (7 Preguntas)</h2>
+                
+                <div class="quiz-card">
+                    <div class="quiz-question">1. Si estás redactando un acta y por error borraste un párrafo completo, ¿cuál es el atajo más rápido para recuperarlo?</div>
+                    <ul class="quiz-options">
+                        <li>a) Ctrl + G</li>
+                        <li>b) Ctrl + P</li>
+                        <li style="font-weight: bold; background: #ecfdf5; border-color: #10b981;">c) Ctrl + Z (Correcta)</li>
+                        <li>d) Ctrl + N</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> <code>Ctrl + Z</code> es la función Deshacer, que revierte instantáneamente la última acción o descuido.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">2. En Chile usamos papel tamaño Oficio. ¿Qué medida exacta debe tener en Word para no cortar el pie de página?</div>
+                    <ul class="quiz-options">
+                        <li>a) 21,59 cm x 27,94 cm (Carta)</li>
+                        <li style="font-weight: bold; background: #ecfdf5; border-color: #10b981;">b) 21,59 cm x 33,00 cm (Oficio Chileno) (Correcta)</li>
+                        <li>c) 21,59 cm x 35,56 cm (Legal de EE.UU.)</li>
+                        <li>d) 29,70 cm x 42,00 cm (A3)</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> El Oficio estándar chileno mide 33 cm de largo. "Legal" mide 35,56 cm y causa atascos o cortes al imprimir.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">3. Para que un oficio tenga sus bordes izquierdo y derecho perfectamente rectos y formales, ¿qué alineación se usa?</div>
+                    <ul class="quiz-options">
+                        <li>a) Alinear a la izquierda (Ctrl + Q)</li>
+                        <li>b) Centrar (Ctrl + T)</li>
+                        <li>c) Alinear a la derecha (Ctrl + D)</li>
+                        <li style="font-weight: bold; background: #ecfdf5; border-color: #10b981;">d) Justificar (Ctrl + J) (Correcta)</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> La alineación justificada distribuye homogéneamente el texto entre los márgenes.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">4. En una tabla de turnos, ¿qué tecla presionar en la última celda para agregar una nueva fila automáticamente?</div>
+                    <ul class="quiz-options">
+                        <li>a) Enter</li>
+                        <li style="font-weight: bold; background: #ecfdf5; border-color: #10b981;">b) Tab (Tabulador) (Correcta)</li>
+                        <li>c) Espacio</li>
+                        <li>d) Shift</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> La tecla <code>Tab</code> en la última celda inserta una nueva fila correlativa con el mismo formato.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">5. ¿Cuál es la principal ventaja de exportar a PDF antes de enviar un comunicado a los apoderados por WhatsApp?</div>
+                    <ul class="quiz-options">
+                        <li>a) Que se vuelve editable para que le cambien la fecha.</li>
+                        <li style="font-weight: bold; background: #ecfdf5; border-color: #10b981;">b) Que queda protegido contra modificaciones y se ve idéntico en cualquier celular. (Correcta)</li>
+                        <li>c) Que borra las tablas para pesar menos.</li>
+                        <li>d) Que cambia el color de las letras a negro.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> El formato PDF fija el diseño y asegura que nadie altere la información oficial.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">6. ¿Qué tecla de función directa inicia la revisión ortográfica y gramatical en Word?</div>
+                    <ul class="quiz-options">
+                        <li>a) F1</li>
+                        <li>b) F5</li>
+                        <li style="font-weight: bold; background: #ecfdf5; border-color: #10b981;">c) F7 (Correcta)</li>
+                        <li>d) F12</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> <code>F7</code> abre inmediatamente el panel de corrección ortográfica y gramatical.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">7. Si insertas un membrete en el Encabezado de la página 1, ¿qué ocurre en la página 2?</div>
+                    <ul class="quiz-options">
+                        <li>a) Se borra automáticamente.</li>
+                        <li style="font-weight: bold; background: #ecfdf5; border-color: #10b981;">b) Se replica automáticamente en la parte superior de la página 2. (Correcta)</li>
+                        <li>c) Hay que volver a escribirlo e insertar el logo.</li>
+                        <li>d) Da un error de página.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Los encabezados y pies de página se replican automáticamente en todo el documento.</div>
+                </div>
+            </section>
+
+            <!-- RECURSOS -->
+            <section id="recursos" style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #e2e8f0;">
+                <h2 class="section-header">8. Recursos Visuales y Materiales Complementarios</h2>
+                <p>Haz clic en los siguientes botones para abrir o imprimir el material visual complementario del módulo:</p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px;">
+                    <a href="guia_rapida_atajos_word_inicial.html" target="_blank" class="btn-link">📄 Ver Hoja de Atajos y Trucos (Imprimible 1 Pág)</a>
+                    <a href="infografia_word_inicial.html" target="_blank" class="btn-link" style="background: #0d9488;">📊 Ver Infografía Visual de la Interfaz</a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>

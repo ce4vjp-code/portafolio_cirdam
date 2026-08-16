@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Rápida: Google Drive Inicial - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a73e8; /* Drive Blue */
+            --primary-dark: #0d47a1;
+            --primary-light: #e8f0fe;
+            --green: #188038;
+            --yellow: #f29900;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #cbd5e1;
+            color: var(--text-main);
+            line-height: 1.35;
+            font-size: 13px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .sheet-container {
+            width: 216mm;
+            min-height: 279mm;
+            background: var(--surface);
+            padding: 16mm 14mm;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .header-title h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .header-title p { font-size: 11.5px; color: var(--text-muted); font-weight: 600; }
+
+        .badge {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: 1px solid #93c5fd;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            flex-grow: 1;
+        }
+
+        .card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1.5px solid var(--border);
+        }
+
+        .card-header svg { width: 16px; height: 16px; color: var(--primary); }
+
+        .card-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .shortcut-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+            font-size: 11.5px;
+        }
+
+        .kbd {
+            font-family: 'JetBrains Mono', monospace;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-bottom: 2px solid #94a3b8;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 10.5px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .tip-item {
+            margin-bottom: 5px;
+            font-size: 11px;
+            display: flex;
+            gap: 6px;
+            align-items: flex-start;
+        }
+
+        .tip-bullet { color: var(--primary); font-weight: 800; }
+
+        .golden-box {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .golden-text h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #93c5fd;
+            margin-bottom: 2px;
+        }
+
+        .golden-text p { font-size: 11px; opacity: 0.95; line-height: 1.3; }
+
+        footer {
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10.5px;
+            color: var(--text-muted);
+        }
+
+        .btn-print {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .sheet-container { width: 100%; min-height: 100vh; box-shadow: none; padding: 8mm; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sheet-container">
+        <!-- Encabezado -->
+        <header>
+            <div class="header-title">
+                <h1>Google Drive: Hoja de Referencia Rápida</h1>
+                <p>Liceo TP Gonzalo Guglielmi M • https://liceotpggm.cl • Área de Informática</p>
+            </div>
+            <div class="badge">Nivel Inicial</div>
+        </header>
+
+        <div class="grid-2col">
+            
+            <!-- Columna 1 -->
+            <div style="display: flex; flex-direction: column; gap: 9px;">
+                
+                <!-- Tarjeta 1: Creación y Estructura de Carpetas -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                        <h2>Carpetas y Organización Escolar</h2>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">📁</span>
+                        <div><strong>Botón [+ Nuevo] &gt; Nueva carpeta:</strong> Crea carpetas por año y departamento (ej: <code>2026_Inspectoría</code>, <code>2026_CRA_Inventario</code>).</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">🎨</span>
+                        <div><strong>Color de Carpeta:</strong> Clic derecho sobre la carpeta &gt; <em>Organizar &gt; Color</em> para identificar rápidamente los cursos.</div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Subida y Descarga de Archivos -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        <h2>Subir y Descargar</h2>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">⬆️</span>
+                        <div><strong>Arrastrar y Soltar:</strong> Arrastra archivos Word/Excel directo desde tu escritorio hacia la ventana de Drive en el navegador.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">⬇️</span>
+                        <div><strong>Descargar a PC:</strong> Clic derecho sobre el archivo en Drive &gt; <strong>Descargar</strong>.</div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Atajos Esenciales en Google Drive -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/></svg>
+                        <h2>Atajos de Navegación</h2>
+                    </div>
+                    <div class="shortcut-item">
+                        <span>Crear nueva carpeta</span>
+                        <span class="kbd">Shift + F</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span>Subir nuevo archivo</span>
+                        <span class="kbd">Shift + U</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span>Cambiar nombre a archivo</span>
+                        <span class="kbd">N</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span>Vista previa rápida</span>
+                        <span class="kbd">Espacio</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Columna 2 -->
+            <div style="display: flex; flex-direction: column; gap: 9px;">
+                
+                <!-- Tarjeta 4: Secciones de la Nube -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+                        <h2>Paneles de Acceso</h2>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">💻</span>
+                        <div><strong>Mi unidad:</strong> Tu espacio personal de trabajo donde guardas tus planillas y documentos.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">👥</span>
+                        <div><strong>Compartido conmigo:</strong> Archivos que otros profesores o UTP te enviaron para revisar.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">🕒</span>
+                        <div><strong>Reciente:</strong> Los últimos archivos que abriste hoy en el liceo.</div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 5: Búsqueda de Documentos -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <h2>Filtros del Buscador de Drive</h2>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">type:</span>
+                        <div><code>type:spreadsheet</code> (Muestra solo planillas Excel / Sheets).</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">type:</span>
+                        <div><code>type:pdf</code> (Muestra circulares y certificados en PDF).</div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 6: Papelera y Recuperación -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                        <h2>Papelera y Resguardo</h2>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">🗑️</span>
+                        <div>Los archivos borrados permanecen <strong>30 días</strong> en la Papelera antes de eliminarse definitivamente.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">♻️</span>
+                        <div>Para recuperar un archivo borrado por error: ve a <em>Papelera &gt; Clic derecho &gt; Restaurar</em>.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Regla de Oro -->
+        <div class="golden-box">
+            <div style="font-size:22px;">☁️</div>
+            <div class="golden-text">
+                <h3>Regla de Oro en la Nube: "Usa Nombres Claros y Fechas en tus Archivos"</h3>
+                <p>Nombra siempre tus archivos como <code>2026_Nomina_3MedioTP_Electricidad.xlsx</code> para que cualquier asistente o directivo pueda encontrarlo sin confusiones.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <span>Liceo TP Gonzalo Guglielmi M • Encargado TIC: Cristian Valdebenito L.</span>
+            <button class="btn-print no-print" onclick="window.print()">🖨️ Imprimir Guía Rápida (1 Hoja)</button>
+            <span>Material para Asistentes de la Educación</span>
+        </footer>
+    </div>
+
+</body>
+</html>

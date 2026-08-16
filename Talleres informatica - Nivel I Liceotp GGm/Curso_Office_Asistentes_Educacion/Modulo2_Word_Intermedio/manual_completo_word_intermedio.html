@@ -1,0 +1,698 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Completo: Word 2019 Intermedio - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #0f172a;
+            --primary-light: #2563eb;
+            --purple: #7e22ce;
+            --purple-light: #f3e8ff;
+            --accent: #d97706;
+            --accent-light: #fef3c7;
+            --teal: #0d9488;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --success-light: #ecfdf5;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .page-wrapper { display: flex; min-height: 100vh; }
+
+        .sidebar {
+            width: 290px;
+            background: #0f172a;
+            color: #e2e8f0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 24px 18px;
+            flex-shrink: 0;
+            border-right: 1px solid #334155;
+        }
+
+        .sidebar-brand {
+            padding-bottom: 18px;
+            border-bottom: 1px solid #334155;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-brand h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #c084fc;
+        }
+
+        .sidebar-brand p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+
+        .nav-group-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #64748b;
+            font-weight: 700;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            padding-left: 8px;
+        }
+
+        .nav-links { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+
+        .nav-links a {
+            display: block;
+            padding: 7px 10px;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 6px;
+            transition: 0.2s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover { background: rgba(255,255,255,0.08); color: #ffffff; transform: translateX(3px); }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 40px 50px;
+            max-width: 1050px;
+            background: #ffffff;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #1e3a8a 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 25px rgba(49, 46, 129, 0.15);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .hero p { font-size: 16px; color: #cbd5e1; max-width: 800px; }
+
+        h2.section-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            color: var(--primary-dark);
+            margin-top: 40px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        h3.topic-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            color: var(--purple);
+            margin-top: 32px;
+            margin-bottom: 14px;
+            padding-left: 10px;
+            border-left: 4px solid var(--purple);
+        }
+
+        .analogy-box {
+            background: #faf5ff;
+            border: 1px solid #e9d5ff;
+            border-left: 5px solid var(--purple);
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin: 18px 0 24px 0;
+        }
+
+        .analogy-header {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: #6b21a8;
+            margin-bottom: 6px;
+        }
+
+        .exercise-card {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 20px 0;
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1.5px solid #e2e8f0;
+        }
+
+        .exercise-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .exercise-badge {
+            background: var(--purple-light);
+            color: var(--purple);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .exercise-context {
+            background: #ffffff;
+            border-left: 3px solid var(--teal);
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            font-size: 13.5px;
+            color: #0f766e;
+            margin-bottom: 14px;
+        }
+
+        .step-list { margin-left: 20px; font-size: 14px; }
+        .step-list li { margin-bottom: 8px; }
+
+        .expected-result {
+            margin-top: 14px;
+            background: var(--success-light);
+            border: 1px solid #a7f3d0;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #065f46;
+            display: flex;
+            gap: 8px;
+        }
+
+        .kbd {
+            font-family: 'JetBrains Mono', monospace;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-bottom: 2px solid #94a3b8;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        pre {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 14px 18px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            overflow-x: auto;
+            margin: 12px 0 16px 0;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .custom-table th { background: #312e81; color: white; padding: 12px 14px; text-align: left; }
+        .custom-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+        .custom-table tr:nth-child(even) { background: #f8fafc; }
+
+        .quiz-card {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-bottom: 18px;
+        }
+
+        .quiz-question { font-weight: 700; font-size: 15px; margin-bottom: 12px; }
+        .quiz-options { list-style: none; padding-left: 0; }
+        .quiz-options li { padding: 8px 12px; background: white; border: 1px solid #cbd5e1; border-radius: 6px; margin-bottom: 6px; font-size: 13.5px; }
+
+        .quiz-feedback {
+            background: #faf5ff;
+            border-left: 3px solid var(--purple);
+            padding: 8px 12px;
+            font-size: 13px;
+            color: #6b21a8;
+            margin-top: 8px;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--purple);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        @media print {
+            .sidebar, .btn-link, .no-print { display: none !important; }
+            .page-wrapper { display: block; }
+            .main-content { padding: 0; max-width: 100%; }
+            .hero { padding: 20px; background: #312e81 !important; color: white !important; -webkit-print-color-adjust: exact; }
+            .exercise-card, .analogy-box, .custom-table { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <aside class="sidebar no-print">
+            <div class="sidebar-brand">
+                <h2>Liceo TP Gonzalo Guglielmi M</h2>
+                <p>Módulo 2: Word Intermedio</p>
+            </div>
+
+            <div class="nav-group-title">Navegación</div>
+            <ul class="nav-links">
+                <li><a href="#presentacion">1. Enfoque Andragógico</a></li>
+                <li><a href="#objetivos">2. Objetivos de Aprendizaje</a></li>
+                <li><a href="#tiempos">3. Tiempos y Temario</a></li>
+                <li><a href="#tema1">Tema 1: Estilos e Índices</a></li>
+                <li><a href="#tema2">Tema 2: Correspondencia Masiva</a></li>
+                <li><a href="#tema3">Tema 3: Plantillas .dotx</a></li>
+                <li><a href="#tema4">Tema 4: Logos y Firmas</a></li>
+                <li><a href="#tema5">Tema 5: Control de Cambios</a></li>
+                <li><a href="#tema6">Tema 6: Saltos de Sección</a></li>
+                <li><a href="#proyecto">Proyecto Integrador</a></li>
+                <li><a href="#rubrica">Pauta de Evaluación</a></li>
+                <li><a href="#cuestionario">Cuestionario de Salida</a></li>
+            </ul>
+
+            <div class="nav-group-title">Recursos Visuales</div>
+            <div style="padding: 6px 10px;">
+                <a href="guia_rapida_atajos_word_intermedio.html" target="_blank" class="btn-link" style="width: 100%; justify-content: center; margin-bottom: 6px;">📄 Hoja de Referencia</a>
+                <a href="infografia_word_intermedio.html" target="_blank" class="btn-link" style="width: 100%; justify-content: center; background:#0d9488;">📊 Infografía Visual</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="hero">
+                <span class="hero-badge">Manual Docente y Guía del Participante</span>
+                <h1>Microsoft Word 2019: Nivel Intermedio</h1>
+                <p>Liceo TP Gonzalo Guglielmi M • Automatización de comunicaciones masivas a apoderados, plantillas institucionales, índices automáticos y gestión de documentos extensos.</p>
+            </div>
+
+            <section id="presentacion">
+                <h2 class="section-header">1. Presentación y Enfoque Andragógico del Módulo</h2>
+                <p>El <strong>Módulo 2: Word Intermedio</strong> está diseñado para el personal administrativo, secretarias, inspectores y encargados de biblioteca/CRA del <strong>Liceo TP Gonzalo Guglielmi M</strong>, enfocándose en la productividad y la automatización de procesos repetitivos.</p>
+                <p>Los participantes aprenden a emitir 40 citaciones en segundos mediante combinación de correspondencia, a diseñar plantillas oficiales protegidas (.dotx) y a estructurar reglamentos largos con tablas de contenido automáticas.</p>
+            </section>
+
+            <section id="objetivos">
+                <h2 class="section-header">2. Objetivos de Aprendizaje</h2>
+                <ol>
+                    <li><strong>Aplicar estilos jerárquicos (Título 1, Título 2)</strong> y generar <strong>tablas de contenido (índices) automáticas</strong>.</li>
+                    <li><strong>Ejecutar combinación de correspondencia</strong> vinculando cartas modelo con nóminas de Excel para emitir comunicaciones personalizadas masivas.</li>
+                    <li><strong>Diseñar y guardar plantillas institucionales (.dotx)</strong> para certificados y oficios sin riesgo de sobrescribir el archivo maestro.</li>
+                    <li><strong>Ajustar libremente imágenes, logos y firmas digitalizadas</strong> eliminando fondos blancos con transparencia.</li>
+                    <li><strong>Utilizar Control de Cambios y Comentarios</strong> para la revisión colaborativa de protocolos en equipo.</li>
+                    <li><strong>Manejar saltos de sección</strong> para intercalar páginas horizontales y desvincular números en la portada.</li>
+                </ol>
+            </section>
+
+            <section id="tiempos">
+                <h2 class="section-header">3. Secuencia de Temas y Tiempos</h2>
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Unidad / Tema</th>
+                            <th>Contenidos Principales</th>
+                            <th style="width: 130px; text-align: center;">Tiempo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Tema 1</strong></td><td>Estilos jerárquicos y tabla de contenido automática</td><td style="text-align:center;">25 min</td></tr>
+                        <tr><td><strong>Tema 2</strong></td><td>Combinación de correspondencia masiva a apoderados</td><td style="text-align:center;">35 min</td></tr>
+                        <tr><td><strong>Tema 3</strong></td><td>Creación y uso de plantillas reutilizables (.dotx)</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Tema 4</strong></td><td>Ajuste de imágenes, logos y firmas con transparencia</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Tema 5</strong></td><td>Control de cambios y comentarios colaborativos</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Tema 6</strong></td><td>Saltos de sección, portadas y páginas horizontales</td><td style="text-align:center;">25 min</td></tr>
+                        <tr><td><strong>Proyecto Integrador</strong></td><td>Sistema de Notificaciones y Certificados Oficiales</td><td style="text-align:center;">35 min</td></tr>
+                        <tr><td><strong>Evaluación y Cierre</strong></td><td>Rúbrica y cuestionario de salida</td><td style="text-align:center;">20 min</td></tr>
+                        <tr style="background:#faf5ff; font-weight: bold;"><td colspan="2">Total Sesión Integral Módulo 2</td><td style="text-align:center; color:var(--purple);">200 min (~3h 20m)</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- TEMA 1 -->
+            <section id="tema1">
+                <h3 class="topic-header">TEMA 1: Estilos Jerárquicos y Tabla de Contenido Automática</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Uniforme de los Títulos</div>
+                    <p>En vez de cambiar letras una por una, aplicamos <strong>Título 1</strong> a los Capítulos y <strong>Título 2</strong> a los Artículos. Word construye el índice solo y lo actualiza con 1 clic.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 1.1: Estructurar el Reglamento de Convivencia</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Escribe capítulos y artículos del reglamento del Liceo TP Gonzalo Guglielmi M.</li>
+                        <li>Aplica <strong>Título 1</strong> a los Capítulos y <strong>Título 2</strong> a los Artículos en la pestaña <em>Inicio</em>.</li>
+                        <li>Abre el <strong>Panel de navegación</strong> en la pestaña <em>Vista</em> para navegar el documento como un mapa.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Panel de navegación interactivo con toda la estructura organizada.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 1.2: Inserción y Actualización del Índice</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Crea una página en blanco arriba (<span class="kbd">Ctrl</span> + <span class="kbd">Enter</span>).</li>
+                        <li>Ve a <strong>Referencias &gt; Tabla de contenido</strong> y elige <em>Tabla automática 1</em>.</li>
+                        <li>Agrega un artículo nuevo abajo y haz clic derecho en el índice &gt; <em>Actualizar campos &gt; Actualizar toda la tabla</em>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Índice automático perfecto con números de página alineados a la derecha.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 2 -->
+            <section id="tema2">
+                <h3 class="topic-header">TEMA 2: Combinación de Correspondencia Masiva</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: La Imprenta Automática de Citaciones</div>
+                    <p>Redactas 1 sola carta modelo y Word reemplaza los datos de cada apoderado leyendo la nómina de Excel en 5 segundos.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 2.1: Carta Modelo de Citación por Asistencia</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Redacta la citación oficial del Liceo TP Gonzalo Guglielmi M dejando los campos para apoderado, estudiante y curso.</li>
+                        <li>Guarda como <code>Modelo_Citacion_Inspectoria.docx</code>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Carta base lista para recibir la combinación de datos.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 2.2: Vincular Nómina y Emitir 30 Citaciones</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>En <em>Correspondencia</em>, haz clic en <strong>Seleccionar destinatarios</strong> y vincula la lista de apoderados.</li>
+                        <li>Inserta los campos: <code>«Nombre_Apoderado»</code>, <code>«Estudiante»</code>, <code>«Curso»</code> y <code>«Numero_Atrasos»</code>.</li>
+                        <li>Revisa con <strong>Vista previa de resultados</strong> y haz clic en <strong>Finalizar y combinar &gt; Editar documentos individuales</strong>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Un nuevo archivo con todas las citaciones personalizadas listas para imprimir.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 3 -->
+            <section id="tema3">
+                <h3 class="topic-header">TEMA 3: Creación y Uso de Plantillas Reutilizables (.dotx)</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Talonario Oficial de Certificados</div>
+                    <p>Al guardar como <code>.dotx</code>, cada doble clic abre una hoja nueva sin arruinar el diseño maestro original.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 3.1: Diseñar Certificado de Alumno Regular</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Diseña el certificado oficial del Liceo TP Gonzalo Guglielmi M con membrete y líneas de datos.</li>
+                        <li>En <em>Archivo &gt; Guardar como</em>, cambia el Tipo a <strong>Plantilla de Word (*.dotx)</strong>.</li>
+                        <li>Nómbralo <code>Plantilla_Certificado_Alumno_Regular_Guglielmi.dotx</code>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Plantilla maestra protegida contra sobreescrituras accidentales.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 3.2: Emisión Segura de Certificados</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Haz doble clic sobre el archivo <code>.dotx</code>.</li>
+                        <li>Verifica que Word abre un <em>Documento 1</em> nuevo en blanco listo para completar los datos de un alumno y guardar como <code>.docx</code>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Certificado emitido exitosamente manteniendo intacta la plantilla original.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 4 -->
+            <section id="tema4">
+                <h3 class="topic-header">TEMA 4: Ajuste Avanzado de Imágenes, Logos y Firmas</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: La Tijera Mágica de Fondos</div>
+                    <p>Cambiando el ajuste a <strong>Delante del texto</strong> mueves el logo libremente. Con <strong>Definir color transparente</strong> quitas el fondo blanco de la firma escaneada.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 4.1: Ajuste Libre del Logo Institucional</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Inserta el logo del Liceo en el encabezado.</li>
+                        <li>En <em>Formato de imagen &gt; Ajustar texto</em>, elige <strong>Delante del texto</strong>.</li>
+                        <li>Arrastra el logo a la esquina superior derecha con precisión.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Logo posicionado limpiamente sin desalinear los textos.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 4.2: Firma Digitalizada con Fondo Transparente</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Inserta la foto escaneada de la firma del Inspector General.</li>
+                        <li>En <em>Formato de imagen &gt; Color</em>, selecciona <strong>Definir color transparente</strong> y haz clic en el fondo blanco.</li>
+                        <li>Arrastra la firma sobre la línea de puntos.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Firma nítida sobre la línea como si se hubiese firmado a mano.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 5 -->
+            <section id="tema5">
+                <h3 class="topic-header">TEMA 5: Control de Cambios y Comentarios en Equipo</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Lápiz Rojo de Revisión en Equipo</div>
+                    <p>Las modificaciones quedan marcadas en colores con el nombre de quien sugirió el cambio, listas para ser aceptadas o rechazadas por Dirección.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 5.1: Activar Control de Cambios en Protocolo</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>En la pestaña <em>Revisar</em>, activa el botón <strong>Control de cambios</strong>.</li>
+                        <li>Modifica una norma del comedor escolar y observa cómo el texto anterior queda tachado en rojo y el nuevo subrayado.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Historial de cambios visible para auditoría y consenso del equipo.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 5.2: Comentarios y Resolución Final</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Selecciona un texto y haz clic en <strong>Nuevo comentario</strong> para dejar una consulta lateral.</li>
+                        <li>Haz clic en <strong>Aceptar cambio</strong> para dejar la versión definitiva y limpia.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Documento oficial aprobado y consensuado sin marcas residuales.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 6 -->
+            <section id="tema6">
+                <h3 class="topic-header">TEMA 6: Saltos de Sección y Páginas Horizontales</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: Separadores Plásticos en el Archivador</div>
+                    <p>Los saltos de sección permiten que la portada no lleve número o que una hoja gire a Horizontal para meter una tabla ancha sin rotar todo el documento.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 6.1: Portada sin Número de Página</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Al final de la portada, inserta <em>Disposición &gt; Saltos &gt; Salto de sección: Página siguiente</em>.</li>
+                        <li>En el pie de la página 2, desactiva <strong>Vincular al anterior</strong> e inserta el número de página.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Portada limpia y numeración que arranca en la página 2.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 6.2: Hoja Horizontal para Inventario CRA</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Inserta un salto de sección (Página siguiente) antes y después de la tabla ancha.</li>
+                        <li>En la página intermedia, cambia la <strong>Orientación a Horizontal</strong>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Informe mixto con páginas verticales y una página horizontal perfecta.</div></div>
+                </div>
+            </section>
+
+            <!-- PROYECTO INTEGRADOR -->
+            <section id="proyecto">
+                <h2 class="section-header">5. Actividad Integradora Final del Módulo</h2>
+                <div style="background:#faf5ff; border:1.5px solid #d8b4fe; padding:20px; border-radius:8px; margin-bottom:20px;">
+                    <h3 style="color:var(--purple); font-family:'Outfit', sans-serif; font-size:18px; margin-bottom:8px;">Proyecto: "Sistema Automatizado de Notificaciones y Certificación Oficial"</h3>
+                    <p><strong>Contexto:</strong> Estructurar el sistema oficial de cierre de semestre del Liceo TP Gonzalo Guglielmi M: informe con portada y tabla de contenidos, plantilla .dotx con logo ajustado y citaciones masivas personalizadas mediante correspondencia combinada.</p>
+                </div>
+            </section>
+
+            <!-- RÚBRICA -->
+            <section id="rubrica">
+                <h2 class="section-header">6. Pauta de Evaluación del Proyecto Integrador</h2>
+                <table class="custom-table">
+                    <thead>
+                        <tr><th>Criterio de Evaluación</th><th>Indicadores de Logro</th><th style="width:120px; text-align:center;">Puntaje</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>1. Estilos y Tabla de Contenidos</strong></td><td>Aplica estilos Título 1 y 2, genera índice automático con números de página.</td><td style="text-align:center; font-weight:bold;">20 pts</td></tr>
+                        <tr><td><strong>2. Combinación de Correspondencia</strong></td><td>Vincula nómina con carta modelo y genera citaciones individuales masivas.</td><td style="text-align:center; font-weight:bold;">25 pts</td></tr>
+                        <tr><td><strong>3. Plantilla Reutilizable (.dotx)</strong></td><td>Guarda formato en .dotx protegiendo el archivo maestro contra modificaciones.</td><td style="text-align:center; font-weight:bold;">15 pts</td></tr>
+                        <tr><td><strong>4. Logos y Firmas Digitales</strong></td><td>Ajuste libre delante del texto y eliminación de fondo blanco con transparencia.</td><td style="text-align:center; font-weight:bold;">15 pts</td></tr>
+                        <tr><td><strong>5. Saltos de Sección</strong></td><td>Desvincula portada sin número e inserta página horizontal en informe vertical.</td><td style="text-align:center; font-weight:bold;">15 pts</td></tr>
+                        <tr><td><strong>6. Control de Cambios</strong></td><td>Aplica marcas de revisión y comentarios en equipo.</td><td style="text-align:center; font-weight:bold;">10 pts</td></tr>
+                        <tr style="background:#faf5ff; font-weight:bold;"><td colspan="2">Puntaje Total</td><td style="text-align:center; color:var(--purple);">100 pts</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- CUESTIONARIO -->
+            <section id="cuestionario">
+                <h2 class="section-header">7. Cuestionario de Cierre del Módulo (7 Preguntas)</h2>
+                
+                <div class="quiz-card">
+                    <div class="quiz-question">1. ¿Cuál es el principal beneficio de guardar un certificado como Plantilla de Word (.dotx)?</div>
+                    <ul class="quiz-options">
+                        <li>a) Que pesa menos memoria.</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) Que al abrirlo crea un documento nuevo y protege el diseño original de sobreescrituras. (Correcta)</li>
+                        <li>c) Que traduce el texto solo.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Las plantillas <code>.dotx</code> actúan como un talonario nuevo protegiendo el original.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">2. Para emitir 40 citaciones personalizadas a apoderados con datos distintos desde una nómina de Excel, ¿qué herramienta se usa?</div>
+                    <ul class="quiz-options">
+                        <li>a) Control de Cambios</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) Combinación de Correspondencia (Correcta)</li>
+                        <li>c) Tabla de Contenidos</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> La combinación de correspondencia une una carta base con una lista de datos en segundos.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">3. ¿Qué salto permite girar a Horizontal solo una página en medio de un informe vertical?</div>
+                    <ul class="quiz-options">
+                        <li>a) Salto de página simple</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) Salto de sección: Página siguiente (Correcta)</li>
+                        <li>c) Salto de columna</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Los saltos de sección crean secciones independientes con diferente orientación y márgenes.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">4. ¿Qué ajuste de imagen permite mover el logo a cualquier rincón libremente?</div>
+                    <ul class="quiz-options">
+                        <li>a) En línea con el texto</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) Delante del texto o Cuadrado (Correcta)</li>
+                        <li>c) Arriba y abajo</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> El ajuste libera la imagen para moverla como un sticker libre.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">5. ¿Cómo quitar el recuadro blanco de una firma digital escaneada?</div>
+                    <ul class="quiz-options">
+                        <li>a) Efectos artísticos</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) Definir color transparente (Correcta)</li>
+                        <li>c) Comprimir imágenes</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> En <em>Formato de imagen &gt; Color &gt; Definir color transparente</em> se elimina el fondo blanco.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">6. ¿Qué elemento alimenta la creación automática de un índice en Word?</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) Los estilos Título 1, Título 2, Título 3 (Correcta)</li>
+                        <li>b) La fuente Arial 12</li>
+                        <li>c) La negrita</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Word lee los niveles de estilos para construir la Tabla de Contenidos.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">7. Para que un cambio sugerido en el Control de Cambios se convierta en texto definitivo, ¿qué debes pulsar?</div>
+                    <ul class="quiz-options">
+                        <li>a) Borrar el archivo</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) Aceptar cambio en la pestaña Revisar (Correcta)</li>
+                        <li>c) Ctrl + Z</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Al aceptar el cambio, Word confirma la modificación y limpia las marcas de revisión.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

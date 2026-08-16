@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Rápida: Fórmulas y Atajos de Excel Inicial - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #065f46;
+            --primary-dark: #022c22;
+            --primary-light: #059669;
+            --accent: #d97706;
+            --accent-light: #fef3c7;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #cbd5e1;
+            color: var(--text-main);
+            line-height: 1.35;
+            font-size: 13px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .sheet-container {
+            width: 216mm;
+            min-height: 279mm;
+            background: var(--surface);
+            padding: 16mm 14mm;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .header-title h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .header-title p {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .badge {
+            background: #ecfdf5;
+            color: var(--primary);
+            border: 1px solid #a7f3d0;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            flex-grow: 1;
+        }
+
+        .card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1.5px solid var(--border);
+        }
+
+        .card-header svg {
+            width: 16px;
+            height: 16px;
+            color: var(--primary);
+        }
+
+        .card-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .formula-box {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-left: 3px solid var(--primary-light);
+            border-radius: 4px;
+            padding: 5px 8px;
+            margin-bottom: 6px;
+            font-size: 11.5px;
+        }
+
+        .formula-box:last-child {
+            margin-bottom: 0;
+        }
+
+        .formula-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: #065f46;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .formula-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .shortcut-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .shortcut-table tr {
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .shortcut-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .shortcut-table td {
+            padding: 4px 2px;
+            vertical-align: middle;
+        }
+
+        .kbd {
+            font-family: 'JetBrains Mono', monospace;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-bottom: 2px solid #94a3b8;
+            padding: 1px 4px;
+            border-radius: 4px;
+            font-size: 10.5px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .desc {
+            font-size: 11px;
+            color: var(--text-main);
+            font-weight: 500;
+            padding-left: 6px;
+        }
+
+        .tip-item {
+            margin-bottom: 5px;
+            font-size: 11px;
+            display: flex;
+            gap: 6px;
+            align-items: flex-start;
+        }
+
+        .tip-bullet {
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        .golden-box {
+            background: linear-gradient(135deg, #065f46, #022c22);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .golden-text h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #fcd34d;
+            margin-bottom: 2px;
+        }
+
+        .golden-text p {
+            font-size: 11px;
+            opacity: 0.95;
+            line-height: 1.3;
+        }
+
+        footer {
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10.5px;
+            color: var(--text-muted);
+        }
+
+        .btn-print {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .sheet-container { width: 100%; min-height: 100vh; box-shadow: none; padding: 8mm; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sheet-container">
+        <!-- Encabezado -->
+        <header>
+            <div class="header-title">
+                <h1>Excel 2019 Inicial: Hoja de Referencia Rápida</h1>
+                <p>Liceo TP Gonzalo Guglielmi M • Módulo 3: Planillas, Fórmulas y Registros</p>
+            </div>
+            <div class="badge">Nivel Inicial</div>
+        </header>
+
+        <div class="grid-2col">
+            
+            <!-- Columna 1: Fórmulas y Regla del Signo Igual -->
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                
+                <!-- Tarjeta 1: Fórmulas Básicas Escolares -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h10M7 12h4m-4 4h10"/></svg>
+                        <h2>Las 5 Fórmulas Fundamentales</h2>
+                    </div>
+                    
+                    <div class="formula-box">
+                        <span class="formula-code">=SUMA(C4:C35)</span>
+                        <div class="formula-desc">Suma total de cuotas, materiales o estudiantes asistentes.</div>
+                    </div>
+
+                    <div class="formula-box">
+                        <span class="formula-code">=PROMEDIO(D4:H4)</span>
+                        <div class="formula-desc">Calcula el promedio de notas de un alumno en la fila.</div>
+                    </div>
+
+                    <div class="formula-box">
+                        <span class="formula-code">=MAX(C4:C40)</span>
+                        <div class="formula-desc">Encuentra la nota más alta o el mayor puntaje del curso.</div>
+                    </div>
+
+                    <div class="formula-box">
+                        <span class="formula-code">=MIN(C4:C40)</span>
+                        <div class="formula-desc">Encuentra la nota más baja o menor asistencia.</div>
+                    </div>
+
+                    <div class="formula-box">
+                        <span class="formula-code">=CONTAR(E4:E45)</span>
+                        <div class="formula-desc">Cuenta cuántos estudiantes tienen nota registrada (ignora vacíos).</div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Atajos de Navegación y Edición -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        <h2>Atajos de Teclado Indispensables</h2>
+                    </div>
+                    <table class="shortcut-table">
+                        <tr>
+                            <td><span class="kbd">Ctrl</span> + <span class="kbd">G</span></td>
+                            <td class="desc"><strong>Guardar</strong> la planilla inmediatamente.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td>
+                            <td class="desc"><strong>Deshacer</strong> el último cálculo erróneo.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="kbd">F2</span></td>
+                            <td class="desc"><strong>Editar celda</strong> sin borrar lo que ya estaba escrito.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">L</span></td>
+                            <td class="desc">Activar / Desactivar <strong>Filtros</strong> al instante.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="kbd">Alt</span> + <span class="kbd">=</span></td>
+                            <td class="desc"><strong>Autosuma</strong> rápida de la columna.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="kbd">Ctrl</span> + <span class="kbd">Inicio</span></td>
+                            <td class="desc">Volver de golpe a la primera celda (<strong>A1</strong>).</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+            <!-- Columna 2: Manejo de Paneles, Filtros e Impresión -->
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                
+                <!-- Tarjeta 3: Inmovilizar y Filtros -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+                        <h2>Inmovilizar y Filtrar Datos</h2>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">›</span>
+                        <div><strong>Fijar Títulos (Inmovilizar):</strong> Pestaña <em>Vista &gt; Inmovilizar &gt;</em> <strong>Inmovilizar fila superior</strong> (al bajar por la lista de 45 alumnos, los encabezados no se pierden).</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">›</span>
+                        <div><strong>Filtrar por Curso o Estado:</strong> Selecciona tus encabezados &gt; pestaña <em>Datos &gt; Filtro</em>. Usa las flechitas para ver solo "1° Medio B" o "Pendientes".</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">›</span>
+                        <div><strong>Ordenar Alfabéticamente:</strong> Clic en la flecha del filtro de Apellidos &gt; <em>Ordenar de A a Z</em>.</div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 4: El Secreto de la Impresión en 1 Hoja -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                        <h2>Imprimir Planillas sin Cortar Columnas</h2>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">›</span>
+                        <div><strong>Ajustar a 1 Página de Ancho:</strong> Presiona <span class="kbd">Ctrl</span> + <span class="kbd">P</span> &gt; en la última opción de abajo cambia <em>Sin escalado</em> por <strong>"Ajustar todas las columnas en una página"</strong>.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">›</span>
+                        <div><strong>Orientación Horizontal:</strong> En <em>Disposición de página &gt; Orientación &gt; Horizontal</em> para listas con muchas notas o meses.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">›</span>
+                        <div><strong>Repetir Encabezado en Cada Hoja:</strong> En <em>Disposición de página &gt; Imprimir títulos &gt;</em> en <em>Filas a repetir en extremo superior</em> selecciona la fila 1.</div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 5: Auto-relleno Rápido -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        <h2>El Cuadradito Mágico (Auto-relleno)</h2>
+                    </div>
+                    <p style="font-size:11px; margin-bottom:4px;">En la esquina inferior derecha de la celda activa hay un punto verde:</p>
+                    <div class="tip-item">
+                        <span class="tip-bullet">›</span>
+                        <div><strong>Copiar fórmula hacia abajo:</strong> Haz <strong>doble clic rápido</strong> sobre el punto verde y la fórmula se calculará sola para todos los alumnos del curso.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">›</span>
+                        <div><strong>Generar números correlativos (1, 2, 3...):</strong> Escribe 1 y 2, selecciona ambos y arrastra hacia abajo.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Regla de Oro -->
+        <div class="golden-box">
+            <div style="font-size:22px;">💡</div>
+            <div class="golden-text">
+                <h3>Regla de Oro en Excel: "Toda Fórmula Empieza Siempre con el Signo Igual (=)"</h3>
+                <p>Si escribes <code>PROMEDIO(C4:D4)</code> Excel lo tratará como una palabra común. Escribe siempre <code>=PROMEDIO(C4:D4)</code> para que despierte la calculadora inteligente.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <span>Liceo TP Gonzalo Guglielmi M • Módulo 3: Excel Inicial</span>
+            <button class="btn-print no-print" onclick="window.print()">🖨️ Imprimir Hoja de Referencia (1 Hoja)</button>
+            <span>Material Diseñado para Asistentes de la Educación</span>
+        </footer>
+    </div>
+
+</body>
+</html>

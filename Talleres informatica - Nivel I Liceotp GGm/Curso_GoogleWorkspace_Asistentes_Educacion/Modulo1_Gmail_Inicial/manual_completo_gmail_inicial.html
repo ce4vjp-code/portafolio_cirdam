@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Completo: Gmail Inicial - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c5221f;
+            --primary-dark: #8c1b18;
+            --primary-light: #ea4335;
+            --accent: #d97706;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --success-light: #ecfdf5;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .page-wrapper { display: flex; min-height: 100vh; }
+
+        .sidebar {
+            width: 290px;
+            background: #8c1b18;
+            color: #e2e8f0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 24px 18px;
+            flex-shrink: 0;
+            border-right: 1px solid #b91c1c;
+        }
+
+        .sidebar-brand {
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-brand h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fecaca;
+        }
+
+        .sidebar-brand p { font-size: 12px; color: #fee2e2; margin-top: 4px; }
+
+        .nav-group-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #fecaca;
+            font-weight: 700;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            padding-left: 8px;
+        }
+
+        .nav-links { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+
+        .nav-links a {
+            display: block;
+            padding: 7px 10px;
+            color: #f1f5f9;
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 6px;
+            transition: 0.2s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover { background: rgba(255,255,255,0.15); color: #ffffff; transform: translateX(3px); }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 40px 50px;
+            max-width: 1050px;
+            background: #ffffff;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #8c1b18 0%, #c5221f 60%, #ea4335 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 25px rgba(197, 34, 31, 0.15);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .hero p { font-size: 16px; color: #fee2e2; max-width: 800px; }
+
+        h2.section-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            color: var(--primary-dark);
+            margin-top: 40px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        h3.topic-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            color: var(--primary);
+            margin-top: 32px;
+            margin-bottom: 14px;
+            padding-left: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .analogy-box {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-left: 5px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin: 18px 0 24px 0;
+        }
+
+        .analogy-header {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: #8c1b18;
+            margin-bottom: 6px;
+        }
+
+        .exercise-card {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 20px 0;
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1.5px solid #e2e8f0;
+        }
+
+        .exercise-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .exercise-badge {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .step-list { margin-left: 20px; font-size: 14px; }
+        .step-list li { margin-bottom: 8px; }
+
+        .expected-result {
+            margin-top: 14px;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #065f46;
+            display: flex;
+            gap: 8px;
+        }
+
+        .kbd {
+            font-family: 'JetBrains Mono', monospace;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-bottom: 2px solid #94a3b8;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .custom-table th { background: #c5221f; color: white; padding: 12px 14px; text-align: left; }
+        .custom-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+        .custom-table tr:nth-child(even) { background: #f8fafc; }
+
+        .quiz-card {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-bottom: 18px;
+        }
+
+        .quiz-question { font-weight: 700; font-size: 15px; margin-bottom: 12px; }
+        .quiz-options { list-style: none; padding-left: 0; }
+        .quiz-options li { padding: 8px 12px; background: white; border: 1px solid #cbd5e1; border-radius: 6px; margin-bottom: 6px; font-size: 13.5px; }
+
+        .quiz-feedback {
+            background: #fef2f2;
+            border-left: 3px solid var(--primary);
+            padding: 8px 12px;
+            font-size: 13px;
+            color: #991b1b;
+            margin-top: 8px;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        @media print {
+            .sidebar, .btn-link, .no-print { display: none !important; }
+            .page-wrapper { display: block; }
+            .main-content { padding: 0; max-width: 100%; }
+            .hero { padding: 20px; background: #c5221f !important; color: white !important; -webkit-print-color-adjust: exact; }
+            .exercise-card, .analogy-box, .custom-table { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <aside class="sidebar no-print">
+            <div class="sidebar-brand">
+                <h2>Liceo TP Gonzalo Guglielmi M</h2>
+                <p>Módulo 1: Gmail Inicial</p>
+            </div>
+
+            <div class="nav-group-title">Navegación</div>
+            <ul class="nav-links">
+                <li><a href="#presentacion">1. Enfoque Andragógico</a></li>
+                <li><a href="#objetivos">2. Objetivos de Aprendizaje</a></li>
+                <li><a href="#tiempos">3. Tiempos y Temario</a></li>
+                <li><a href="#tema1">Tema 1: Entorno de Gmail</a></li>
+                <li><a href="#tema2">Tema 2: Redacción Formal</a></li>
+                <li><a href="#tema3">Tema 3: Destinatarios y CCO</a></li>
+                <li><a href="#tema4">Tema 4: Adjuntos y Enlaces</a></li>
+                <li><a href="#tema5">Tema 5: Etiquetas y Búsqueda</a></li>
+                <li><a href="#tema6">Tema 6: Firma Institucional</a></li>
+                <li><a href="#proyecto">Proyecto Integrador</a></li>
+                <li><a href="#rubrica">Pauta de Evaluación</a></li>
+                <li><a href="#cuestionario">Cuestionario de Salida</a></li>
+            </ul>
+
+            <div class="nav-group-title">Recursos Visuales</div>
+            <div style="padding: 6px 10px;">
+                <a href="guia_rapida_atajos_gmail_inicial.html" target="_blank" class="btn-link" style="width: 100%; justify-content: center; margin-bottom: 6px;">📄 Guía Rápida</a>
+                <a href="infografia_gmail_inicial.html" target="_blank" class="btn-link" style="width: 100%; justify-content: center; background:#ea4335;">📊 Infografía Visual</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="hero">
+                <span class="hero-badge">Manual Docente y Guía del Participante</span>
+                <h1>Gmail Institucional: Nivel Inicial</h1>
+                <p>Liceo TP Gonzalo Guglielmi M • https://liceotpggm.cl • Área de Informática (Cristian Valdebenito L.) • Comunicación escolar formal, copia oculta para apoderados y organización con etiquetas.</p>
+            </div>
+
+            <section id="presentacion">
+                <h2 class="section-header">1. Presentación y Enfoque Andragógico del Módulo</h2>
+                <p>El <strong>Módulo 1: Gmail Inicial</strong> capacita a los Asistentes de la Educación del <strong>Liceo TP Gonzalo Guglielmi M</strong> en el uso seguro, formal y ordenado del correo electrónico institucional, con énfasis en el resguardo de la privacidad de las familias mediante el uso de Copia Oculta (CCO).</p>
+            </section>
+
+            <section id="objetivos">
+                <h2 class="section-header">2. Objetivos de Aprendizaje</h2>
+                <ol>
+                    <li><strong>Navegar por el entorno de Gmail</strong> identificando recibidos, destacados y borradores.</li>
+                    <li><strong>Redactar comunicaciones formales</strong> con asuntos estructurados y formato adecuado.</li>
+                    <li><strong>Aplicar correctamente CCO</strong> en envíos masivos a padres y apoderados.</li>
+                    <li><strong>Adjuntar archivos PDF</strong> e insertar hipervínculos hacia <a href="https://liceotpggm.cl" target="_blank">https://liceotpggm.cl</a>.</li>
+                    <li><strong>Organizar la bandeja con etiquetas de colores</strong> y filtrar mensajes con el buscador.</li>
+                    <li><strong>Configurar la firma institucional</strong> con cargo y portal oficial.</li>
+                </ol>
+            </section>
+
+            <section id="tiempos">
+                <h2 class="section-header">3. Secuencia de Temas y Tiempos</h2>
+                <table class="custom-table">
+                    <thead>
+                        <tr><th>Unidad / Tema</th><th>Contenidos</th><th style="width:130px; text-align:center;">Tiempo</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Tema 1</strong></td><td>Entorno de Gmail, acceso institucional y navegación</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Tema 2</strong></td><td>Redacción formal, asuntos estructurados y formato</td><td style="text-align:center;">25 min</td></tr>
+                        <tr><td><strong>Tema 3</strong></td><td>Gestión de destinatarios: Para, CC y CCO ético</td><td style="text-align:center;">25 min</td></tr>
+                        <tr><td><strong>Tema 4</strong></td><td>Adjuntar archivos PDF y enlaces web (Ctrl + K)</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Tema 5</strong></td><td>Organización con etiquetas de colores y buscador</td><td style="text-align:center;">30 min</td></tr>
+                        <tr><td><strong>Tema 6</strong></td><td>Configuración de firma institucional automática</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Proyecto Integrador</strong></td><td>Despacho Masivo de Circulares Institucionales</td><td style="text-align:center;">30 min</td></tr>
+                        <tr><td><strong>Evaluación y Cierre</strong></td><td>Rúbrica y cuestionario de salida</td><td style="text-align:center;">15 min</td></tr>
+                        <tr style="background:#fef2f2; font-weight:bold;"><td colspan="2">Total Sesión Integral Módulo 1</td><td style="text-align:center; color:var(--primary);">185 min (~3h)</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- TEMA 1 -->
+            <section id="tema1">
+                <h3 class="topic-header">TEMA 1: Entorno de Gmail y Acceso Institucional</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: La Oficina Postal del Liceo</div>
+                    <p>Recibidos es la bandeja de entrada física; Borradores son los escritos en preparación y Destacados es el panel de avisos urgentes con chincheta amarilla.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 1.1: Navegación y Ventana de Redacción</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Ingresa a Gmail con tu cuenta del liceo.</li>
+                        <li>Haz clic en el botón <strong>[Redactar]</strong> y maximiza la ventana con la flecha diagonal doble.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Ventana de redacción amplia y cómoda para escribir.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 1.2: Marcado con Estrella y Pospuestos</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Marca un correo urgente con la <strong>Estrella</strong> amarilla y verifica que aparece en <em>Destacados</em>.</li>
+                        <li>Usa la opción <strong>Posponer (Reloj)</strong> para programar un aviso para mañana.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Bandeja limpia y organizada por prioridades temporales.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 2 -->
+            <section id="tema2">
+                <h3 class="topic-header">TEMA 2: Redacción Formal y Asuntos Estructurados</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Timbre en la Carátula del Oficio</div>
+                    <p>Un asunto como <code>[CITACIÓN] Entrevista Convivencia - 2° TP</code> permite que el docente identifique de inmediato la urgencia.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 2.1: Citación Formal con Asunto Corcheteado</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Escribe en Asunto: <code>[CITACIÓN] Entrevista de Convivencia Escolar - 2° Medio TP Electricidad</code>.</li>
+                        <li>Redacta el cuerpo con saludo formal, motivo claro y despedida protocolar.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Correo formal alineado a los estándares de comunicación del liceo.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 2.2: Formato de Texto y Listas Numeradas</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Aplica <strong>Negrita (<span class="kbd">Ctrl + B</span>)</strong> a la fecha y hora.</li>
+                        <li>Crea una lista numerada con los 3 documentos solicitados al docente.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Mensaje con estructura visual limpia y fácil de leer.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 3 -->
+            <section id="tema3">
+                <h3 class="topic-header">TEMA 3: Gestión de Destinatarios: Para, CC y Uso Obligatorio de CCO</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: Los Sobres Cerrados para Apoderados</div>
+                    <p>El campo <strong>CCO (Copia Oculta)</strong> entrega la circular a 40 apoderados sin que nadie vea los datos de contacto de las demás familias.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 3.1: Copia Visible al Inspector General (CC)</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>En el campo <em>Para</em> ingresa al profesor y en <em>Cc</em> ingresa <code>inspectoria@liceotpggm.cl</code>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Copia de respaldo enviada a la jefatura correspondiente.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 3.2: Envío Masivo a Apoderados en CCO</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Escribe tu correo en <em>Para</em> e ingresa los correos de apoderados en <em>Cco</em>.</li>
+                        <li>Envía la circular oficial protegiendo la privacidad de los apoderados.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Privacidad 100% resguardada según la normativa legal escolar.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 4 -->
+            <section id="tema4">
+                <h3 class="topic-header">TEMA 4: Adjuntar Archivos PDF e Hipervínculos Web</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Clip de la Fotocopia</div>
+                    <p>Las circulares siempre van en PDF para evitar alteraciones. Con <span class="kbd">Ctrl + K</span> insertamos el enlace a la web institucional.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 4.1: Adjuntar Oficio en PDF</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Haz clic en el <strong>Clip</strong> y selecciona el archivo PDF deseado.</li>
+                        <li>Verifica que la barra de carga termine antes de pulsar Enviar.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Documento oficial cargado de forma íntegra.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 4.2: Enlace a la Web Institucional (Ctrl + K)</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Selecciona el texto <em>"Sitio Web Oficial"</em> y presiona <span class="kbd">Ctrl + K</span>.</li>
+                        <li>Escribe la URL: <code>https://liceotpggm.cl</code> y pulsa Aceptar.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Enlace funcional hacia el portal web del establecimiento.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 5 -->
+            <section id="tema5">
+                <h3 class="topic-header">TEMA 5: Organización con Etiquetas de Colores y Búsqueda Avanzada</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: Archivadores de Colores en la Estantería</div>
+                    <p>Las etiquetas clasifican los mensajes por área (Inspectoría, UTP, CRA) y los operadores de búsqueda encuentran cualquier circular en segundos.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 5.1: Creación de Etiquetas por Departamento</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Crea las etiquetas <code>1. Inspectoría General</code> (Azul) y <code>2. Circulares Dirección</code> (Verde).</li>
+                        <li>Arrastra un correo y clasifícalo en su etiqueta correspondiente.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Bandeja organizada visualmente por colores.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 5.2: Búsqueda con Operadores de Filtro</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Escribe en el buscador: <code>has:attachment filename:pdf</code> y presiona Enter.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Filtrado inmediato de todos los correos con documentos PDF adjuntos.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 6 -->
+            <section id="tema6">
+                <h3 class="topic-header">TEMA 6: Configuración de Firma Institucional Automática</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Timbre Oficial de Goma</div>
+                    <p>Cada correo nuevo sale automáticamente con tu nombre, cargo, el nombre del Liceo TP Gonzalo Guglielmi M y el portal web oficial.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 6.1: Creación de Firma Estandarizada</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Ve a <em>Configuración (Engranaje) &gt; Ver todos los ajustes &gt; General &gt; Firma</em>.</li>
+                        <li>Crea la firma oficial con tu nombre, cargo, <code>Liceo TP Gonzalo Guglielmi M</code> y <code>https://liceotpggm.cl</code>.</li>
+                        <li>Guarda los cambios al final de la página.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Firma corporativa insertada automáticamente en cada mensaje nuevo.</div></div>
+                </div>
+            </section>
+
+            <!-- PROYECTO INTEGRADOR -->
+            <section id="proyecto">
+                <h2 class="section-header">5. Actividad Integradora Final del Módulo</h2>
+                <div style="background:#fef2f2; border:1.5px solid #fecaca; padding:20px; border-radius:8px; margin-bottom:20px;">
+                    <h3 style="color:var(--primary); font-family:'Outfit', sans-serif; font-size:18px; margin-bottom:8px;">Proyecto: "Plan de Comunicación y Despacho Masivo de Circulares Institucionales"</h3>
+                    <p><strong>Contexto:</strong> Diseñar la circular de bienvenida 2026 con firma institucional, envío masivo con copia oculta (CCO) a apoderados, archivo PDF adjunto, enlace a la web oficial y organización mediante etiquetas de colores.</p>
+                </div>
+            </section>
+
+            <!-- RÚBRICA -->
+            <section id="rubrica">
+                <h2 class="section-header">6. Pauta de Evaluación del Proyecto Integrador</h2>
+                <table class="custom-table">
+                    <thead>
+                        <tr><th>Criterio de Evaluación</th><th>Indicadores de Logro</th><th style="width:120px; text-align:center;">Puntaje</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>1. Firma Institucional</strong></td><td>Configura firma con nombre, cargo, liceo y web oficial.</td><td style="text-align:center; font-weight:bold;">15 pts</td></tr>
+                        <tr><td><strong>2. Redacción Formal</strong></td><td>Asunto corcheteado y cuerpo formal con lista numerada.</td><td style="text-align:center; font-weight:bold;">20 pts</td></tr>
+                        <tr><td><strong>3. Privacidad en CCO</strong></td><td>Aplica CCO obligatorio para correos masivos a apoderados.</td><td style="text-align:center; font-weight:bold;">25 pts</td></tr>
+                        <tr><td><strong>4. Adjuntos y Enlaces</strong></td><td>Adjunta PDF e inserta hipervínculo activo (Ctrl + K).</td><td style="text-align:center; font-weight:bold;">20 pts</td></tr>
+                        <tr><td><strong>5. Organización y Etiquetas</strong></td><td>Crea etiquetas por área y clasifica con colores.</td><td style="text-align:center; font-weight:bold;">10 pts</td></tr>
+                        <tr><td><strong>6. Búsqueda Avanzada</strong></td><td>Aplica operadores de búsqueda para localizar circulares.</td><td style="text-align:center; font-weight:bold;">10 pts</td></tr>
+                        <tr style="background:#fef2f2; font-weight:bold;"><td colspan="2">Puntaje Total</td><td style="text-align:center; color:var(--primary);">100 pts</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- CUESTIONARIO -->
+            <section id="cuestionario">
+                <h2 class="section-header">7. Cuestionario de Cierre del Módulo (7 Preguntas)</h2>
+                
+                <div class="quiz-card">
+                    <div class="quiz-question">1. ¿En qué campo deben colocarse los correos de 35 apoderados para proteger su privacidad?</div>
+                    <ul class="quiz-options">
+                        <li>a) Para</li>
+                        <li>b) Cc</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">c) Cco (Copia Oculta) (Correcta)</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Cco oculta las direcciones a los demás destinatarios según la normativa de privacidad.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">2. ¿Qué atajo de teclado inserta un hipervínculo web en Gmail?</div>
+                    <ul class="quiz-options">
+                        <li>a) Ctrl + C</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) Ctrl + K (Correcta)</li>
+                        <li>c) Ctrl + P</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> <code>Ctrl + K</code> vincula el texto seleccionado a una URL web.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">3. ¿Cuál es el tamaño máximo de archivos adjuntos directos en Gmail?</div>
+                    <ul class="quiz-options">
+                        <li>a) 10 MB</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) 25 MB (Correcta)</li>
+                        <li>c) 100 MB</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Hasta 25 MB se adjunta directo; sobre ese límite se comparte desde Google Drive.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">4. ¿Cómo filtrar rápidamente todos los correos con documentos PDF adjuntos?</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) filename:pdf (Correcta)</li>
+                        <li>b) buscar: pdf</li>
+                        <li>c) tipo = archivo</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> <code>filename:pdf</code> filtra mensajes con archivos PDF adjuntos.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">5. ¿Por qué estructurar el asunto con corchetes como [CIRCULAR]?</div>
+                    <ul class="quiz-options">
+                        <li>a) Para que el correo pese menos.</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) Para que el receptor identifique la urgencia y tipo de documento antes de abrirlo. (Correcta)</li>
+                        <li>c) Es obligatorio por el navegador.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Los corchetes entregan claridad inmediata sobre la comunicación.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">6. ¿Qué función cumplen las Etiquetas de colores en Gmail?</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) Clasifican y organizan visualmente los correos por departamento escolar. (Correcta)</li>
+                        <li>b) Borran los correos viejos.</li>
+                        <li>c) Bloquean la cuenta.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Actúan como archivadores virtuales para categorizar la información.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">7. ¿Dónde se configura la Firma Institucional Automática?</div>
+                    <ul class="quiz-options">
+                        <li>a) En la barra de búsqueda.</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) Configuración (Engranaje) > Ver todos los ajustes > General > Firma. (Correcta)</li>
+                        <li>c) En la papelera.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> En los ajustes generales de Gmail se establece la firma automática.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

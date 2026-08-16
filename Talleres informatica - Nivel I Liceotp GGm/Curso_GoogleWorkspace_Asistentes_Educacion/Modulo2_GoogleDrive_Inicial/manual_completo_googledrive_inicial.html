@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Completo: Google Drive Inicial - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --primary-light: #4285f4;
+            --accent: #f29900;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --success-light: #ecfdf5;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .page-wrapper { display: flex; min-height: 100vh; }
+
+        .sidebar {
+            width: 290px;
+            background: #0d47a1;
+            color: #e2e8f0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 24px 18px;
+            flex-shrink: 0;
+            border-right: 1px solid #1e40af;
+        }
+
+        .sidebar-brand {
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-brand h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #93c5fd;
+        }
+
+        .sidebar-brand p { font-size: 12px; color: #bfdbfe; margin-top: 4px; }
+
+        .nav-group-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #93c5fd;
+            font-weight: 700;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            padding-left: 8px;
+        }
+
+        .nav-links { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+
+        .nav-links a {
+            display: block;
+            padding: 7px 10px;
+            color: #f1f5f9;
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 6px;
+            transition: 0.2s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover { background: rgba(255,255,255,0.15); color: #ffffff; transform: translateX(3px); }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 40px 50px;
+            max-width: 1050px;
+            background: #ffffff;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0d47a1 0%, #1a73e8 60%, #4285f4 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 25px rgba(26, 115, 232, 0.15);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .hero p { font-size: 16px; color: #dbeafe; max-width: 800px; }
+
+        h2.section-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            color: var(--primary-dark);
+            margin-top: 40px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        h3.topic-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            color: var(--primary);
+            margin-top: 32px;
+            margin-bottom: 14px;
+            padding-left: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .analogy-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-left: 5px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin: 18px 0 24px 0;
+        }
+
+        .analogy-header {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: #1e40af;
+            margin-bottom: 6px;
+        }
+
+        .exercise-card {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 20px 0;
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1.5px solid #e2e8f0;
+        }
+
+        .exercise-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .exercise-badge {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .step-list { margin-left: 20px; font-size: 14px; }
+        .step-list li { margin-bottom: 8px; }
+
+        .expected-result {
+            margin-top: 14px;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #065f46;
+            display: flex;
+            gap: 8px;
+        }
+
+        .kbd {
+            font-family: 'JetBrains Mono', monospace;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-bottom: 2px solid #94a3b8;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .custom-table th { background: #1a73e8; color: white; padding: 12px 14px; text-align: left; }
+        .custom-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+        .custom-table tr:nth-child(even) { background: #f8fafc; }
+
+        .quiz-card {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-bottom: 18px;
+        }
+
+        .quiz-question { font-weight: 700; font-size: 15px; margin-bottom: 12px; }
+        .quiz-options { list-style: none; padding-left: 0; }
+        .quiz-options li { padding: 8px 12px; background: white; border: 1px solid #cbd5e1; border-radius: 6px; margin-bottom: 6px; font-size: 13.5px; }
+
+        .quiz-feedback {
+            background: #eff6ff;
+            border-left: 3px solid var(--primary);
+            padding: 8px 12px;
+            font-size: 13px;
+            color: #1e40af;
+            margin-top: 8px;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        @media print {
+            .sidebar, .btn-link, .no-print { display: none !important; }
+            .page-wrapper { display: block; }
+            .main-content { padding: 0; max-width: 100%; }
+            .hero { padding: 20px; background: #1a73e8 !important; color: white !important; -webkit-print-color-adjust: exact; }
+            .exercise-card, .analogy-box, .custom-table { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <aside class="sidebar no-print">
+            <div class="sidebar-brand">
+                <h2>Liceo TP Gonzalo Guglielmi M</h2>
+                <p>Módulo 2: Google Drive Inicial</p>
+            </div>
+
+            <div class="nav-group-title">Navegación</div>
+            <ul class="nav-links">
+                <li><a href="#presentacion">1. Enfoque Andragógico</a></li>
+                <li><a href="#objetivos">2. Objetivos de Aprendizaje</a></li>
+                <li><a href="#tiempos">3. Tiempos y Temario</a></li>
+                <li><a href="#tema1">Tema 1: Concepto de la Nube</a></li>
+                <li><a href="#tema2">Tema 2: Carpetas y Colores</a></li>
+                <li><a href="#tema3">Tema 3: Subida y Descarga</a></li>
+                <li><a href="#tema4">Tema 4: Organización y Vistas</a></li>
+                <li><a href="#tema5">Tema 5: Búsqueda y Filtros</a></li>
+                <li><a href="#tema6">Tema 6: Papelera y Resguardo</a></li>
+                <li><a href="#proyecto">Proyecto Integrador</a></li>
+                <li><a href="#rubrica">Pauta de Evaluación</a></li>
+                <li><a href="#cuestionario">Cuestionario de Salida</a></li>
+            </ul>
+
+            <div class="nav-group-title">Recursos Visuales</div>
+            <div style="padding: 6px 10px;">
+                <a href="guia_rapida_atajos_googledrive_inicial.html" target="_blank" class="btn-link" style="width: 100%; justify-content: center; margin-bottom: 6px;">📄 Guía Rápida</a>
+                <a href="infografia_googledrive_inicial.html" target="_blank" class="btn-link" style="width: 100%; justify-content: center; background:#0d47a1;">📊 Infografía Visual</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="hero">
+                <span class="hero-badge">Manual Docente y Guía del Participante</span>
+                <h1>Google Drive: Nivel Inicial</h1>
+                <p>Liceo TP Gonzalo Guglielmi M • https://liceotpggm.cl • Área de Informática (Cristian Valdebenito L.) • Estructura de carpetas escolares, subida segura de archivos y recuperación de papelera.</p>
+            </div>
+
+            <section id="presentacion">
+                <h2 class="section-header">1. Presentación y Enfoque Andragógico del Módulo</h2>
+                <p>El <strong>Módulo 2: Google Drive Inicial</strong> capacita a los Asistentes de la Educación del <strong>Liceo TP Gonzalo Guglielmi M</strong> en la transición del almacenamiento local en pendrives hacia un repositorio centralizado, ordenado y 100% seguro en la nube institucional.</p>
+            </section>
+
+            <section id="objetivos">
+                <h2 class="section-header">2. Objetivos de Aprendizaje</h2>
+                <ol>
+                    <li><strong>Comprender el concepto de la nube</strong> identificando Mi unidad, Compartido conmigo y Papelera.</li>
+                    <li><strong>Crear y estructurar carpetas institucionales</strong> con nombres normalizados y colores.</li>
+                    <li><strong>Subir y descargar archivos</strong> mediante arrastrar y soltar desde el escritorio.</li>
+                    <li><strong>Organizar y mover documentos</strong> alternando entre vista de lista y cuadrícula.</li>
+                    <li><strong>Aplicar filtros de búsqueda rápida</strong> por tipo de archivo (PDF, Sheets, Docs).</li>
+                    <li><strong>Recuperar documentos eliminados</strong> desde la papelera en el plazo de 30 días.</li>
+                </ol>
+            </section>
+
+            <section id="tiempos">
+                <h2 class="section-header">3. Secuencia de Temas y Tiempos</h2>
+                <table class="custom-table">
+                    <thead>
+                        <tr><th>Unidad / Tema</th><th>Contenidos</th><th style="width:130px; text-align:center;">Tiempo</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Tema 1</strong></td><td>Concepto de la nube, interfaz y paneles</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Tema 2</strong></td><td>Creación y codificación por color de carpetas</td><td style="text-align:center;">25 min</td></tr>
+                        <tr><td><strong>Tema 3</strong></td><td>Subida (arrastrar y soltar) y descarga de archivos</td><td style="text-align:center;">25 min</td></tr>
+                        <tr><td><strong>Tema 4</strong></td><td>Organización, vista de lista y movimiento</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Tema 5</strong></td><td>Búsqueda avanzada y filtros por tipo de archivo</td><td style="text-align:center;">25 min</td></tr>
+                        <tr><td><strong>Tema 6</strong></td><td>Papelera de reciclaje y recuperación</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Proyecto Integrador</strong></td><td>Repositorio Digital Institucional</td><td style="text-align:center;">35 min</td></tr>
+                        <tr><td><strong>Evaluación y Cierre</strong></td><td>Rúbrica y cuestionario de salida</td><td style="text-align:center;">15 min</td></tr>
+                        <tr style="background:#eff6ff; font-weight:bold;"><td colspan="2">Total Sesión Integral Módulo 2</td><td style="text-align:center; color:var(--primary);">185 min (~3h)</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- TEMA 1 -->
+            <section id="tema1">
+                <h3 class="topic-header">TEMA 1: Concepto de la Nube y Paneles de Google Drive</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: La Bóveda Digital del Liceo</div>
+                    <p>Mi unidad es tu casillero personal; Compartido conmigo es la mesa donde te dejan documentos y Reciente son los papeles sobre tu escritorio hoy.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 1.1: Navegación y Paneles Principales</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Ingresa a <code>drive.google.com</code> con tu correo del liceo.</li>
+                        <li>Identifica las secciones: <em>Mi unidad</em>, <em>Compartido conmigo</em> y <em>Papelera</em>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Comprensión de la estructura de almacenamiento personal y compartido.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 1.2: Vista de Lista vs Cuadrícula</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Cambia a <strong>Vista de lista</strong> en el botón superior derecho.</li>
+                        <li>Observa las columnas de Fecha de modificación y Tamaño.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Vista de lista optimizada para la gestión de documentos escolares.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 2 -->
+            <section id="tema2">
+                <h3 class="topic-header">TEMA 2: Creación y Codificación de Carpetas Escolares</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: Archivadores con Cinta de Color</div>
+                    <p>Organizamos por departamento (Inspectoría, UTP, CRA) con nombres claros y colores distintivos.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 2.1: Creación del Árbol de Carpetas 2026</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Crea la carpeta raíz <code>2026_LiceoTP_Guglielmi</code> (<span class="kbd">Shift + F</span>).</li>
+                        <li>Dentro de ella, crea las subcarpetas: <code>1_Inspectoría</code>, <code>2_Secretaría</code> y <code>3_CRA_Inventarios</code>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Estructura ordenada y jerárquica de carpetas escolares.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 2.2: Asignación de Colores Departamentales</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Clic derecho en la carpeta &gt; <em>Organizar &gt; Color de la carpeta</em>.</li>
+                        <li>Aplica Azul para Inspectoría, Verde para Secretaría y Naranja para CRA.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Diferenciación visual inmediata por áreas del liceo.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 3 -->
+            <section id="tema3">
+                <h3 class="topic-header">TEMA 3: Subida y Descarga de Archivos</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: Guardar y Sacar Papeles de la Bóveda</div>
+                    <p>Arrastrar y soltar sube el archivo a la nube; Descargar permite guardarlo en el PC para trabajar sin internet.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 3.1: Subida por Arrastrar y Soltar</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Arrastra un archivo Word/Excel desde tu escritorio y suéltalo dentro de la carpeta de Drive.</li>
+                        <li>Verifica el círculo verde de carga completa.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Archivo disponible en la nube de forma segura.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 3.2: Descargar Documentos a Windows</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Haz clic derecho sobre el archivo en Drive y selecciona <strong>Descargar</strong>.</li>
+                        <li>Verifica el archivo en la carpeta <em>Descargas</em> de tu computador.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Copia local guardada en el computador.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 4 -->
+            <section id="tema4">
+                <h3 class="topic-header">TEMA 4: Organización y Movimiento de Documentos</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: Cambiar una Hoja de Archivador</div>
+                    <p>Reubicamos archivos sin duplicar y nombramos bajo el estándar <code>AÑO_DOCUMENTO_CURSO</code>.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 4.1: Mover Archivos entre Carpetas</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Clic derecho sobre el archivo &gt; <em>Organizar &gt; Mover</em> (tecla <span class="kbd">Z</span>).</li>
+                        <li>Selecciona la carpeta destino y pulsa <strong>Mover aquí</strong>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Archivo reubicado limpiamente en su carpeta correcta.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 4.2: Estandarización de Nombres</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Presiona <span class="kbd">N</span> sobre el archivo y renómbralo como <code>2026_Acta_Reunion_Inspectoría.docx</code>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Nombre formal y fácil de ubicar.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 5 -->
+            <section id="tema5">
+                <h3 class="topic-header">TEMA 5: Búsqueda Avanzada y Filtros en Drive</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Índice Maestro de Secretaría</div>
+                    <p>Filtramos por hojas de cálculo (<code>type:spreadsheet</code>) o documentos PDF para encontrar archivos en 3 segundos.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 5.1: Filtrado por Tipo de Archivo</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>En el buscador superior haz clic en el filtro <strong>Tipo &gt; Hojas de cálculo</strong>.</li>
+                        <li>Comprueba que Drive muestra únicamente planillas Excel/Sheets.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Búsqueda filtrada rápida y precisa.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 6 -->
+            <section id="tema6">
+                <h3 class="topic-header">TEMA 6: Papelera de Reciclaje y Recuperación</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Tacho de Basura Temporal</div>
+                    <p>Los archivos borrados esperan 30 días en la Papelera antes de eliminarse. Puedes restaurarlos con un solo clic.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 6.1: Eliminación y Restauración</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Envía un archivo de prueba a la papelera (<span class="kbd">Supr</span>).</li>
+                        <li>Ve a la <em>Papelera</em>, haz clic derecho y selecciona <strong>Restaurar</strong>.</li>
+                        <li>Verifica que regresó intacto a su carpeta original.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Dominio del sistema de seguridad y recuperación de archivos.</div></div>
+                </div>
+            </section>
+
+            <!-- PROYECTO INTEGRADOR -->
+            <section id="proyecto">
+                <h2 class="section-header">5. Actividad Integradora Final del Módulo</h2>
+                <div style="background:#eff6ff; border:1.5px solid #bfdbfe; padding:20px; border-radius:8px; margin-bottom:20px;">
+                    <h3 style="color:var(--primary); font-family:'Outfit', sans-serif; font-size:18px; margin-bottom:8px;">Proyecto: "Estructuración y Puesta en Marcha del Repositorio Digital"</h3>
+                    <p><strong>Contexto:</strong> Crear la carpeta maestra 2026 con subcarpetas departamentales codificadas por color, subir documentos Word, Excel y PDF con nombres normalizados, aplicar filtros de búsqueda y restaurar un archivo de prueba desde la papelera.</p>
+                </div>
+            </section>
+
+            <!-- RÚBRICA -->
+            <section id="rubrica">
+                <h2 class="section-header">6. Pauta de Evaluación del Proyecto Integrador</h2>
+                <table class="custom-table">
+                    <thead>
+                        <tr><th>Criterio de Evaluación</th><th>Indicadores de Logro</th><th style="width:120px; text-align:center;">Puntaje</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>1. Estructura de Carpetas</strong></td><td>Crea carpeta raíz y subcarpetas departamentales.</td><td style="text-align:center; font-weight:bold;">20 pts</td></tr>
+                        <tr><td><strong>2. Codificación por Color</strong></td><td>Aplica colores asignados a cada departamento.</td><td style="text-align:center; font-weight:bold;">15 pts</td></tr>
+                        <tr><td><strong>3. Subida y Nombres</strong></td><td>Sube archivos requeridos con nombres estandarizados.</td><td style="text-align:center; font-weight:bold;">25 pts</td></tr>
+                        <tr><td><strong>4. Búsqueda y Filtros</strong></td><td>Aplica filtros de búsqueda por tipo de archivo.</td><td style="text-align:center; font-weight:bold;">15 pts</td></tr>
+                        <tr><td><strong>5. Papelera y Resguardo</strong></td><td>Demuestra eliminación y restauración exitosa.</td><td style="text-align:center; font-weight:bold;">15 pts</td></tr>
+                        <tr><td><strong>6. Vistas de Trabajo</strong></td><td>Alterna entre vista de lista y cuadrícula.</td><td style="text-align:center; font-weight:bold;">10 pts</td></tr>
+                        <tr style="background:#eff6ff; font-weight:bold;"><td colspan="2">Puntaje Total</td><td style="text-align:center; color:var(--primary);">100 pts</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- CUESTIONARIO -->
+            <section id="cuestionario">
+                <h2 class="section-header">7. Cuestionario de Cierre del Módulo (7 Preguntas)</h2>
+                
+                <div class="quiz-card">
+                    <div class="quiz-question">1. ¿Dónde se ubican los archivos que otros colegas te han compartido?</div>
+                    <ul class="quiz-options">
+                        <li>a) Mi unidad</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) Compartido conmigo (Correcta)</li>
+                        <li>c) Papelera</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> <em>Compartido conmigo</em> reúne todos los documentos que otros usuarios te envían.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">2. ¿Cuántos días permanece un archivo en la Papelera de Google Drive?</div>
+                    <ul class="quiz-options">
+                        <li>a) 7 días</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) 30 días (Correcta)</li>
+                        <li>c) 1 año</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Se conservan durante 30 días antes de su eliminación definitiva automática.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">3. ¿Cuál es el método más rápido para subir una planilla Excel desde Windows?</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) Arrastrar y soltar el archivo en la ventana de Drive. (Correcta)</li>
+                        <li>b) Escribirla de nuevo.</li>
+                        <li>c) Enviarla por correo a ti mismo.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Arrastrar y soltar es la forma más rápida y directa.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">4. ¿Qué filtro busca exclusivamente hojas de cálculo en Drive?</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) type:spreadsheet (Correcta)</li>
+                        <li>b) color:verde</li>
+                        <li>c) formato = numeros</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> <code>type:spreadsheet</code> filtra hojas de cálculo Excel y Sheets.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">5. ¿Qué atajo de teclado crea una nueva carpeta en Google Drive?</div>
+                    <ul class="quiz-options">
+                        <li>a) Ctrl + N</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) Shift + F (Correcta)</li>
+                        <li>c) Alt + F4</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> <code>Shift + F</code> abre la ventana de creación de carpeta.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">6. ¿Por qué se recomienda asignar colores a las carpetas?</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) Para identificar visualmente las áreas escolares a primera vista. (Correcta)</li>
+                        <li>b) Para que pesen menos.</li>
+                        <li>c) Por estética únicamente.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> La codificación visual acelera la navegación y búsqueda diaria.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">7. Al descargar un archivo de Drive, ¿dónde se guarda en Windows por defecto?</div>
+                    <ul class="quiz-options">
+                        <li>a) En la Papelera.</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) En la carpeta "Descargas" (Downloads) del PC. (Correcta)</li>
+                        <li>c) En el escritorio siempre.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> El navegador descarga por defecto en la carpeta local <em>Descargas</em>.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

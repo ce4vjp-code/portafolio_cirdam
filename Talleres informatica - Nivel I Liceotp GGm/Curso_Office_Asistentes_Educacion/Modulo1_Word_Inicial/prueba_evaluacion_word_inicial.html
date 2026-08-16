@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación Escrita: Word Inicial - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #0f172a;
+            --border: #cbd5e1;
+            --text: #1e293b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text);
+            line-height: 1.45;
+            font-size: 13.5px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .test-paper {
+            width: 216mm;
+            background: #ffffff;
+            padding: 16mm 14mm;
+            border-radius: 4px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-box {
+            border: 2px solid var(--primary);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 18px;
+        }
+
+        .school-title {
+            text-align: center;
+            border-bottom: 1.5px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .school-title h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .school-title p {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .student-data-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 8px 16px;
+            font-size: 12.5px;
+        }
+
+        .data-field {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+        }
+
+        .line {
+            flex-grow: 1;
+            border-bottom: 1px solid #94a3b8;
+            height: 14px;
+        }
+
+        .scores-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            text-align: center;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 6px;
+            border-radius: 4px;
+            margin-top: 8px;
+            font-size: 11.5px;
+        }
+
+        .section-header {
+            background: var(--primary);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            margin: 16px 0 10px 0;
+            text-transform: uppercase;
+        }
+
+        .question-item {
+            margin-bottom: 12px;
+            padding-left: 4px;
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .options-list {
+            list-style: none;
+            padding-left: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .radio-circle {
+            width: 14px;
+            height: 14px;
+            border: 1.5px solid #64748b;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .tf-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 6px;
+        }
+
+        .tf-table th, .tf-table td {
+            border: 1px solid #cbd5e1;
+            padding: 6px 8px;
+            font-size: 12.5px;
+        }
+
+        .tf-table th {
+            background: #f1f5f9;
+            font-weight: 700;
+        }
+
+        .tf-cell {
+            text-align: center;
+            width: 45px;
+        }
+
+        .case-box {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-left: 4px solid var(--primary);
+            padding: 10px 12px;
+            border-radius: 0 4px 4px 0;
+            font-size: 12.5px;
+            margin-bottom: 8px;
+        }
+
+        .answer-lines {
+            border-bottom: 1px dashed #94a3b8;
+            height: 24px;
+            margin-top: 6px;
+        }
+
+        .teacher-key {
+            margin-top: 30px;
+            padding: 16px;
+            background: #fffbeb;
+            border: 1.5px solid #fde68a;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        .teacher-key h3 {
+            color: #b45309;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .btn-print {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .test-paper { width: 100%; box-shadow: none; padding: 6mm 8mm; }
+            .btn-print, .no-print { display: none !important; }
+            .teacher-key { page-break-before: always; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="test-paper">
+        
+        <!-- Encabezado Institucional -->
+        <div class="header-box">
+            <div class="school-title">
+                <h1>Liceo TP Gonzalo Guglielmi M</h1>
+                <p>Capacitación en Microsoft Office 2019 • Evaluación Módulo 1: Word Inicial</p>
+            </div>
+            
+            <div class="student-data-grid">
+                <div class="data-field"><strong>Nombre Funcionario(a):</strong> <div class="line"></div></div>
+                <div class="data-field"><strong>Fecha:</strong> <div class="line"></div></div>
+                <div class="data-field"><strong>Cargo / Función en el Liceo:</strong> <div class="line"></div></div>
+                <div class="data-field"><strong>Exigencia:</strong> 60% (Nota 4.0 con 18 pts)</div>
+            </div>
+
+            <div class="scores-box">
+                <div><strong>Puntaje Ideal:</strong> 30 Puntos</div>
+                <div><strong>Puntaje Obtenido:</strong> _______ Pts</div>
+                <div><strong>Calificación Final:</strong> _______</div>
+            </div>
+        </div>
+
+        <!-- Instrucciones -->
+        <p style="font-size: 11.5px; color: #64748b; margin-bottom: 12px;">
+            <strong>Instrucciones:</strong> Lea atentamente cada enunciado y situación escolar. Responda con letra clara y marque solo una alternativa correcta por pregunta. Dispone de 45 minutos.
+        </p>
+
+        <!-- SECCIÓN I: SELECCIÓN MÚLTIPLE -->
+        <div class="section-header">Ítem I: Selección Múltiple (2 pts c/u - Total: 12 Pts)</div>
+
+        <div class="question-item">
+            <div class="question-text">1. Estás redactando un acta de consejo de profesores y borraste un párrafo por error. ¿Qué atajo recupera de inmediato el texto?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) Ctrl + G</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) Ctrl + Z</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) Ctrl + P</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> d) Ctrl + N</span></li>
+            </ul>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">2. ¿Qué medida exacta debe tener el papel en Word para imprimir actas en resmas de Oficio chileno sin que se corte el pie de página?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) 21,59 cm x 27,94 cm (Carta)</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) 21,59 cm x 33,00 cm (Oficio Chileno)</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) 21,59 cm x 35,56 cm (Legal)</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> d) 29,70 cm x 42,00 cm (A3)</span></li>
+            </ul>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">3. Para que una circular oficial tenga ambos costados rectos y alineados formalmente, ¿qué alineación se debe aplicar?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) Alinear a la izquierda (Ctrl + Q)</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) Centrar (Ctrl + T)</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) Justificar (Ctrl + J)</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> d) Alinear a la derecha (Ctrl + D)</span></li>
+            </ul>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">4. Si te encuentras en la última celda de una tabla de turnos de patio, ¿qué tecla agrega una nueva fila automáticamente?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) Enter</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) Tab (Tabulador)</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) Shift</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> d) Barra Espaciadora</span></li>
+            </ul>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">5. ¿Cuál es la principal razón para guardar una circular en formato PDF antes de enviarla a los apoderados por WhatsApp?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) Permite que los apoderados editen la fecha.</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) Protege el texto contra alteraciones y asegura que se vea idéntico en cualquier celular.</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) Borra las imágenes para que no pese nada.</span></li>
+            </ul>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">6. ¿Qué tecla de función rápida activa la revisión ortográfica y gramatical de todo el documento?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) F1</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) F5</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) F7</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> d) F12</span></li>
+            </ul>
+        </div>
+
+        <!-- SECCIÓN II: VERDADERO O FALSO -->
+        <div class="section-header">Ítem II: Verdadero o Falso (2 pts c/u - Total: 8 Pts)</div>
+        <p style="font-size: 11.5px; margin-bottom: 6px;">Escriba una <strong>V</strong> si la afirmación es verdadera o una <strong>F</strong> si es falsa. Justifique las falsas.</p>
+
+        <table class="tf-table">
+            <thead>
+                <tr>
+                    <th class="tf-cell">V/F</th>
+                    <th>Afirmación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="tf-cell">____</td>
+                    <td>Si insertas el membrete oficial del Liceo en el Encabezado de la página 1, este se repetirá automáticamente en todas las páginas siguientes del documento.</td>
+                </tr>
+                <tr>
+                    <td class="tf-cell">____</td>
+                    <td>Para que un texto no pase a una segunda página por 3 líneas, es recomendable cambiar los márgenes a "Estrecho" (1,27 cm).</td>
+                </tr>
+                <tr>
+                    <td class="tf-cell">____</td>
+                    <td>La función Guardar Como (F12) se utiliza cada vez que se escribe una palabra nueva para no perder cambios.</td>
+                </tr>
+                <tr>
+                    <td class="tf-cell">____</td>
+                    <td>Al hacer doble clic sobre una palabra con el mouse en Word, se selecciona el párrafo completo.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- SECCIÓN III: CASO PRÁCTICO -->
+        <div class="section-header">Ítem III: Aplicación Práctica en Contexto Escolar (10 Pts)</div>
+
+        <div class="case-box">
+            <strong>Situación Escolar:</strong> El Inspector General te solicita redactar un oficio urgente para citar a 3 apoderados a una reunión de convivencia. El documento debe quedar en una sola página tamaño Carta, con membrete oficial del Liceo TP Gonzalo Guglielmi M, el cuerpo justificado con interlineado 1,15, y una tabla de 3 columnas (N°, Nombre Estudiante, Hora Citación).
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">1. Describe los 3 primeros pasos obligatorios que realizarías en Word apenas abres el documento en blanco antes de comenzar a escribir: (4 pts)</div>
+            <div class="answer-lines"></div>
+            <div class="answer-lines"></div>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">2. Explica qué pasos sigues para insertar la tabla de 3 columnas requerida y darle formato institucional con encabezado azul oscuro y texto blanco: (6 pts)</div>
+            <div class="answer-lines"></div>
+            <div class="answer-lines"></div>
+        </div>
+
+        <!-- PAUTA DOCENTE -->
+        <div class="teacher-key no-print">
+            <h3>🔑 Pauta de Corrección y Clave Docente (Uso Exclusivo del Relator)</h3>
+            <p><strong>Ítem I:</strong> 1-b | 2-b | 3-c | 4-b | 5-b | 6-c (12 pts)</p>
+            <p><strong>Ítem II:</strong> 1-V | 2-V | 3-F (Guardar Como es solo la primera vez o para cambiar nombre/formato; en el día a día se usa Guardar o Ctrl+G) | 4-F (Doble clic selecciona una palabra; el triple clic selecciona el párrafo completo) (8 pts)</p>
+            <p><strong>Ítem III:</strong> 1: Configurar tamaño Carta/Márgenes en Disposición, Guardar inmediatamente con nombre oficial (Ctrl+G), e insertar membrete en Encabezado (4 pts). 2: Ir a Insertar > Tabla > seleccionar 3 columnas x 4 filas; escribir títulos, seleccionar fila 1 y aplicar Sombreado azul con fuente blanca y negrita (6 pts).</p>
+        </div>
+
+    </div>
+
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir Prueba Alumnos</button>
+
+</body>
+</html>

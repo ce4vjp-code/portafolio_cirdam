@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Excel Intermedio y Automatización - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #065f46;
+            --primary-dark: #022c22;
+            --primary-light: #059669;
+            --teal: #0f766e;
+            --accent: #d97706;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .infographic-header {
+            background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #0f766e 100%);
+            color: white;
+            padding: 36px 40px;
+            position: relative;
+        }
+
+        .infographic-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #14b8a6, #3b82f6, #f59e0b);
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .infographic-header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .infographic-header p {
+            font-size: 15px;
+            color: #cbd5e1;
+            max-width: 800px;
+        }
+
+        .content-body {
+            padding: 36px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+
+        .section-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--teal);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .section-title h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        /* Logic Decision Flow */
+        .decision-flow {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .flow-condition {
+            background: #ffffff;
+            border: 2px solid #0f766e;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .flow-branches {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .branch-true {
+            background: #ecfdf5;
+            border: 1.5px solid #10b981;
+            border-radius: 8px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .branch-false {
+            background: #fef2f2;
+            border: 1.5px solid #ef4444;
+            border-radius: 8px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* BUSCARV diagram */
+        .buscarv-box {
+            background: #0f172a;
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .buscarv-formula {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .buscarv-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            font-size: 11.5px;
+            text-align: center;
+        }
+
+        .buscarv-card {
+            background: rgba(255,255,255,0.08);
+            padding: 10px 8px;
+            border-radius: 6px;
+        }
+
+        /* Pivot & Chart 2-Col */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+        }
+
+        .feature-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--teal);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-card ol, .feature-card ul {
+            font-size: 12.5px;
+            padding-left: 20px;
+            color: var(--text-main);
+        }
+
+        .feature-card li {
+            margin-bottom: 6px;
+        }
+
+        .infographic-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .btn-action {
+            background: var(--teal);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @media (max-width: 850px) {
+            .decision-flow, .buscarv-steps, .grid-2col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="infographic-header">
+            <span class="tag">Módulo 4 • Automatización Avanzada</span>
+            <h1>Excel Intermedio: Lógica, Búsqueda y Tablas Dinámicas</h1>
+            <p>Liceo TP Gonzalo Guglielmi M • Esquemas visuales para la toma de decisiones automática con la Función SI, buscador de apoderados por RUN y resúmenes estadísticos UTP.</p>
+        </div>
+
+        <div class="content-body">
+            
+            <!-- SECCIÓN 1: Cómo piensa la Función SI -->
+            <div>
+                <div class="section-title">
+                    <div class="section-badge">1</div>
+                    <h2>La Función SI: El Semáforo Lógico de Calificaciones</h2>
+                </div>
+
+                <div class="decision-flow">
+                    <div class="flow-condition">
+                        <span style="font-size: 11px; text-transform: uppercase; font-weight: bold; color: var(--teal);">Condición a Evaluar</span>
+                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: bold; color: var(--primary-dark); margin: 6px 0;">¿Promedio &gt;= 4.0?</div>
+                        <span style="font-size: 11.5px; color: var(--text-muted);">(Revisa la celda F4)</span>
+                    </div>
+
+                    <div class="flow-branches">
+                        <div class="branch-true">
+                            <span style="font-size: 20px;">✅</span>
+                            <div>
+                                <strong style="color: #065f46;">SI ES VERDADERO:</strong>
+                                <div style="font-size: 12px; color: #047857;">Excel escribe automáticamente: <code>"Aprobado"</code></div>
+                            </div>
+                        </div>
+                        <div class="branch-false">
+                            <span style="font-size: 20px;">❌</span>
+                            <div>
+                                <strong style="color: #b91c1c;">SI ES FALSO:</strong>
+                                <div style="font-size: 12px; color: #991b1b;">Excel escribe automáticamente: <code>"Reprobado"</code></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 2: Anatomía de BUSCARV -->
+            <div>
+                <div class="section-title">
+                    <div class="section-badge">2</div>
+                    <h2>BUSCARV: El Asistente que Encuentra Apoderados al Instante</h2>
+                </div>
+
+                <div class="buscarv-box">
+                    <div class="buscarv-formula">
+                        =BUSCARV( <span style="color:#f59e0b;">B2</span> ; <span style="color:#60a5fa;">A4:E200</span> ; <span style="color:#34d399;">3</span> ; <span style="color:#f87171;">FALSO</span> )
+                    </div>
+
+                    <div class="buscarv-steps">
+                        <div class="buscarv-card">
+                            <strong style="color:#f59e0b;">1. ¿Qué busco? (B2)</strong>
+                            <p style="margin-top:4px;">El RUN del estudiante escrito en la casilla de consulta.</p>
+                        </div>
+                        <div class="buscarv-card">
+                            <strong style="color:#60a5fa;">2. ¿Dónde busco? (A4:E200)</strong>
+                            <p style="margin-top:4px;">Toda la nómina general de alumnos del liceo.</p>
+                        </div>
+                        <div class="buscarv-card">
+                            <strong style="color:#34d399;">3. ¿Qué columna traigo? (3)</strong>
+                            <p style="margin-top:4px;">El número de columna con el dato deseado (ej: Teléfono Apoderado).</p>
+                        </div>
+                        <div class="buscarv-card">
+                            <strong style="color:#f87171;">4. Coincidencia (FALSO)</strong>
+                            <p style="margin-top:4px;">Obliga a que el RUN sea 100% exacto.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 3: Tablas Dinámicas y Formato Condicional -->
+            <div>
+                <div class="section-title">
+                    <div class="section-badge">3</div>
+                    <h2>Análisis Rápido: Tablas Dinámicas y Alertas Visuales</h2>
+                </div>
+
+                <div class="grid-2col">
+                    <div class="feature-card">
+                        <h3>📊 Tablas Dinámicas Escolares</h3>
+                        <p style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">Convierte 300 filas de datos en un resumen de 4 líneas para el Director:</p>
+                        <ol>
+                            <li>Haz clic en tu planilla &gt; <em>Insertar &gt; Tabla dinámica</em>.</li>
+                            <li>Arrastra <code>Especialidad TP</code> a <strong>Filas</strong>.</li>
+                            <li>Arrastra <code>Situación</code> a <strong>Columnas</strong>.</li>
+                            <li>Arrastra <code>RUN</code> a <strong>Valores</strong> para totalizar aprobados y reprobados.</li>
+                        </ol>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>🎨 Semáforo de Formato Condicional</h3>
+                        <p style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">Las celdas cambian de color solas según el valor ingresado:</p>
+                        <ul>
+                            <li><span style="color:#dc2626; font-weight:bold;">🔴 Notas Rojas:</span> <em>Menor que 4.0</em> &gt; Fondo rojo suave.</li>
+                            <li><span style="color:#16a34a; font-weight:bold;">🟢 Notas Sobresalientes:</span> <em>Mayor o igual a 6.0</em> &gt; Fondo verde suave.</li>
+                            <li><span style="color:#d97706; font-weight:bold;">🟡 Alerta Asistencia:</span> <em>Menor a 85%</em> &gt; Fondo amarillo.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="infographic-footer">
+            <span>© Liceo TP Gonzalo Guglielmi M • Plan de Capacitación Continua</span>
+            <button class="btn-action" onclick="window.print()">🖨️ Imprimir Infografía</button>
+        </div>
+    </div>
+
+</body>
+</html>

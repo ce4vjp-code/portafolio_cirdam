@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cristian - Portafolio, Sistemas y Capacitaciones</title>
+    <link rel="icon" href="assets/perfil.webp" type="image/webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header class="hero">
+            <div class="avatar-container">
+                <div class="avatar-ring"></div>
+                <div class="avatar-ring"></div>
+                <img src="assets/perfil.webp" alt="Cristian - Desarrollador & Soporte TI" class="avatar">
+            </div>
+            <div class="eyebrow">IT Support Professional / Proyectos & Capacitaciones</div>
+            <h1 class="title">Hola, soy Cristian.</h1>
+            <p class="subtitle">Bienvenido a mi hub técnico. Aquí encontrarás mis proyectos de software, manuales técnicos de arquitectura y el material formativo integral de los talleres de ofimática y herramientas cloud desarrollados para el Liceo TP Guillermo Guglielmi M.</p>
+            
+            <div class="social-links" style="display:flex; gap:16px; margin-top:24px; justify-content:center;">
+                <a href="https://dev.to/ce4vjpcode" target="_blank" class="btn btn-secondary" style="padding: 8px 16px;">Dev.to</a>
+                <a href="https://www.credly.com/users/cristian-valdebenito.b006cb21" target="_blank" class="btn btn-secondary" style="padding: 8px 16px;">Credly</a>
+                <a href="https://github.com/ce4vjp-code" target="_blank" class="btn btn-secondary" style="padding: 8px 16px;">GitHub</a>
+            </div>
+        </header>
+
+        <!-- Filtro por Categorías -->
+        <div class="filter-wrapper">
+            <nav class="filter-bar" aria-label="Filtrar proyectos y recursos">
+                <button type="button" class="filter-btn active" data-filter="all">
+                    <span>🌟</span> Todos
+                </button>
+                <button type="button" class="filter-btn" data-filter="devto">
+                    <span>✍️</span> Artículos Dev.to
+                </button>
+                <button type="button" class="filter-btn" data-filter="software">
+                    <span>💻</span> Sistemas & Software
+                </button>
+                <button type="button" class="filter-btn" data-filter="office">
+                    <span>📘</span> Microsoft Office
+                </button>
+                <button type="button" class="filter-btn" data-filter="google">
+                    <span>🌐</span> Google Workspace
+                </button>
+            </nav>
+        </div>
+
+        <main class="projects-grid">
+            
+            <!-- ARTÍCULO DEV.TO (Pre-renderizado / Entrada Principal) -->
+            <article class="card theme-devto" data-category="devto">
+                <div class="card-top">
+                    <span class="card-icon">✍️</span>
+                    <span class="badge badge-devto">Dev.to · Artículo</span>
+                </div>
+                <img src="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2F0xjxzqy9l827auy2nvmg.png" alt="Microsoft lanza parche masivo de agosto" class="article-cover" loading="lazy">
+                <h2 class="card-title">Microsoft lanza parche masivo de agosto: Casi 400 vulnerabilidades corregidas y el impacto de la IA</h2>
+                <div class="article-meta">
+                    <span>📅 Aug 12</span>
+                    <span>⏱️ 2 min de lectura</span>
+                </div>
+                <p class="card-desc">Ayer, Microsoft desplegó su tradicional "Patch Tuesday" de agosto con cifras récord de vulnerabilidades corregidas y un análisis sobre el impacto de la IA en la seguridad de sistemas.</p>
+                <div class="article-tags">
+                    <span class="tag-pill">#cybersecurity</span>
+                    <span class="tag-pill">#microsoft</span>
+                    <span class="tag-pill">#security</span>
+                    <span class="tag-pill">#vulnerabilities</span>
+                </div>
+                <div class="card-actions">
+                    <a href="https://dev.to/ce4vjpcode/microsoft-lanza-parche-masivo-de-agosto-casi-400-vulnerabilidades-corregidas-y-el-impacto-de-la-ia-1o5m" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        Leer en Dev.to
+                    </a>
+                </div>
+            </article>
+
+            <!-- PROYECTO SOFTWARE 1: ControlCiber -->
+            <article class="card theme-blue" data-category="software">
+                <div class="card-top">
+                    <span class="card-icon">🖥️</span>
+                    <span class="badge badge-software">Software · C#</span>
+                </div>
+                <h2 class="card-title">ControlCiber (C# / WPF)</h2>
+                <p class="card-desc">Plataforma cliente-servidor para administración de salas de cómputo. Transmisión UDP, control remoto por Inyección Nativa (P/Invoke) y UAC bypass.</p>
+                <div class="card-actions">
+                    <a href="proyectos/controlciber/manual_usuario.html" target="_blank" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                        Manual de Usuario
+                    </a>
+                    <a href="proyectos/controlciber/documentacion_tecnica.html" target="_blank" class="btn btn-secondary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        Doc. Técnica
+                    </a>
+                </div>
+            </article>
+
+            <!-- PROYECTO SOFTWARE 2: Reserva PHP -->
+            <article class="card theme-green" data-category="software">
+                <div class="card-top">
+                    <span class="card-icon">📅</span>
+                    <span class="badge badge-software">Web · PHP</span>
+                </div>
+                <h2 class="card-title">Reserva Laboratorio</h2>
+                <p class="card-desc">Sistema de reservas horarias en PHP y JS. Integración con MySQL, prevención de overbooking por constraints de base de datos y backend REST-like.</p>
+                <div class="card-actions">
+                    <a href="proyectos/reserva-php/manual_usuario.html" target="_blank" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                        Manual de Usuario
+                    </a>
+                    <a href="proyectos/reserva-php/documentacion_tecnica.html" target="_blank" class="btn btn-secondary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        Doc. Técnica
+                    </a>
+                </div>
+            </article>
+
+            <!-- PROYECTO SOFTWARE 3: Diplomas C# -->
+            <article class="card theme-orange" data-category="software">
+                <div class="card-top">
+                    <span class="card-icon">🎓</span>
+                    <span class="badge badge-software">Desktop · C#</span>
+                </div>
+                <h2 class="card-title">Generador de Diplomas</h2>
+                <p class="card-desc">Aplicación de escritorio para la emisión masiva de certificados utilizando GDI+. Incrusta códigos QR y mapea datos a la nube mediante Supabase (PostgREST).</p>
+                <div class="card-actions">
+                    <a href="proyectos/generador-diplomas/manual_usuario.html" target="_blank" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                        Manual de Usuario
+                    </a>
+                    <a href="proyectos/generador-diplomas/documentacion_tecnica.html" target="_blank" class="btn btn-secondary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        Doc. Técnica
+                    </a>
+                </div>
+            </article>
+
+            <!-- PROYECTO SOFTWARE 4: Gemini -->
+            <article class="card theme-red" data-category="software">
+                <div class="card-top">
+                    <span class="card-icon">🛡️</span>
+                    <span class="badge badge-software">Web · PHP</span>
+                </div>
+                <h2 class="card-title">Plataforma Gemini 2.0</h2>
+                <p class="card-desc">Gestor escolar integral (encuestas, inventarios, calendarios). Refactorización enfocada en seguridad OWASP, mitigación SQLi, XSS y bypass de caché LiteSpeed.</p>
+                <div class="card-actions">
+                    <a href="proyectos/calendario-gemini/manual_usuario.html" target="_blank" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                        Manual de Usuario
+                    </a>
+                    <a href="proyectos/calendario-gemini/documentacion_tecnica.html" target="_blank" class="btn btn-secondary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        Doc. Técnica
+                    </a>
+                </div>
+            </article>
+
+            <!-- TALLER OFFICE 1: Word Inicial -->
+            <article class="card theme-word" data-category="office">
+                <div class="card-top">
+                    <span class="card-icon">📝</span>
+                    <span class="badge badge-word">Office · Módulo 1</span>
+                </div>
+                <h2 class="card-title">Microsoft Word - Inicial</h2>
+                <p class="card-desc">Fundamentos de procesamiento de texto, formato institucional, sangrías, tabulaciones, inserción de tablas e imágenes y configuración de página.</p>
+                <div class="card-actions">
+                    <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_Office_Asistentes_Educacion/Modulo1_Word_Inicial/manual_completo_word_inicial.html" target="_blank" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        Manual Completo
+                    </a>
+                    <div class="card-subactions">
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_Office_Asistentes_Educacion/Modulo1_Word_Inicial/infografia_word_inicial.html" target="_blank" class="btn-sub" title="Infografía Visual">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            Infografía
+                        </a>
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_Office_Asistentes_Educacion/Modulo1_Word_Inicial/guia_rapida_atajos_word_inicial.html" target="_blank" class="btn-sub" title="Guía de Atajos">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            Atajos
+                        </a>
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_Office_Asistentes_Educacion/Modulo1_Word_Inicial/prueba_evaluacion_word_inicial.html" target="_blank" class="btn-sub" title="Prueba de Evaluación">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                            Test
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TALLER OFFICE 2: Word Intermedio -->
+            <article class="card theme-word" data-category="office">
+                <div class="card-top">
+                    <span class="card-icon">📑</span>
+                    <span class="badge badge-word">Office · Módulo 2</span>
+                </div>
+                <h2 class="card-title">Microsoft Word - Intermedio</h2>
+                <p class="card-desc">Estilos y jerarquía, tablas de contenido automáticas, saltos de sección, encabezados diferenciados, control de cambios y combinación de correspondencia.</p>
+                <div class="card-actions">
+                    <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_Office_Asistentes_Educacion/Modulo2_Word_Intermedio/manual_completo_word_intermedio.html" target="_blank" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        Manual Completo
+                    </a>
+                    <div class="card-subactions">
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_Office_Asistentes_Educacion/Modulo2_Word_Intermedio/infografia_word_intermedio.html" target="_blank" class="btn-sub" title="Infografía Visual">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            Infografía
+                        </a>
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_Office_Asistentes_Educacion/Modulo2_Word_Intermedio/guia_rapida_atajos_word_intermedio.html" target="_blank" class="btn-sub" title="Guía de Atajos">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            Atajos
+                        </a>
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_Office_Asistentes_Educacion/Modulo2_Word_Intermedio/prueba_evaluacion_word_intermedio.html" target="_blank" class="btn-sub" title="Prueba de Evaluación">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                            Test
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TALLER OFFICE 3: Excel Inicial -->
+            <article class="card theme-excel" data-category="office">
+                <div class="card-top">
+                    <span class="card-icon">📊</span>
+                    <span class="badge badge-excel">Office · Módulo 3</span>
+                </div>
+                <h2 class="card-title">Microsoft Excel - Inicial</h2>
+                <p class="card-desc">Estructura de hojas y celdas, tipos de datos, operaciones aritméticas, referencias relativas y absolutas ($), funciones esenciales (SUMA, PROMEDIO) y formatos.</p>
+                <div class="card-actions">
+                    <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_Office_Asistentes_Educacion/Modulo3_Excel_Inicial/manual_completo_excel_inicial.html" target="_blank" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        Manual Completo
+                    </a>
+                    <div class="card-subactions">
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_Office_Asistentes_Educacion/Modulo3_Excel_Inicial/infografia_excel_inicial.html" target="_blank" class="btn-sub" title="Infografía Visual">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            Infografía
+                        </a>
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_Office_Asistentes_Educacion/Modulo3_Excel_Inicial/guia_rapida_atajos_excel_inicial.html" target="_blank" class="btn-sub" title="Guía de Atajos">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            Atajos
+                        </a>
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_Office_Asistentes_Educacion/Modulo3_Excel_Inicial/prueba_evaluacion_excel_inicial.html" target="_blank" class="btn-sub" title="Prueba de Evaluación">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                            Test
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TALLER OFFICE 4: Excel Intermedio -->
+            <article class="card theme-excel" data-category="office">
+                <div class="card-top">
+                    <span class="card-icon">📈</span>
+                    <span class="badge badge-excel">Office · Módulo 4</span>
+                </div>
+                <h2 class="card-title">Microsoft Excel - Intermedio</h2>
+                <p class="card-desc">Funciones condicionales (SI, CONTAR.SI, SUMAR.SI), funciones de búsqueda (BUSCARV, COINCIDIR), validación de datos, formato condicional y tablas dinámicas.</p>
+                <div class="card-actions">
+                    <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_Office_Asistentes_Educacion/Modulo4_Excel_Intermedio/manual_completo_excel_intermedio.html" target="_blank" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        Manual Completo
+                    </a>
+                    <div class="card-subactions">
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_Office_Asistentes_Educacion/Modulo4_Excel_Intermedio/infografia_excel_intermedio.html" target="_blank" class="btn-sub" title="Infografía Visual">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            Infografía
+                        </a>
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_Office_Asistentes_Educacion/Modulo4_Excel_Intermedio/guia_rapida_atajos_excel_intermedio.html" target="_blank" class="btn-sub" title="Guía de Atajos">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            Atajos
+                        </a>
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_Office_Asistentes_Educacion/Modulo4_Excel_Intermedio/prueba_evaluacion_excel_intermedio.html" target="_blank" class="btn-sub" title="Prueba de Evaluación">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                            Test
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TALLER GOOGLE 1: Gmail Inicial -->
+            <article class="card theme-gmail" data-category="google">
+                <div class="card-top">
+                    <span class="card-icon">✉️</span>
+                    <span class="badge badge-gmail">Google · Módulo 1</span>
+                </div>
+                <h2 class="card-title">Gmail - Inicial</h2>
+                <p class="card-desc">Composición formal, gestión de destinatarios (CC/CCO), adjuntos seguros, organización con etiquetas, destacados y configuración de firma institucional.</p>
+                <div class="card-actions">
+                    <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_GoogleWorkspace_Asistentes_Educacion/Modulo1_Gmail_Inicial/manual_completo_gmail_inicial.html" target="_blank" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        Manual Completo
+                    </a>
+                    <div class="card-subactions">
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_GoogleWorkspace_Asistentes_Educacion/Modulo1_Gmail_Inicial/infografia_gmail_inicial.html" target="_blank" class="btn-sub" title="Infografía Visual">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            Infografía
+                        </a>
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_GoogleWorkspace_Asistentes_Educacion/Modulo1_Gmail_Inicial/guia_rapida_atajos_gmail_inicial.html" target="_blank" class="btn-sub" title="Guía de Atajos">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            Atajos
+                        </a>
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_GoogleWorkspace_Asistentes_Educacion/Modulo1_Gmail_Inicial/prueba_evaluacion_gmail_inicial.html" target="_blank" class="btn-sub" title="Prueba de Evaluación">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                            Test
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TALLER GOOGLE 2: Google Drive Inicial -->
+            <article class="card theme-drive" data-category="google">
+                <div class="card-top">
+                    <span class="card-icon">📁</span>
+                    <span class="badge badge-drive">Google · Módulo 2</span>
+                </div>
+                <h2 class="card-title">Google Drive - Inicial</h2>
+                <p class="card-desc">Almacenamiento en la nube, estructura de carpetas compartidas, permisos de acceso (Lector, Comentarista, Editor), búsqueda avanzada y trabajo colaborativo.</p>
+                <div class="card-actions">
+                    <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_GoogleWorkspace_Asistentes_Educacion/Modulo2_GoogleDrive_Inicial/manual_completo_googledrive_inicial.html" target="_blank" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        Manual Completo
+                    </a>
+                    <div class="card-subactions">
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_GoogleWorkspace_Asistentes_Educacion/Modulo2_GoogleDrive_Inicial/infografia_googledrive_inicial.html" target="_blank" class="btn-sub" title="Infografía Visual">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            Infografía
+                        </a>
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_GoogleWorkspace_Asistentes_Educacion/Modulo2_GoogleDrive_Inicial/guia_rapida_atajos_googledrive_inicial.html" target="_blank" class="btn-sub" title="Guía de Atajos">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            Atajos
+                        </a>
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_GoogleWorkspace_Asistentes_Educacion/Modulo2_GoogleDrive_Inicial/prueba_evaluacion_googledrive_inicial.html" target="_blank" class="btn-sub" title="Prueba de Evaluación">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                            Test
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TALLER GOOGLE 3: Gmail & Drive Intermedio -->
+            <article class="card theme-gmail" data-category="google">
+                <div class="card-top">
+                    <span class="card-icon">⚡</span>
+                    <span class="badge badge-gmail">Google · Módulo 3</span>
+                </div>
+                <h2 class="card-title">Gmail & Drive - Intermedio</h2>
+                <p class="card-desc">Filtros y reglas automáticas, plantillas de respuesta, programación de envíos, unidades compartidas de equipo, control de versiones y seguridad de enlaces.</p>
+                <div class="card-actions">
+                    <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_GoogleWorkspace_Asistentes_Educacion/Modulo3_Gmail_Drive_Intermedio/manual_completo_gmail_drive_intermedio.html" target="_blank" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        Manual Completo
+                    </a>
+                    <div class="card-subactions">
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_GoogleWorkspace_Asistentes_Educacion/Modulo3_Gmail_Drive_Intermedio/infografia_gmail_drive_intermedio.html" target="_blank" class="btn-sub" title="Infografía Visual">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            Infografía
+                        </a>
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_GoogleWorkspace_Asistentes_Educacion/Modulo3_Gmail_Drive_Intermedio/guia_rapida_atajos_gmail_drive_intermedio.html" target="_blank" class="btn-sub" title="Guía de Atajos">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            Atajos
+                        </a>
+                        <a href="Talleres%20informatica%20-%20Nivel%20I%20Liceotp%20GGm/Curso_GoogleWorkspace_Asistentes_Educacion/Modulo3_Gmail_Drive_Intermedio/prueba_evaluacion_gmail_drive_intermedio.html" target="_blank" class="btn-sub" title="Prueba de Evaluación">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                            Test
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </main>
+
+        <footer class="footer">
+            <p>Cristian &copy; 2026. Alojado en cirdam.duckdns.org</p>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

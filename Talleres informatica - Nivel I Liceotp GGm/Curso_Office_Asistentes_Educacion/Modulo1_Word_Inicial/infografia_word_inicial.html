@@ -1,0 +1,543 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Anatomía de Word y Flujos Escolares - Asistentes de la Educación</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #0f172a;
+            --primary-light: #2563eb;
+            --accent: #d97706;
+            --accent-light: #fef3c7;
+            --teal: #0d9488;
+            --teal-light: #ccfbf1;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        /* Banner Header */
+        .infographic-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #0f172a 100%);
+            color: white;
+            padding: 36px 40px;
+            position: relative;
+        }
+
+        .infographic-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #f59e0b, #3b82f6, #10b981);
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .infographic-header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        .infographic-header p {
+            font-size: 15px;
+            color: #cbd5e1;
+            max-width: 750px;
+        }
+
+        .content-body {
+            padding: 36px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+        }
+
+        /* Section Titles */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+
+        .section-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+        }
+
+        .section-title h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        /* Diagram of Word Interface */
+        .interface-diagram {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .app-window {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .win-titlebar {
+            background: #1e3a8a;
+            color: white;
+            padding: 8px 14px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .win-ribbon {
+            background: #f1f5f9;
+            border-bottom: 1px solid #cbd5e1;
+            padding: 10px 14px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .ribbon-tab {
+            background: white;
+            border: 1px solid #cbd5e1;
+            padding: 6px 4px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .win-body {
+            display: flex;
+            min-height: 180px;
+            background: #94a3b8;
+            padding: 14px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .win-page {
+            background: white;
+            width: 70%;
+            height: 150px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            padding: 14px;
+            font-size: 9px;
+            color: #64748b;
+        }
+
+        .win-statusbar {
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 6px 14px;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Callouts Grid */
+        .callouts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .callout-card {
+            background: #f8fafc;
+            border-left: 4px solid var(--primary);
+            padding: 12px 14px;
+            border-radius: 0 8px 8px 0;
+            border-top: 1px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .callout-card h4 {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 4px;
+        }
+
+        .callout-card p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Workflow Flowchart */
+        .flow-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            position: relative;
+        }
+
+        .flow-step {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px 14px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .flow-step.active {
+            border-color: var(--primary);
+            background: #eff6ff;
+        }
+
+        .step-number {
+            width: 28px;
+            height: 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .flow-step h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+        }
+
+        .flow-step p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.35;
+        }
+
+        /* Essential Rules 3-Col */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .rule-card {
+            border-radius: 10px;
+            padding: 18px;
+            border: 1px solid var(--border);
+        }
+
+        .rule-blue {
+            background: #f0f9ff;
+            border-color: #bae6fd;
+        }
+
+        .rule-amber {
+            background: #fffbeb;
+            border-color: #fde68a;
+        }
+
+        .rule-emerald {
+            background: #ecfdf5;
+            border-color: #a7f3d0;
+        }
+
+        .rule-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rule-blue h3 { color: #0369a1; }
+        .rule-amber h3 { color: #b45309; }
+        .rule-emerald h3 { color: #047857; }
+
+        .rule-card ul {
+            list-style: none;
+            font-size: 12px;
+            color: var(--text-main);
+        }
+
+        .rule-card li {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .rule-card li:last-child {
+            margin-bottom: 0;
+        }
+
+        .bullet {
+            font-weight: 800;
+        }
+
+        /* Footer */
+        .infographic-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .btn-action {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        @media (max-width: 850px) {
+            .flow-container, .rules-grid {
+                grid-template-columns: 1fr;
+            }
+            .win-ribbon {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Encabezado Principal -->
+        <div class="infographic-header">
+            <span class="tag">Módulo 1 • Fundamentos Prácticos</span>
+            <h1>Word 2019: Mapa Visual para Asistentes de la Educación</h1>
+            <p>Guía gráfica e intuitiva para dominar la redacción de oficios, actas de convivencia, registros de inspectoría y circulares escolares con rapidez y precisión.</p>
+        </div>
+
+        <div class="content-body">
+            
+            <!-- SECCIÓN 1: Anatomía de la Interfaz -->
+            <div>
+                <div class="section-title">
+                    <div class="section-badge">1</div>
+                    <h2>Anatomía de la Pantalla de Word: ¿Dónde está cada cosa?</h2>
+                </div>
+
+                <div class="interface-diagram">
+                    <div class="app-window">
+                        <div class="win-titlebar">
+                            <span>🔵 [1] Barra de Acceso Rápido (Guardar, Deshacer)</span>
+                            <span>Documento Oficial Liceo.docx - Word</span>
+                            <span>❌ [Cerrar]</span>
+                        </div>
+                        <div class="win-ribbon">
+                            <div class="ribbon-tab" style="background:#e0e7ff;">Inicio (Fuentes/Párrafos)</div>
+                            <div class="ribbon-tab">Insertar (Tablas/Fotos)</div>
+                            <div class="ribbon-tab">Disposición (Márgenes/Carta)</div>
+                            <div class="ribbon-tab">Referencias (Índices)</div>
+                            <div class="ribbon-tab">Revisar (Ortografía F7)</div>
+                            <div class="ribbon-tab">Vista (Zoom/Regla)</div>
+                        </div>
+                        <div class="win-body">
+                            <div class="win-page">
+                                <div style="font-weight: bold; color: #1e3a8a; border-bottom: 1px solid #cbd5e1; padding-bottom: 2px;">
+                                    LICEO BICENTENARIO • OFICIO ORDINARIO N° 124
+                                </div>
+                                <div style="margin-top: 6px; line-height: 1.4;">
+                                    <strong>DE:</strong> Inspectoría General<br>
+                                    <strong>A:</strong> Sres. Padres y Apoderados<br>
+                                    <strong>MAT:</strong> Calendario de Salidas Pedagógicas 2026...
+                                </div>
+                            </div>
+                        </div>
+                        <div class="win-statusbar">
+                            <span>📄 [4] Página 1 de 2 • 340 Palabras • Español (Chile)</span>
+                            <span>🔍 [5] Zoom: 100% [ ➖ 🔘 ➕ ]</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callouts-grid">
+                    <div class="callout-card">
+                        <h4>1. Acceso Rápido</h4>
+                        <p>Tus botones de salvación: Guardar (Ctrl+G), Deshacer error (Ctrl+Z) y Vista de Impresión.</p>
+                    </div>
+                    <div class="callout-card">
+                        <h4>2. Cinta de Opciones</h4>
+                        <p>El "mesón de trabajo": Organizado en pestañas según la tarea que necesitas realizar.</p>
+                    </div>
+                    <div class="callout-card">
+                        <h4>3. Hoja de Trabajo</h4>
+                        <p>Tu hoja de papel en blanco. Respeta siempre los márgenes grises marcados por la Regla.</p>
+                    </div>
+                    <div class="callout-card">
+                        <h4>4. Barra de Estado</h4>
+                        <p>Informa páginas totales y el idioma del corrector (¡Verifica siempre Español de Chile!).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 2: Flujo de Trabajo Escolar -->
+            <div>
+                <div class="section-title">
+                    <div class="section-badge">2</div>
+                    <h2>Flujo Oficial: El Ciclo de un Documento Escolar sin Errores</h2>
+                </div>
+
+                <div class="flow-container">
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <h3>Crear y Guardar</h3>
+                        <p>Abre Word y guarda inmediatamente en la carpeta del año escolar: <em>"Oficio_01_Inspectoria.docx"</em>.</p>
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <h3>Escribir y Estructurar</h3>
+                        <p>Redacta el texto continuo. Usa <strong>Enter</strong> solo para cambiar de párrafo y <strong>Tab</strong> para tablas.</p>
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <h3>Revisión F7</h3>
+                        <p>Presiona <strong>F7</strong> para corregir tildes, comas y nombres propios antes de mostrar a Dirección.</p>
+                    </div>
+
+                    <div class="flow-step active">
+                        <div class="step-number">4</div>
+                        <h3>Imprimir o PDF</h3>
+                        <p>Usa <strong>Ctrl + P</strong> para revisar la vista previa o guarda en <strong>PDF</strong> para WhatsApp de apoderados.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 3: Consejos Clave por Tarea Escolar -->
+            <div>
+                <div class="section-title">
+                    <div class="section-badge">3</div>
+                    <h2>Buenas Prácticas para el Trabajo Diario del Asistente</h2>
+                </div>
+
+                <div class="rules-grid">
+                    <div class="rule-card rule-blue">
+                        <h3>📋 Actas y Oficios</h3>
+                        <ul>
+                            <li><span class="bullet">•</span> <strong>Fuente:</strong> Arial o Calibri 11 ó 12 pt.</li>
+                            <li><span class="bullet">•</span> <strong>Alineación:</strong> Párrafos Justificados (Ctrl+J).</li>
+                            <li><span class="bullet">•</span> <strong>Interlineado:</strong> 1.15 líneas con 6 pt posterior para que respire la lectura.</li>
+                        </ul>
+                    </div>
+
+                    <div class="rule-card rule-amber">
+                        <h3>📊 Tablas de Inspectoría / CRA</h3>
+                        <ul>
+                            <li><span class="bullet">•</span> <strong>Encabezado:</strong> Color de relleno oscuro y texto blanco en negrita.</li>
+                            <li><span class="bullet">•</span> <strong>Celdas:</strong> Centrar números y alinear textos a la izquierda.</li>
+                            <li><span class="bullet">•</span> <strong>Filas:</strong> Altura suficiente para firmas manuales si se va a imprimir.</li>
+                        </ul>
+                    </div>
+
+                    <div class="rule-card rule-emerald">
+                        <h3>🖨️ Ahorro de Fotocopias</h3>
+                        <ul>
+                            <li><span class="bullet">•</span> <strong>Márgenes:</strong> Cambia a "Estrecho" (1,27 cm) si una circular pasa a la página 2 por 3 líneas.</li>
+                            <li><span class="bullet">•</span> <strong>Papel:</strong> Confirma <strong>Carta</strong> u <strong>Oficio (33cm)</strong> antes de imprimir 100 copias.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="infographic-footer">
+            <span>© Plan de Capacitación Continua • Liceo TP Gonzalo Guglielmi M 2026</span>
+            <button class="btn-action" onclick="window.print()">🖨️ Imprimir Infografía</button>
+        </div>
+    </div>
+
+</body>
+</html>

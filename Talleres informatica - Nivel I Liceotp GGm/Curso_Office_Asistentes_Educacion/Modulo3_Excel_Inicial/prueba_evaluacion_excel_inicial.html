@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación Escrita: Excel Inicial - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #065f46;
+            --primary-dark: #022c22;
+            --border: #cbd5e1;
+            --text: #1e293b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text);
+            line-height: 1.45;
+            font-size: 13.5px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .test-paper {
+            width: 216mm;
+            background: #ffffff;
+            padding: 16mm 14mm;
+            border-radius: 4px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-box {
+            border: 2px solid var(--primary);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 18px;
+        }
+
+        .school-title {
+            text-align: center;
+            border-bottom: 1.5px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .school-title h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .school-title p {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .student-data-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 8px 16px;
+            font-size: 12.5px;
+        }
+
+        .data-field {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+        }
+
+        .line {
+            flex-grow: 1;
+            border-bottom: 1px solid #94a3b8;
+            height: 14px;
+        }
+
+        .scores-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            text-align: center;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            padding: 6px;
+            border-radius: 4px;
+            margin-top: 8px;
+            font-size: 11.5px;
+        }
+
+        .section-header {
+            background: var(--primary);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            margin: 16px 0 10px 0;
+            text-transform: uppercase;
+        }
+
+        .question-item {
+            margin-bottom: 12px;
+            padding-left: 4px;
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .options-list {
+            list-style: none;
+            padding-left: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .radio-circle {
+            width: 14px;
+            height: 14px;
+            border: 1.5px solid #64748b;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .case-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
+            margin: 8px 0;
+        }
+
+        .case-table th, .case-table td {
+            border: 1px solid #cbd5e1;
+            padding: 5px 8px;
+            text-align: center;
+        }
+
+        .case-table th { background: #e2e8f0; color: #334155; }
+        .case-table td.text-left { text-align: left; }
+
+        .answer-lines {
+            border-bottom: 1px dashed #94a3b8;
+            height: 24px;
+            margin-top: 6px;
+        }
+
+        .teacher-key {
+            margin-top: 30px;
+            padding: 16px;
+            background: #fffbeb;
+            border: 1.5px solid #fde68a;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        .teacher-key h3 { color: #b45309; font-family: 'Outfit', sans-serif; font-size: 14px; margin-bottom: 8px; }
+
+        .btn-print {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .test-paper { width: 100%; box-shadow: none; padding: 6mm 8mm; }
+            .btn-print, .no-print { display: none !important; }
+            .teacher-key { page-break-before: always; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="test-paper">
+        
+        <!-- Encabezado -->
+        <div class="header-box">
+            <div class="school-title">
+                <h1>Liceo TP Gonzalo Guglielmi M</h1>
+                <p>Capacitación en Microsoft Office 2019 • Evaluación Módulo 3: Excel Inicial</p>
+            </div>
+            
+            <div class="student-data-grid">
+                <div class="data-field"><strong>Nombre Funcionario(a):</strong> <div class="line"></div></div>
+                <div class="data-field"><strong>Fecha:</strong> <div class="line"></div></div>
+                <div class="data-field"><strong>Cargo / Función en el Liceo:</strong> <div class="line"></div></div>
+                <div class="data-field"><strong>Exigencia:</strong> 60% (Nota 4.0 con 18 pts)</div>
+            </div>
+
+            <div class="scores-box">
+                <div><strong>Puntaje Ideal:</strong> 30 Puntos</div>
+                <div><strong>Puntaje Obtenido:</strong> _______ Pts</div>
+                <div><strong>Calificación Final:</strong> _______</div>
+            </div>
+        </div>
+
+        <p style="font-size: 11.5px; color: #64748b; margin-bottom: 12px;">
+            <strong>Instrucciones:</strong> Lea atentamente cada ejercicio. Escriba las fórmulas exactas respetando el signo igual, paréntesis y dos puntos. Dispone de 45 minutos.
+        </p>
+
+        <!-- SECCIÓN I: SELECCIÓN MÚLTIPLE -->
+        <div class="section-header">Ítem I: Selección Múltiple (2 pts c/u - Total: 12 Pts)</div>
+
+        <div class="question-item">
+            <div class="question-text">1. ¿Qué carácter obligatorio debe escribirse siempre al inicio de cualquier fórmula en Excel?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) El punto (.)</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) El signo igual (=)</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) La comilla (")</span></li>
+            </ul>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">2. Para promediar las notas ubicadas en las celdas C4, D4 y E4, ¿cuál es la fórmula correcta?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) =SUMA(C4:E4)/3</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) =PROMEDIO(C4:E4)</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) =PROMEDIO(C4;E4)</span></li>
+            </ul>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">3. Si en una celda de Excel aparecen signos numerales (#######), ¿qué significa?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) Que la fórmula tiene un error grave.</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) Que la columna es demasiado angosta para mostrar la cifra y debe ensancharse.</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) Que el valor ingresado es falso.</span></li>
+            </ul>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">4. ¿Qué función matemática extrae automáticamente la nota más alta obtenida en el curso?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) =ALTA(...)</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) =MAX(...)</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) =CONTAR(...)</span></li>
+            </ul>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">5. Para evitar que la fila de encabezados desaparezca al bajar por una lista de 45 estudiantes:</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) Pestaña Vista > Inmovilizar fila superior.</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) Combinar y centrar.</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) Cambiar el color de la fuente a verde.</span></li>
+            </ul>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">6. Al imprimir una planilla con muchas columnas, ¿qué opción de escalado evita que salgan cortadas en dos hojas?</div>
+            <ul class="options-list">
+                <li><span class="option-label"><span class="radio-circle"></span> a) Sin escalado.</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> b) Ajustar todas las columnas en una página.</span></li>
+                <li><span class="option-label"><span class="radio-circle"></span> c) Imprimir en orientación vertical con margen estrecho.</span></li>
+            </ul>
+        </div>
+
+        <!-- SECCIÓN II: ESCRITURA DE FÓRMULAS -->
+        <div class="section-header">Ítem II: Aplicación y Escritura de Fórmulas (2 pts c/u - Total: 8 Pts)</div>
+        <p style="font-size: 11.5px; margin-bottom: 6px;">Observa la siguiente tabla de calificaciones del Liceo TP Gonzalo Guglielmi M y escribe la fórmula exacta solicitada:</p>
+
+        <table class="case-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                    <th>E</th>
+                    <th>F</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="font-weight:bold;">3</td>
+                    <td>N°</td>
+                    <td>Estudiante</td>
+                    <td>Nota 1</td>
+                    <td>Nota 2</td>
+                    <td>Nota 3</td>
+                    <td>Promedio</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;">4</td>
+                    <td>1</td>
+                    <td class="text-left">Bravo, Sofía</td>
+                    <td>6.5</td>
+                    <td>5.8</td>
+                    <td>6.2</td>
+                    <td>[ ? ]</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;">5</td>
+                    <td>2</td>
+                    <td class="text-left">Díaz, Lucas</td>
+                    <td>4.5</td>
+                    <td>5.0</td>
+                    <td>5.5</td>
+                    <td>[ ? ]</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;">6</td>
+                    <td>3</td>
+                    <td class="text-left">Soto, Matías</td>
+                    <td>7.0</td>
+                    <td>6.8</td>
+                    <td>6.9</td>
+                    <td>[ ? ]</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="question-item">
+            <div class="question-text">1. ¿Qué fórmula exacta debes escribir en la celda <strong>F4</strong> para calcular el Promedio de Sofía Bravo?</div>
+            <div style="font-family:'JetBrains Mono',monospace; padding:4px 8px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px;">= ____________________________________________________</div>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">2. ¿Qué fórmula exacta escribirías en la celda <strong>C7</strong> para encontrar la Nota Más Baja (Mínima) de la Nota 1 (C4 a C6)?</div>
+            <div style="font-family:'JetBrains Mono',monospace; padding:4px 8px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px;">= ____________________________________________________</div>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">3. ¿Qué fórmula exacta escribirías para contar cuántos estudiantes rindieron la Nota 2 (D4 a D6)?</div>
+            <div style="font-family:'JetBrains Mono',monospace; padding:4px 8px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px;">= ____________________________________________________</div>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">4. ¿Qué acción rápida con el mouse permite copiar la fórmula de F4 a las filas 5 y 6 sin volver a escribirla?</div>
+            <div class="answer-lines"></div>
+        </div>
+
+        <!-- SECCIÓN III: CASO PRÁCTICO -->
+        <div class="section-header">Ítem III: Caso Práctico de Gestión Escolar (10 Pts)</div>
+
+        <div class="question-item">
+            <div class="question-text">El Director te entrega una planilla desordenada con 80 estudiantes matriculados. Explica:</div>
+            <div style="font-size:12px; margin-bottom:4px;"><strong>a)</strong> ¿Cómo ordenas a todos los alumnos por orden alfabético de apellido paterno en un solo clic sin desarmar las notas? (5 pts)</div>
+            <div class="answer-lines"></div>
+            <div class="answer-lines"></div>
+            <div style="font-size:12px; margin-top:8px; margin-bottom:4px;"><strong>b)</strong> ¿Cómo aplicas un filtro para ver únicamente a los alumnos con matrícula "Pendiente"? (5 pts)</div>
+            <div class="answer-lines"></div>
+            <div class="answer-lines"></div>
+        </div>
+
+        <!-- PAUTA DOCENTE -->
+        <div class="teacher-key no-print">
+            <h3>🔑 Pauta de Corrección y Clave Docente (Uso Exclusivo del Relator)</h3>
+            <p><strong>Ítem I:</strong> 1-b | 2-b | 3-b | 4-b | 5-a | 6-b (12 pts)</p>
+            <p><strong>Ítem II:</strong> 1: <code>=PROMEDIO(C4:E4)</code> | 2: <code>=MIN(C4:C6)</code> | 3: <code>=CONTAR(D4:D6)</code> | 4: Hacer doble clic en el punto verde de autorrelleno en la esquina inferior derecha de F4 o arrastrar hacia abajo (8 pts)</p>
+            <p><strong>Ítem III:</strong> a) Hacer clic en la columna de apellidos y en pestaña Datos presionar el botón "Ordenar de A a Z" (5 pts). b) En pestaña Datos activar el botón "Filtro", hacer clic en la flecha de la columna Estado y marcar únicamente "Pendiente" (5 pts).</p>
+        </div>
+
+    </div>
+
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir Prueba Alumnos</button>
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Gmail y Drive Integrado - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f766e;
+            --primary-dark: #042f2e;
+            --teal-light: #ccfbf1;
+            --red: #c5221f;
+            --blue: #1a73e8;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .infographic-header {
+            background: linear-gradient(135deg, #042f2e 0%, #0f766e 60%, #14b8a6 100%);
+            color: white;
+            padding: 36px 40px;
+            position: relative;
+        }
+
+        .infographic-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ea4335, #4285f4, #fbbc05, #34a853);
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .infographic-header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .infographic-header p { font-size: 15px; color: #ccfbf1; max-width: 800px; }
+
+        .content-body {
+            padding: 36px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+
+        .section-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .section-title h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        /* Flujo de Integración */
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            text-align: center;
+        }
+
+        .flow-step {
+            background: #f8fafc;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+        }
+
+        .flow-icon { font-size: 28px; }
+        .flow-title { font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 700; color: var(--primary); }
+        .flow-desc { font-size: 11.5px; color: var(--text-muted); }
+
+        /* Matriz de Permisos */
+        .grid-3col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .perm-card {
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .perm-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .infographic-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .btn-action {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @media (max-width: 850px) {
+            .workflow-grid, .grid-3col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="infographic-header">
+            <span class="tag">Módulo 3 • Integración y Trabajo Colaborativo</span>
+            <h1>Gmail y Google Drive: Ecosistema Digital Escolar</h1>
+            <p>Liceo TP Gonzalo Guglielmi M • https://liceotpggm.cl • Coordinación de Informática (Cristian Valdebenito L.)</p>
+        </div>
+
+        <div class="content-body">
+            
+            <!-- SECCIÓN 1: Flujo de Trabajo Integrado -->
+            <div>
+                <div class="section-title">
+                    <div class="section-badge">1</div>
+                    <h2>Flujo de Envío de Archivos Pesados y Documentos Vivos</h2>
+                </div>
+
+                <div class="workflow-grid">
+                    <div class="flow-step">
+                        <div class="flow-icon">📁</div>
+                        <div class="flow-title">1. Guardar en Drive</div>
+                        <div class="flow-desc">Sube la planilla o acta a tu carpeta de Google Drive.</div>
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="flow-icon">🔒</div>
+                        <div class="flow-title">2. Asignar Permiso</div>
+                        <div class="flow-desc">Define si los destinatarios serán Lectores o Editores.</div>
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="flow-icon">✉️</div>
+                        <div class="flow-title">3. Insertar en Gmail</div>
+                        <div class="flow-desc">Haz clic en el icono de Drive dentro de la ventana de redacción.</div>
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="flow-icon">👥</div>
+                        <div class="flow-title">4. Trabajo en Vivo</div>
+                        <div class="flow-desc">Los colegas abren el enlace y editan simultáneamente en tiempo real.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 2: Permisos de Seguridad -->
+            <div>
+                <div class="section-title">
+                    <div class="section-badge">2</div>
+                    <h2>¿Qué permiso otorgar a cada usuario?</h2>
+                </div>
+
+                <div class="grid-3col">
+                    <div class="perm-card" style="border-top: 4px solid #10b981;">
+                        <div class="perm-title" style="color: #065f46;">👁️ LECTOR</div>
+                        <p style="font-size:12.5px;">Para apoderados y comunicados masivos. Nadie puede alterar firmas ni textos.</p>
+                    </div>
+
+                    <div class="perm-card" style="border-top: 4px solid #f59e0b;">
+                        <div class="perm-title" style="color: #b45309;">💬 COMENTARISTA</div>
+                        <p style="font-size:12.5px;">Para revisiones de UTP. Pueden sugerir correcciones al margen sin borrar el documento.</p>
+                    </div>
+
+                    <div class="perm-card" style="border-top: 4px solid #ef4444;">
+                        <div class="perm-title" style="color: #b91c1c;">✏️ EDITOR</div>
+                        <p style="font-size:12.5px;">Para colegas directos de tu departamento que deben llenar planillas en conjunto.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="infographic-footer">
+            <span>© Liceo TP Gonzalo Guglielmi M • Encargado TIC: Cristian Valdebenito L.</span>
+            <button class="btn-action" onclick="window.print()">🖨️ Imprimir Infografía</button>
+        </div>
+    </div>
+
+</body>
+</html>

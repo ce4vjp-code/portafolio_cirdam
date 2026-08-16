@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Google Drive Inicial - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --primary-light: #e8f0fe;
+            --green: #188038;
+            --yellow: #f29900;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .infographic-header {
+            background: linear-gradient(135deg, #0d47a1 0%, #1a73e8 60%, #4285f4 100%);
+            color: white;
+            padding: 36px 40px;
+            position: relative;
+        }
+
+        .infographic-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #34a853, #fbbc05, #ea4335);
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .infographic-header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .infographic-header p { font-size: 15px; color: #dbeafe; max-width: 800px; }
+
+        .content-body {
+            padding: 36px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+
+        .section-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .section-title h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        /* Comparativa Nube vs PC */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .comp-card {
+            background: #f8fafc;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .comp-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comp-card ul {
+            font-size: 13px;
+            padding-left: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        /* Árbol de Carpetas */
+        .tree-box {
+            background: #0f172a;
+            color: white;
+            border-radius: 10px;
+            padding: 20px 26px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .folder-root { color: #60a5fa; font-weight: bold; }
+        .folder-sub { color: #34d399; }
+        .folder-leaf { color: #fcd34d; }
+
+        .infographic-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .btn-action {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @media (max-width: 850px) {
+            .grid-2col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="infographic-header">
+            <span class="tag">Módulo 2 • Almacenamiento en la Nube</span>
+            <h1>Google Drive Institucional: Estructura y Resguardo</h1>
+            <p>Liceo TP Gonzalo Guglielmi M • https://liceotpggm.cl • Área de Informática (Cristian Valdebenito L.)</p>
+        </div>
+
+        <div class="content-body">
+            
+            <!-- SECCIÓN 1: La Nube vs Computador Físico -->
+            <div>
+                <div class="section-title">
+                    <div class="section-badge">1</div>
+                    <h2>¿Qué es Google Drive? Tu Archivador Digital Permanente</h2>
+                </div>
+
+                <div class="grid-2col">
+                    <div class="comp-card">
+                        <h3 style="color: #64748b;">💻 Tu Computador del Liceo</h3>
+                        <ul>
+                            <li>Si se apaga o falla el disco, puedes perder los archivos.</li>
+                            <li>Solo puedes abrir el archivo sentado en ese escritorio.</li>
+                            <li>Requiere llevar un pendrive con riesgo de virus.</li>
+                        </ul>
+                    </div>
+
+                    <div class="comp-card" style="border-color: #93c5fd; background: #f0f7ff;">
+                        <h3 style="color: #1a73e8;">☁️ Google Drive Institucional</h3>
+                        <ul>
+                            <li><strong>Respaldo 100% seguro:</strong> Nunca se borra por fallas del equipo.</li>
+                            <li><strong>Acceso desde cualquier lugar:</strong> Ábrelo desde tu casa o celular.</li>
+                            <li><strong>Sin pendrive:</strong> Todo disponible con tu correo del liceo.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 2: Árbol de Carpetas Oficial -->
+            <div>
+                <div class="section-title">
+                    <div class="section-badge">2</div>
+                    <h2>Estructura Recomendada de Carpetas Escolares</h2>
+                </div>
+
+                <div class="tree-box">
+                    <div class="folder-root">📁 Mi unidad (Liceo TP Gonzalo Guglielmi M)</div>
+                    <div class="folder-sub" style="margin-left: 20px;">├── 📁 1_Inspectoría_General_2026</div>
+                    <div class="folder-leaf" style="margin-left: 45px;">│   ├── 📄 Nomina_Atrasos_Marzo.xlsx</div>
+                    <div class="folder-leaf" style="margin-left: 45px;">│   └── 📄 Actas_Entrevistas_Apoderados.docx</div>
+                    <div class="folder-sub" style="margin-left: 20px;">├── 📁 2_CRA_Inventario_y_Prestamos</div>
+                    <div class="folder-leaf" style="margin-left: 45px;">│   └── 📄 Control_Prestamos_Proyectores.xlsx</div>
+                    <div class="folder-sub" style="margin-left: 20px;">└── 📁 3_Secretaria_Circulares_Oficiales</div>
+                    <div class="folder-leaf" style="margin-left: 45px;">    └── 📄 Circular_Talleres_TP_2026.pdf</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="infographic-footer">
+            <span>© Liceo TP Gonzalo Guglielmi M • Encargado TIC: Cristian Valdebenito L.</span>
+            <button class="btn-action" onclick="window.print()">🖨️ Imprimir Infografía</button>
+        </div>
+    </div>
+
+</body>
+</html>

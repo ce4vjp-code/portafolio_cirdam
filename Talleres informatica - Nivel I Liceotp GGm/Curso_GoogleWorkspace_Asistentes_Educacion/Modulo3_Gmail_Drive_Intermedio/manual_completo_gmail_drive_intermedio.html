@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Completo: Gmail y Drive Intermedio - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f766e;
+            --primary-dark: #042f2e;
+            --primary-light: #14b8a6;
+            --accent: #d97706;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --success-light: #ecfdf5;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .page-wrapper { display: flex; min-height: 100vh; }
+
+        .sidebar {
+            width: 290px;
+            background: #042f2e;
+            color: #e2e8f0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 24px 18px;
+            flex-shrink: 0;
+            border-right: 1px solid #115e59;
+        }
+
+        .sidebar-brand {
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-brand h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #5eead4;
+        }
+
+        .sidebar-brand p { font-size: 12px; color: #99f6e4; margin-top: 4px; }
+
+        .nav-group-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #5eead4;
+            font-weight: 700;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            padding-left: 8px;
+        }
+
+        .nav-links { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+
+        .nav-links a {
+            display: block;
+            padding: 7px 10px;
+            color: #f1f5f9;
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 6px;
+            transition: 0.2s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover { background: rgba(255,255,255,0.15); color: #ffffff; transform: translateX(3px); }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 40px 50px;
+            max-width: 1050px;
+            background: #ffffff;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #042f2e 0%, #0f766e 60%, #14b8a6 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 25px rgba(15, 118, 110, 0.15);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .hero p { font-size: 16px; color: #ccfbf1; max-width: 800px; }
+
+        h2.section-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            color: var(--primary-dark);
+            margin-top: 40px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        h3.topic-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            color: var(--primary);
+            margin-top: 32px;
+            margin-bottom: 14px;
+            padding-left: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .analogy-box {
+            background: #f0fdfa;
+            border: 1px solid #99f6e4;
+            border-left: 5px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin: 18px 0 24px 0;
+        }
+
+        .analogy-header {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: #0f766e;
+            margin-bottom: 6px;
+        }
+
+        .exercise-card {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 20px 0;
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1.5px solid #e2e8f0;
+        }
+
+        .exercise-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .exercise-badge {
+            background: #ccfbf1;
+            color: #0f766e;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .step-list { margin-left: 20px; font-size: 14px; }
+        .step-list li { margin-bottom: 8px; }
+
+        .expected-result {
+            margin-top: 14px;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #065f46;
+            display: flex;
+            gap: 8px;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .custom-table th { background: #0f766e; color: white; padding: 12px 14px; text-align: left; }
+        .custom-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+        .custom-table tr:nth-child(even) { background: #f8fafc; }
+
+        .quiz-card {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-bottom: 18px;
+        }
+
+        .quiz-question { font-weight: 700; font-size: 15px; margin-bottom: 12px; }
+        .quiz-options { list-style: none; padding-left: 0; }
+        .quiz-options li { padding: 8px 12px; background: white; border: 1px solid #cbd5e1; border-radius: 6px; margin-bottom: 6px; font-size: 13.5px; }
+
+        .quiz-feedback {
+            background: #f0fdfa;
+            border-left: 3px solid var(--primary);
+            padding: 8px 12px;
+            font-size: 13px;
+            color: #0f766e;
+            margin-top: 8px;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        @media print {
+            .sidebar, .btn-link, .no-print { display: none !important; }
+            .page-wrapper { display: block; }
+            .main-content { padding: 0; max-width: 100%; }
+            .hero { padding: 20px; background: #0f766e !important; color: white !important; -webkit-print-color-adjust: exact; }
+            .exercise-card, .analogy-box, .custom-table { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <aside class="sidebar no-print">
+            <div class="sidebar-brand">
+                <h2>Liceo TP Gonzalo Guglielmi M</h2>
+                <p>Módulo 3: Gmail + Drive Intermedio</p>
+            </div>
+
+            <div class="nav-group-title">Navegación</div>
+            <ul class="nav-links">
+                <li><a href="#presentacion">1. Enfoque Andragógico</a></li>
+                <li><a href="#objetivos">2. Objetivos de Aprendizaje</a></li>
+                <li><a href="#tiempos">3. Tiempos y Temario</a></li>
+                <li><a href="#tema1">Tema 1: Permisos de Drive</a></li>
+                <li><a href="#tema2">Tema 2: Integración en Gmail</a></li>
+                <li><a href="#tema3">Tema 3: Enlaces Institucionales</a></li>
+                <li><a href="#tema4">Tema 4: Trabajo Colaborativo</a></li>
+                <li><a href="#tema5">Tema 5: Historial de Versiones</a></li>
+                <li><a href="#proyecto">Proyecto Integrador</a></li>
+                <li><a href="#rubrica">Pauta de Evaluación</a></li>
+                <li><a href="#cuestionario">Cuestionario de Salida</a></li>
+            </ul>
+
+            <div class="nav-group-title">Recursos Visuales</div>
+            <div style="padding: 6px 10px;">
+                <a href="guia_rapida_atajos_gmail_drive_intermedio.html" target="_blank" class="btn-link" style="width: 100%; justify-content: center; margin-bottom: 6px;">📄 Guía Rápida</a>
+                <a href="infografia_gmail_drive_intermedio.html" target="_blank" class="btn-link" style="width: 100%; justify-content: center; background:#042f2e;">📊 Infografía Visual</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="hero">
+                <span class="hero-badge">Manual Docente y Guía del Participante</span>
+                <h1>Gmail y Drive: Nivel Intermedio Integrado</h1>
+                <p>Liceo TP Gonzalo Guglielmi M • https://liceotpggm.cl • Área de Informática (Cristian Valdebenito L.) • Permisos de seguridad, envío de archivos pesados (+25 MB), co-edición en vivo e historial de versiones.</p>
+            </div>
+
+            <section id="presentacion">
+                <h2 class="section-header">1. Presentación y Enfoque Andragógico del Módulo</h2>
+                <p>El <strong>Módulo 3: Gmail y Drive Intermedio</strong> integra las herramientas de comunicación y almacenamiento de Google Workspace para que los Asistentes de la Educación del <strong>Liceo TP Gonzalo Guglielmi M</strong> trabajen de forma coordinada, sincrónica y con altos estándares de seguridad en la información institucional.</p>
+            </section>
+
+            <section id="objetivos">
+                <h2 class="section-header">2. Objetivos de Aprendizaje</h2>
+                <ol>
+                    <li><strong>Dominar los permisos de Drive</strong> (*Lector, Comentarista, Editor*).</li>
+                    <li><strong>Enviar archivos pesados de Drive en Gmail</strong> superando el límite de 25 MB.</li>
+                    <li><strong>Crear enlaces institucionales protegidos</strong> con dominio @liceotpggm.cl.</li>
+                    <li><strong>Co-editar documentos en vivo</strong> y asignar tareas con menciones (<code>@correo</code>).</li>
+                    <li><strong>Auditar cambios con el Historial de versiones</strong> y restaurar versiones anteriores.</li>
+                </ol>
+            </section>
+
+            <section id="tiempos">
+                <h2 class="section-header">3. Secuencia de Temas y Tiempos</h2>
+                <table class="custom-table">
+                    <thead>
+                        <tr><th>Unidad / Tema</th><th>Contenidos</th><th style="width:130px; text-align:center;">Tiempo</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Tema 1</strong></td><td>Los 3 niveles de permisos en Drive (Lector, Comentarista, Editor)</td><td style="text-align:center;">25 min</td></tr>
+                        <tr><td><strong>Tema 2</strong></td><td>Integración Drive en Gmail (Archivos de +25 MB)</td><td style="text-align:center;">30 min</td></tr>
+                        <tr><td><strong>Tema 3</strong></td><td>Enlaces compartidos con restricción institucional</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Tema 4</strong></td><td>Trabajo colaborativo en vivo y tareas con mención (@)</td><td style="text-align:center;">30 min</td></tr>
+                        <tr><td><strong>Tema 5</strong></td><td>Historial de versiones y restauración de cambios</td><td style="text-align:center;">25 min</td></tr>
+                        <tr><td><strong>Proyecto Integrador</strong></td><td>Sistema Colaborativo de Matrículas y Despacho Masivo</td><td style="text-align:center;">35 min</td></tr>
+                        <tr><td><strong>Evaluación y Cierre</strong></td><td>Rúbrica y cuestionario de salida</td><td style="text-align:center;">15 min</td></tr>
+                        <tr style="background:#f0fdfa; font-weight:bold;"><td colspan="2">Total Sesión Integral Módulo 3</td><td style="text-align:center; color:var(--primary);">180 min (~3h)</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- TEMA 1 -->
+            <section id="tema1">
+                <h3 class="topic-header">TEMA 1: Los 3 Niveles de Permisos en Google Drive</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: Las Tres Llaves de Seguridad</div>
+                    <p><strong>Lector</strong> es la vitrina de vidrio para apoderados; <strong>Comentarista</strong> es el post-it de revisión para UTP y <strong>Editor</strong> es la llave de trabajo conjunto entre colegas.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 1.1: Compartir con Permiso de Lector</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Selecciona el archivo en Drive &gt; <strong>Compartir</strong>.</li>
+                        <li>Ingresa el correo y asigna el rol <strong>Lector</strong> para evitar alteraciones.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Documento compartido de forma protegida contra ediciones no deseadas.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 1.2: Permiso de Editor para Trabajo Conjunto</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Comparte una carpeta departamental con tu compañero(a) de área con rol <strong>Editor</strong>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Ambos pueden ingresar y actualizar registros en tiempo real.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 2 -->
+            <section id="tema2">
+                <h3 class="topic-header">TEMA 2: Integración Drive en Gmail (Archivos de +25 MB)</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Pase Digital en vez de la Caja Pesada</div>
+                    <p>Insertamos un enlace de Drive en Gmail para enviar carpetas pesadas o videos de 500 MB sin límites de tamaño.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 2.1: Enviar Enlace de Drive en Redacción</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>En Gmail, haz clic en el icono triangular de <strong>Google Drive</strong> en la barra inferior.</li>
+                        <li>Elige un archivo pesado y selecciona <strong>Insertar como Enlace de Drive</strong>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Archivo insertado de manera ligera y elegante en el cuerpo del correo.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 3 -->
+            <section id="tema3">
+                <h3 class="topic-header">TEMA 3: Enlaces con Restricción Institucional</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: Acceso con Carnet Escolar</div>
+                    <p>La opción <em>Liceo TP Gonzalo Guglielmi M</em> restringe el archivo exclusivamente a usuarios con correo <code>@liceotpggm.cl</code>.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 3.1: Configuración de Dominio Protegido</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>En <em>Acceso general</em> de la ventana de compartir, selecciona <strong>Liceo TP Gonzalo Guglielmi M</strong> con rol <strong>Lector</strong>.</li>
+                        <li>Copia el enlace para despacharlo a los docentes.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Documento interno blindado contra aperturas fuera del establecimiento.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 4 -->
+            <section id="tema4">
+                <h3 class="topic-header">TEMA 4: Trabajo Colaborativo en Vivo y Menciones (@)</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: La Pizarra Compartida en Sala de Docentes</div>
+                    <p>Varios asistentes editan con cursores de colores al mismo tiempo y se asignan tareas con <code>@correo</code> que llegan a Gmail.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 4.1: Asignar Tarea con Comentario (@)</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Selecciona una celda o texto &gt; Añadir comentario (<span class="kbd">Ctrl + Alt + M</span>).</li>
+                        <li>Escribe <code>@colega@liceotpggm.cl</code> y marca la casilla <strong>Asignar a</strong>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>El colega recibe un correo de alerta con acceso directo a la tarea.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 5 -->
+            <section id="tema5">
+                <h3 class="topic-header">TEMA 5: Historial de Versiones (La Máquina del Tiempo)</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: La Cámara de Seguridad de Cambios</div>
+                    <p>Revisa quién escribió o borró cualquier dato y restaura la versión anterior en un clic.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 5.1: Auditoría y Restauración</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Ve a <em>Archivo &gt; Historial de versiones &gt; Ver historial de versiones</em>.</li>
+                        <li>Revisa los cambios por autor y restaura el estado previo deseado.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Tranquilidad total ante borrados o modificaciones accidentales.</div></div>
+                </div>
+            </section>
+
+            <!-- PROYECTO INTEGRADOR -->
+            <section id="proyecto">
+                <h2 class="section-header">5. Actividad Integradora Final del Módulo</h2>
+                <div style="background:#f0fdfa; border:1.5px solid #99f6e4; padding:20px; border-radius:8px; margin-bottom:20px;">
+                    <h3 style="color:var(--primary); font-family:'Outfit', sans-serif; font-size:18px; margin-bottom:8px;">Proyecto: "Sistema Colaborativo de Matrícula y Despacho Masivo"</h3>
+                    <p><strong>Contexto:</strong> Crear una planilla en Drive con permisos de Editor para el equipo y Lector para docentes, insertarla en un correo de Gmail, co-editar en vivo asignando tareas con <code>@correo</code> y auditar cambios en el Historial de Versiones.</p>
+                </div>
+            </section>
+
+            <!-- RÚBRICA -->
+            <section id="rubrica">
+                <h2 class="section-header">6. Pauta de Evaluación del Proyecto Integrador</h2>
+                <table class="custom-table">
+                    <thead>
+                        <tr><th>Criterio de Evaluación</th><th>Indicadores de Logro</th><th style="width:120px; text-align:center;">Puntaje</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>1. Permisos Rigurosos</strong></td><td>Asigna correctamente Lector, Comentarista y Editor.</td><td style="text-align:center; font-weight:bold;">20 pts</td></tr>
+                        <tr><td><strong>2. Enlace Institucional</strong></td><td>Restringe el acceso a cuentas @liceotpggm.cl.</td><td style="text-align:center; font-weight:bold;">15 pts</td></tr>
+                        <tr><td><strong>3. Integración Drive en Gmail</strong></td><td>Inserta archivo de Drive en correo formal.</td><td style="text-align:center; font-weight:bold;">20 pts</td></tr>
+                        <tr><td><strong>4. Colaboración y Tareas</strong></td><td>Co-edita en tiempo real y asigna tareas con @.</td><td style="text-align:center; font-weight:bold;">20 pts</td></tr>
+                        <tr><td><strong>5. Historial de Versiones</strong></td><td>Audita y nombra versiones clave del documento.</td><td style="text-align:center; font-weight:bold;">15 pts</td></tr>
+                        <tr><td><strong>6. Redacción Protocolar</strong></td><td>Aplica firmas y formato formal en el correo.</td><td style="text-align:center; font-weight:bold;">10 pts</td></tr>
+                        <tr style="background:#f0fdfa; font-weight:bold;"><td colspan="2">Puntaje Total</td><td style="text-align:center; color:var(--primary);">100 pts</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- CUESTIONARIO -->
+            <section id="cuestionario">
+                <h2 class="section-header">7. Cuestionario de Cierre del Módulo (7 Preguntas)</h2>
+                
+                <div class="quiz-card">
+                    <div class="quiz-question">1. ¿Qué permiso de Drive se otorga a apoderados para que no alteren las circulares?</div>
+                    <ul class="quiz-options">
+                        <li>a) Editor</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) Lector (Correcta)</li>
+                        <li>c) Propietario</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> <em>Lector</em> solo permite visualizar y descargar sin editar el contenido.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">2. ¿Cómo enviar por Gmail un archivo de video escolar que pesa 450 MB?</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) Insertándolo como enlace de Google Drive desde la ventana de redacción. (Correcta)</li>
+                        <li>b) Cortándolo en 10 partes.</li>
+                        <li>c) No se puede enviar.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Los enlaces de Drive en Gmail superan el límite de 25 MB.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">3. Al compartir con "Liceo TP Gonzalo Guglielmi M", ¿quiénes pueden abrirlo?</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) Solo usuarios con cuenta institucional @liceotpggm.cl. (Correcta)</li>
+                        <li>b) Todo el público de internet.</li>
+                        <li>c) Nadie.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> La restricción de dominio limita el acceso al personal y alumnos del liceo.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">4. ¿Cómo asignar una tarea a un docente dentro de un comentario en Drive?</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) Escribiendo @correo y marcando "Asignar a". (Correcta)</li>
+                        <li>b) Escribiendo su nombre en mayúsculas.</li>
+                        <li>c) Borrándole el texto.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> La mención <code>@correo</code> despacha un aviso automático a su Gmail.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">5. ¿Dónde recuperar un párrafo borrado por error en un documento compartido?</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) Archivo > Historial de versiones > Ver historial de versiones. (Correcta)</li>
+                        <li>b) En la papelera de Windows.</li>
+                        <li>c) Escribiéndolo todo de nuevo.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> El Historial de Versiones permite restaurar cualquier estado previo.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">6. ¿Qué diferencia hay entre Comentarista y Editor?</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) El Comentarista solo sugiere notas al margen sin alterar el texto original. (Correcta)</li>
+                        <li>b) Son idénticos.</li>
+                        <li>c) El Comentarista borra el archivo.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> El Comentarista aporta sugerencias sin tocar el contenido maestro.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">7. Para guardar un adjunto de Gmail en Drive sin descargarlo al computador:</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) Clic en el icono "Añadir a Drive" sobre el adjunto. (Correcta)</li>
+                        <li>b) Tomarle foto con el celular.</li>
+                        <li>c) Imprimirlo.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> <em>Añadir a Drive</em> guarda el documento en la nube instantáneamente.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

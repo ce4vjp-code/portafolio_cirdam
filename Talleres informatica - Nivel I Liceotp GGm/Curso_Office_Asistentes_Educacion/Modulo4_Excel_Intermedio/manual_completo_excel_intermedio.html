@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Completo: Excel 2019 Intermedio - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #065f46;
+            --primary-dark: #022c22;
+            --primary-light: #059669;
+            --teal: #0f766e;
+            --teal-light: #ccfbf1;
+            --accent: #d97706;
+            --accent-light: #fef3c7;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --success-light: #ecfdf5;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .page-wrapper { display: flex; min-height: 100vh; }
+
+        .sidebar {
+            width: 290px;
+            background: #022c22;
+            color: #e2e8f0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 24px 18px;
+            flex-shrink: 0;
+            border-right: 1px solid #0f766e;
+        }
+
+        .sidebar-brand {
+            padding-bottom: 18px;
+            border-bottom: 1px solid #0f766e;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-brand h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #5eead4;
+        }
+
+        .sidebar-brand p { font-size: 12px; color: #99f6e4; margin-top: 4px; }
+
+        .nav-group-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #5eead4;
+            font-weight: 700;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            padding-left: 8px;
+        }
+
+        .nav-links { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+
+        .nav-links a {
+            display: block;
+            padding: 7px 10px;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 6px;
+            transition: 0.2s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover { background: rgba(255,255,255,0.08); color: #ffffff; transform: translateX(3px); }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 40px 50px;
+            max-width: 1050px;
+            background: #ffffff;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #022c22 0%, #064e3b 60%, #0f766e 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 25px rgba(15, 118, 110, 0.15);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .hero p { font-size: 16px; color: #cbd5e1; max-width: 800px; }
+
+        h2.section-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            color: var(--primary-dark);
+            margin-top: 40px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        h3.topic-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            color: var(--teal);
+            margin-top: 32px;
+            margin-bottom: 14px;
+            padding-left: 10px;
+            border-left: 4px solid var(--teal);
+        }
+
+        .analogy-box {
+            background: #f0fdfa;
+            border: 1px solid #99f6e4;
+            border-left: 5px solid var(--teal);
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin: 18px 0 24px 0;
+        }
+
+        .analogy-header {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: #0f766e;
+            margin-bottom: 6px;
+        }
+
+        .exercise-card {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 20px 0;
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1.5px solid #e2e8f0;
+        }
+
+        .exercise-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .exercise-badge {
+            background: #ccfbf1;
+            color: var(--teal);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .exercise-context {
+            background: #ffffff;
+            border-left: 3px solid var(--teal);
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            font-size: 13.5px;
+            color: #0f766e;
+            margin-bottom: 14px;
+        }
+
+        .step-list { margin-left: 20px; font-size: 14px; }
+        .step-list li { margin-bottom: 8px; }
+
+        .expected-result {
+            margin-top: 14px;
+            background: var(--success-light);
+            border: 1px solid #a7f3d0;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #065f46;
+            display: flex;
+            gap: 8px;
+        }
+
+        .kbd {
+            font-family: 'JetBrains Mono', monospace;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-bottom: 2px solid #94a3b8;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        pre {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 14px 18px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            overflow-x: auto;
+            margin: 12px 0 16px 0;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .custom-table th { background: #0f766e; color: white; padding: 12px 14px; text-align: left; }
+        .custom-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+        .custom-table tr:nth-child(even) { background: #f8fafc; }
+
+        .quiz-card {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-bottom: 18px;
+        }
+
+        .quiz-question { font-weight: 700; font-size: 15px; margin-bottom: 12px; }
+        .quiz-options { list-style: none; padding-left: 0; }
+        .quiz-options li { padding: 8px 12px; background: white; border: 1px solid #cbd5e1; border-radius: 6px; margin-bottom: 6px; font-size: 13.5px; }
+
+        .quiz-feedback {
+            background: #f0fdfa;
+            border-left: 3px solid var(--teal);
+            padding: 8px 12px;
+            font-size: 13px;
+            color: #0f766e;
+            margin-top: 8px;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--teal);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        @media print {
+            .sidebar, .btn-link, .no-print { display: none !important; }
+            .page-wrapper { display: block; }
+            .main-content { padding: 0; max-width: 100%; }
+            .hero { padding: 20px; background: #0f766e !important; color: white !important; -webkit-print-color-adjust: exact; }
+            .exercise-card, .analogy-box, .custom-table { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <aside class="sidebar no-print">
+            <div class="sidebar-brand">
+                <h2>Liceo TP Gonzalo Guglielmi M</h2>
+                <p>Módulo 4: Excel Intermedio</p>
+            </div>
+
+            <div class="nav-group-title">Navegación</div>
+            <ul class="nav-links">
+                <li><a href="#presentacion">1. Enfoque Andragógico</a></li>
+                <li><a href="#objetivos">2. Objetivos de Aprendizaje</a></li>
+                <li><a href="#tiempos">3. Tiempos y Temario</a></li>
+                <li><a href="#tema1">Tema 1: Función Lógica SI</a></li>
+                <li><a href="#tema2">Tema 2: Búsqueda BUSCARV</a></li>
+                <li><a href="#tema3">Tema 3: Validación de Datos</a></li>
+                <li><a href="#tema4">Tema 4: Formato Condicional</a></li>
+                <li><a href="#tema5">Tema 5: Tablas Dinámicas</a></li>
+                <li><a href="#tema6">Tema 6: Integración y Candados</a></li>
+                <li><a href="#proyecto">Proyecto Integrador</a></li>
+                <li><a href="#rubrica">Pauta de Evaluación</a></li>
+                <li><a href="#cuestionario">Cuestionario de Salida</a></li>
+            </ul>
+
+            <div class="nav-group-title">Recursos Visuales</div>
+            <div style="padding: 6px 10px;">
+                <a href="guia_rapida_atajos_excel_intermedio.html" target="_blank" class="btn-link" style="width: 100%; justify-content: center; margin-bottom: 6px;">📄 Hoja de Fórmulas</a>
+                <a href="infografia_excel_intermedio.html" target="_blank" class="btn-link" style="width: 100%; justify-content: center; background:#059669;">📊 Infografía Visual</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="hero">
+                <span class="hero-badge">Manual Docente y Guía del Participante</span>
+                <h1>Microsoft Excel 2019: Nivel Intermedio</h1>
+                <p>Liceo TP Gonzalo Guglielmi M • Automatización con función SI, búsqueda de apoderados con BUSCARV, semáforo de notas rojas y tablas dinámicas para el Consejo Escolar.</p>
+            </div>
+
+            <section id="presentacion">
+                <h2 class="section-header">1. Presentación y Enfoque Andragógico del Módulo</h2>
+                <p>El <strong>Módulo 4: Excel Intermedio</strong> capacita a los Asistentes de la Educación del <strong>Liceo TP Gonzalo Guglielmi M</strong> para construir planillas que toman decisiones solas, validan el ingreso de datos y generan reportes ejecutivos automáticos.</p>
+            </section>
+
+            <section id="objetivos">
+                <h2 class="section-header">2. Objetivos de Aprendizaje</h2>
+                <ol>
+                    <li><strong>Aplicar la Función SI</strong> para automatizar el estado Aprobado/Reprobado y alertas de inasistencia (<85%).</li>
+                    <li><strong>Construir buscadores con BUSCARV y BUSCARX</strong> para consultar apoderados por RUN.</li>
+                    <li><strong>Crear Listas Desplegables</strong> con las especialidades TP y restringir notas entre 1.0 y 7.0.</li>
+                    <li><strong>Configurar el Semáforo Condicional</strong> (notas rojas <4.0 en rojo y >=6.0 en verde).</li>
+                    <li><strong>Generar Tablas Dinámicas y Gráficos</strong> con etiquetas de datos para el equipo directivo.</li>
+                    <li><strong>Proteger fórmulas con candado</strong> dejando editables solo las casillas de notas.</li>
+                </ol>
+            </section>
+
+            <section id="tiempos">
+                <h2 class="section-header">3. Secuencia de Temas y Tiempos</h2>
+                <table class="custom-table">
+                    <thead>
+                        <tr><th>Unidad / Tema</th><th>Contenidos Principales</th><th style="width:130px; text-align:center;">Tiempo</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Tema 1</strong></td><td>Función lógica SI y alertas condicionales escolares</td><td style="text-align:center;">30 min</td></tr>
+                        <tr><td><strong>Tema 2</strong></td><td>Búsqueda automática de datos con BUSCARV y BUSCARX</td><td style="text-align:center;">35 min</td></tr>
+                        <tr><td><strong>Tema 3</strong></td><td>Validación de datos y control de notas (1.0 a 7.0)</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Tema 4</strong></td><td>Formato condicional (Semáforo de notas rojas)</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Tema 5</strong></td><td>Tablas dinámicas y gráficos para Consejo de Profesores</td><td style="text-align:center;">30 min</td></tr>
+                        <tr><td><strong>Tema 6</strong></td><td>Planilla integral automatizada y protección de fórmulas</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Proyecto Integrador</strong></td><td>Sistema de Gestión Académica y Asistencia</td><td style="text-align:center;">30 min</td></tr>
+                        <tr><td><strong>Evaluación y Cierre</strong></td><td>Rúbrica y cuestionario de salida</td><td style="text-align:center;">15 min</td></tr>
+                        <tr style="background:#f0fdfa; font-weight:bold;"><td colspan="2">Total Sesión Integral Módulo 4</td><td style="text-align:center; color:var(--teal);">200 min (~3h 20m)</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- TEMA 1 -->
+            <section id="tema1">
+                <h3 class="topic-header">TEMA 1: La Función Lógica SI y Alertas Escolares Automáticas</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Criterio del Inspector en Portería</div>
+                    <p><code>=SI(Condición; "Si es Verdadero"; "Si es Falso")</code>. Si el promedio es >= 4.0 escribe "Aprobado", sino escribe "Reprobado".</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 1.1: Estado Académico Automático</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>En <code>F4</code> escribe: <code>=SI(E4>=4.0; "Aprobado"; "Reprobado")</code>.</li>
+                        <li>Copia con autorrelleno hacia abajo para toda la lista de estudiantes.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Estados asignados en segundos sin revisar promedio a promedio.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 1.2: Alerta de Asistencia Crítica (&lt; 85%)</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>En <code>H4</code> escribe: <code>=SI(G4&lt;85%; "CITAR APODERADO"; "Asistencia Regular")</code>.</li>
+                        <li>Identifica a los estudiantes con porcentaje menor al mínimo legal.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Alerta automática en mayúsculas para Inspectoría.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 2 -->
+            <section id="tema2">
+                <h3 class="topic-header">TEMA 2: Búsqueda Automática con BUSCARV y BUSCARX</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Asistente del Archivador</div>
+                    <p>Escribes el RUN en una celda y Excel busca en toda la base del liceo para traer el Nombre o Teléfono del Apoderado en un segundo.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 2.1: Ficha de Consulta de Apoderados por RUN</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>En <code>B3</code> escribe: <code>=BUSCARV(B2; A7:E50; 2; FALSO)</code> para traer el Nombre del Alumno.</li>
+                        <li>En <code>B4</code> escribe: <code>=BUSCARV(B2; A7:E50; 5; FALSO)</code> para traer el Teléfono de Emergencia.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Ficha que actualiza todos los datos al cambiar el RUN.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 2.2: Protección contra Errores con SI.ERROR</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Envuelve la búsqueda: <code>=SI.ERROR(BUSCARV(B2; A7:E50; 2; FALSO); "RUN No Registrado")</code>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Mensaje amigable en vez del error #N/D.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 3 -->
+            <section id="tema3">
+                <h3 class="topic-header">TEMA 3: Validación de Datos (Listas Desplegables y Control de Notas)</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Torniquete de Entrada</div>
+                    <p>Obliga a elegir los cursos desde una lista y prohíbe ingresar notas fuera de 1.0 a 7.0.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 3.1: Lista Desplegable de Especialidades TP</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Selecciona la columna Curso y ve a <em>Datos &gt; Validación de datos &gt; Lista</em>.</li>
+                        <li>En Origen ingresa: <code>1° Medio A; 2° Medio B; 3° Medio TP Electricidad; 3° Medio TP Mecánica; 4° Medio TP Administración</code>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Flecha desplegable en cada celda sin errores de escritura.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 3.2: Restricción de Calificaciones de 1.0 a 7.0</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>En <em>Validación de datos</em> elige <strong>Decimal</strong> entre <code>1.0</code> y <code>7.0</code>.</li>
+                        <li>Agrega un mensaje de error: <em>"Nota Fuera de Rango"</em>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Bloqueo automático de números mayores a 7.0 o negativos.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 4 -->
+            <section id="tema4">
+                <h3 class="topic-header">TEMA 4: Formato Condicional (Semáforo de Notas)</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Destacador Fluorescente Automático</div>
+                    <p>Pinta de rojo las notas inferiores a 4.0 y de verde las iguales o superiores a 6.0 sin intervención humana.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 4.1: Semáforo de Notas Rojas (&lt; 4.0)</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Selecciona notas y promedios &gt; <em>Inicio &gt; Formato condicional &gt; Es menor que...</em> <code>4.0</code> con relleno rojo claro.</li>
+                        <li>Agrega regla <em>Es mayor o igual que...</em> <code>6.0</code> con relleno verde claro.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Las notas deficientes y sobresalientes se colorean solas.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 4.2: Barras de Datos para Asistencia</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Selecciona la columna de asistencia &gt; <em>Formato condicional &gt; Barras de datos</em> degradadas.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Barras visuales que muestran el porcentaje dentro de la celda.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 5 -->
+            <section id="tema5">
+                <h3 class="topic-header">TEMA 5: Tablas Dinámicas y Gráficos Estadísticos</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Robot Resumidor para Dirección</div>
+                    <p>Cruza 300 filas de notas para decir cuántos aprobados hay por especialidad técnica en 5 segundos.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 5.1: Tabla Dinámica de Rendimiento TP</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Haz clic en tu tabla &gt; <em>Insertar &gt; Tabla dinámica</em>.</li>
+                        <li>Arrastra <code>Especialidad TP</code> a Filas, <code>Situación</code> a Columnas y <code>RUN</code> a Valores.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Resumen automático de aprobados y reprobados por especialidad.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 5.2: Gráfico Dinámico con Etiquetas</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Inserta <em>Gráfico dinámico de Columnas</em> y activa <strong>Etiquetas de datos</strong>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Gráfico listo para proyectar en el Consejo Escolar.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 6 -->
+            <section id="tema6">
+                <h3 class="topic-header">TEMA 6: Integración de Planillas y Protección con Candado</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Candado de las Fórmulas</div>
+                    <p>Desbloqueamos las celdas donde se escriben notas y bloqueamos con candado las fórmulas para que nadie las borre.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 6.1: Desbloquear Celdas de Notas</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Selecciona las notas &gt; Clic derecho &gt; <em>Formato de celdas &gt; Proteger &gt;</em> <strong>Desmarcar Bloqueada</strong>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Celdas de notas liberadas para escritura.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 6.2: Activar Protección de Hoja</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>En la pestaña <em>Revisar</em> pulsa <strong>Proteger hoja</strong>.</li>
+                        <li>Verifica que permite escribir notas pero bloquea el borrado de fórmulas.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Planilla 100% blindada contra errores involuntarios.</div></div>
+                </div>
+            </section>
+
+            <!-- PROYECTO INTEGRADOR -->
+            <section id="proyecto">
+                <h2 class="section-header">5. Actividad Integradora Final del Módulo</h2>
+                <div style="background:#f0fdfa; border:1.5px solid #99f6e4; padding:20px; border-radius:8px; margin-bottom:20px;">
+                    <h3 style="color:var(--teal); font-family:'Outfit', sans-serif; font-size:18px; margin-bottom:8px;">Proyecto: "Sistema Automatizado de Gestión Académica y Asistencia"</h3>
+                    <p><strong>Contexto:</strong> Construir el sistema integral del Liceo TP Gonzalo Guglielmi M: registro con validaciones de notas y cursos, función SI de aprobación y asistencia, semáforo de notas rojas, buscador interactivo por RUN con BUSCARV y tabla dinámica con gráfico estadístico.</p>
+                </div>
+            </section>
+
+            <!-- RÚBRICA -->
+            <section id="rubrica">
+                <h2 class="section-header">6. Pauta de Evaluación del Proyecto Integrador</h2>
+                <table class="custom-table">
+                    <thead>
+                        <tr><th>Criterio de Evaluación</th><th>Indicadores de Logro</th><th style="width:120px; text-align:center;">Puntaje</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>1. Función SI y Lógica</strong></td><td>Aplica SI para Aprobados/Reprobados y alertas de inasistencia <85%.</td><td style="text-align:center; font-weight:bold;">25 pts</td></tr>
+                        <tr><td><strong>2. Búsqueda BUSCARV</strong></td><td>Construye buscador de apoderados por RUN con FALSO y SI.ERROR.</td><td style="text-align:center; font-weight:bold;">20 pts</td></tr>
+                        <tr><td><strong>3. Validación de Datos</strong></td><td>Lista desplegable de cursos y restricción de notas de 1.0 a 7.0.</td><td style="text-align:center; font-weight:bold;">15 pts</td></tr>
+                        <tr><td><strong>4. Formato Condicional</strong></td><td>Semáforo automático para notas rojas (<4.0) y verdes (>=6.0).</td><td style="text-align:center; font-weight:bold;">15 pts</td></tr>
+                        <tr><td><strong>5. Tablas Dinámicas</strong></td><td>Tabla dinámica resumen por especialidad TP y gráfico con etiquetas.</td><td style="text-align:center; font-weight:bold;">15 pts</td></tr>
+                        <tr><td><strong>6. Protección y Seguridad</strong></td><td>Desbloquea casillas de notas y protege fórmulas con contraseña.</td><td style="text-align:center; font-weight:bold;">10 pts</td></tr>
+                        <tr style="background:#f0fdfa; font-weight:bold;"><td colspan="2">Puntaje Total</td><td style="text-align:center; color:var(--teal);">100 pts</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- CUESTIONARIO -->
+            <section id="cuestionario">
+                <h2 class="section-header">7. Cuestionario de Cierre del Módulo (7 Preguntas)</h2>
+                
+                <div class="quiz-card">
+                    <div class="quiz-question">1. En =SI(E4>=4.0; "Aprobado"; "Reprobado"), si E4 tiene un 3.9, ¿qué escribe Excel?</div>
+                    <ul class="quiz-options">
+                        <li>a) "Aprobado"</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) "Reprobado" (Correcta)</li>
+                        <li>c) #¡VALOR!</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> 3.9 no cumple la condición >= 4.0, por lo que salta al resultado Falso ("Reprobado").</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">2. En =BUSCARV(B2; A4:E100; 3; FALSO), ¿qué representa el número 3?</div>
+                    <ul class="quiz-options">
+                        <li>a) La fila 3.</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) La columna número 3 de la tabla seleccionada. (Correcta)</li>
+                        <li>c) 3 intentos de búsqueda.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Es el índice de la columna del dato que se desea extraer.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">3. ¿Por qué se debe usar FALSO al final de BUSCARV para buscar un RUN?</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) Para exigir coincidencia 100% exacta y evitar datos de otro estudiante. (Correcta)</li>
+                        <li>b) Porque la fórmula es falsa.</li>
+                        <li>c) Para que no cobre.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> FALSO fuerza la búsqueda exacta en identificadores únicos.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">4. ¿Qué herramienta restringe el ingreso de cursos a una lista desplegable?</div>
+                    <ul class="quiz-options">
+                        <li>a) Formato condicional</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) Validación de datos con opción Lista (Correcta)</li>
+                        <li>c) Filtro</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> La validación tipo Lista muestra una flecha con las opciones autorizadas.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">5. ¿Cómo destacar automáticamente en rojo las notas menores a 4.0?</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) Formato Condicional > Reglas para resaltar celdas > Es menor que 4.0 (Correcta)</li>
+                        <li>b) Pintando a mano con el bote de pintura.</li>
+                        <li>c) Con la función SUMA.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> El Formato Condicional evalúa y tiñe las celdas automáticamente.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">6. ¿Cuál es la principal ventaja de una Tabla Dinámica en el liceo?</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) Resumir y agrupar datos masivos por especialidad técnica en segundos sin fórmulas. (Correcta)</li>
+                        <li>b) Dibujar marcos bonitos.</li>
+                        <li>c) Borrar las notas malas.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Agrupa y totaliza variables al instante con el mouse.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">7. Para que los docentes ingresen notas sin borrar las fórmulas de los promedios:</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) Desmarcar "Bloqueada" en celdas de notas y activar "Proteger hoja" en Revisar. (Correcta)</li>
+                        <li>b) Borrar las fórmulas antes de entregar la planilla.</li>
+                        <li>c) Guardar en PDF.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Al desmarcar Bloqueada en las casillas de entrada, el candado protege solo las fórmulas.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

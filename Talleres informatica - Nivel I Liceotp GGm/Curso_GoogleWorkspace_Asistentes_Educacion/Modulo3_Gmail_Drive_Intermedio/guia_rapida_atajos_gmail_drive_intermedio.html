@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Rápida: Gmail y Drive Intermedio - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f766e; /* Teal Integration */
+            --primary-dark: #042f2e;
+            --primary-light: #ccfbf1;
+            --red: #c5221f;
+            --blue: #1a73e8;
+            --accent: #d97706;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #cbd5e1;
+            color: var(--text-main);
+            line-height: 1.35;
+            font-size: 13px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .sheet-container {
+            width: 216mm;
+            min-height: 279mm;
+            background: var(--surface);
+            padding: 16mm 14mm;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .header-title h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .header-title p { font-size: 11.5px; color: var(--text-muted); font-weight: 600; }
+
+        .badge {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: 1px solid #99f6e4;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            flex-grow: 1;
+        }
+
+        .card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1.5px solid var(--border);
+        }
+
+        .card-header svg { width: 16px; height: 16px; color: var(--primary); }
+
+        .card-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .perm-box {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+            padding: 5px 8px;
+            margin-bottom: 5px;
+            font-size: 11.5px;
+        }
+
+        .perm-box strong { color: var(--primary-dark); }
+
+        .tip-item {
+            margin-bottom: 5px;
+            font-size: 11px;
+            display: flex;
+            gap: 6px;
+            align-items: flex-start;
+        }
+
+        .tip-bullet { color: var(--primary); font-weight: 800; }
+
+        .golden-box {
+            background: linear-gradient(135deg, #0f766e, #042f2e);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .golden-text h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #5eead4;
+            margin-bottom: 2px;
+        }
+
+        .golden-text p { font-size: 11px; opacity: 0.95; line-height: 1.3; }
+
+        footer {
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10.5px;
+            color: var(--text-muted);
+        }
+
+        .btn-print {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .sheet-container { width: 100%; min-height: 100vh; box-shadow: none; padding: 8mm; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sheet-container">
+        <!-- Encabezado -->
+        <header>
+            <div class="header-title">
+                <h1>Gmail + Drive: Hoja de Integración y Trabajo Colaborativo</h1>
+                <p>Liceo TP Gonzalo Guglielmi M • https://liceotpggm.cl • Área de Informática</p>
+            </div>
+            <div class="badge">Nivel Intermedio</div>
+        </header>
+
+        <div class="grid-2col">
+            
+            <!-- Columna 1 -->
+            <div style="display: flex; flex-direction: column; gap: 9px;">
+                
+                <!-- Tarjeta 1: Permisos de Compartir -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <h2>Los 3 Permisos de Google Drive</h2>
+                    </div>
+                    <div class="perm-box">
+                        <strong>👁️ Lector:</strong> Solo puede abrir, leer o descargar. <em>Ideal para reglamentos y circulares a apoderados sin riesgo de que borren nada.</em>
+                    </div>
+                    <div class="perm-box">
+                        <strong>💬 Comentarista:</strong> Puede sugerir cambios y dejar notas al margen sin alterar el texto original.
+                    </div>
+                    <div class="perm-box">
+                        <strong>✏️ Editor:</strong> Puede modificar, escribir y borrar. <em>Uso exclusivo entre asistentes del mismo equipo de trabajo.</em>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Enviar Archivos de Drive en Gmail -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                        <h2>Archivos Pesados (+25 MB) en Gmail</h2>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">1.</span>
+                        <div>En la ventana de redactar en Gmail, haz clic en el icono triangular de <strong>Google Drive</strong>.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">2.</span>
+                        <div>Elige tu archivo (un video o carpeta grande de 500 MB) e insértalo como <strong>Enlace de Drive</strong>.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">3.</span>
+                        <div>Al enviar, Gmail te preguntará automáticamente los permisos para los receptores: elige <em>"Solo lectura"</em>.</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Columna 2 -->
+            <div style="display: flex; flex-direction: column; gap: 9px;">
+                
+                <!-- Tarjeta 3: Co-edición en Tiempo Real -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                        <h2>Trabajo Colaborativo en Vivo</h2>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">👥</span>
+                        <div><strong>Varios cursores al mismo tiempo:</strong> Dos asistentes pueden llenar la misma acta de matrícula simultáneamente sin bloquearse.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">💬</span>
+                        <div><strong>Comentarios con Mención (@):</strong> Escribe <code>@profesor</code> en un comentario para enviarle un aviso automático a su correo de Gmail.</div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 4: Enlaces con Restricción Institucional -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <h2>Seguridad de Enlaces Escolares</h2>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">🔒</span>
+                        <div><strong>Restringido:</strong> Solo las personas invitadas por correo pueden abrirlo.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">🏫</span>
+                        <div><strong>Liceo TP Gonzalo Guglielmi M:</strong> Cualquier usuario con cuenta institucional del liceo puede acceder.</div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">🌐</span>
+                        <div><strong>Cualquier persona con el enlace:</strong> Acceso público (usar solo en circulares para apoderados).</div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 5: Historial de Versiones -->
+                <div class="card">
+                    <div class="card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+                        <h2>Historial de Versiones (La Máquina del Tiempo)</h2>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-bullet">🕒</span>
+                        <div>Ve a <em>Archivo &gt; Historial de versiones &gt; Ver historial de versiones</em> para ver quién editó cada frase y restaurar cómo estaba ayer.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Regla de Oro -->
+        <div class="golden-box">
+            <div style="font-size:22px;">🤝</div>
+            <div class="golden-text">
+                <h3>Regla de Oro en Colaboración: "Comparte siempre con Permiso de LECTOR a Apoderados"</h3>
+                <p>Al compartir documentos o circulares institucionales por Gmail o WhatsApp, asegúrate de que el enlace esté configurado en <strong>Lector</strong> para evitar modificaciones externas.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <span>Liceo TP Gonzalo Guglielmi M • Encargado TIC: Cristian Valdebenito L.</span>
+            <button class="btn-print no-print" onclick="window.print()">🖨️ Imprimir Hoja de Referencia (1 Hoja)</button>
+            <span>Material para Asistentes de la Educación</span>
+        </footer>
+    </div>
+
+</body>
+</html>

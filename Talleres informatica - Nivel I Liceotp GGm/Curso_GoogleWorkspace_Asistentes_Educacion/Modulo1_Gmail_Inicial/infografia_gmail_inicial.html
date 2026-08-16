@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Gmail Institucional - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c5221f;
+            --primary-dark: #8c1b18;
+            --primary-light: #fce8e6;
+            --blue: #1a73e8;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .infographic-header {
+            background: linear-gradient(135deg, #8c1b18 0%, #c5221f 50%, #ea4335 100%);
+            color: white;
+            padding: 36px 40px;
+            position: relative;
+        }
+
+        .infographic-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #fbbc05, #34a853, #4285f4);
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .infographic-header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .infographic-header p { font-size: 15px; color: #fee2e2; max-width: 800px; }
+
+        .content-body {
+            padding: 36px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+
+        .section-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .section-title h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        /* 3-Col Destinatarios */
+        .grid-3col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .dest-card {
+            background: #f8fafc;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .dest-card.highlight {
+            border-color: #f87171;
+            background: #fff5f5;
+        }
+
+        .dest-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dest-desc { font-size: 13px; color: var(--text-main); }
+        .dest-example { font-size: 11.5px; color: var(--text-muted); background: white; padding: 6px 8px; border-radius: 4px; border: 1px solid var(--border); }
+
+        /* Mockup Email Anatomy */
+        .email-mockup {
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .mockup-header {
+            background: #f1f5f9;
+            padding: 10px 16px;
+            border-bottom: 1px solid #cbd5e1;
+            font-size: 12px;
+            font-weight: 700;
+            color: #475569;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .mockup-body { padding: 18px 24px; font-size: 13.5px; display: flex; flex-direction: column; gap: 12px; }
+
+        .mockup-row { display: flex; gap: 12px; border-bottom: 1px solid #f1f5f9; padding-bottom: 6px; }
+        .mockup-row strong { color: #64748b; width: 80px; }
+
+        .email-signature {
+            border-top: 2px solid #e2e8f0;
+            padding-top: 10px;
+            margin-top: 8px;
+            font-size: 12.5px;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .sig-logo {
+            width: 44px;
+            height: 44px;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .infographic-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .btn-action {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @media (max-width: 850px) {
+            .grid-3col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="infographic-header">
+            <span class="tag">Módulo 1 • Comunicación Institucional</span>
+            <h1>Gmail Institucional: Guía Visual y Buenas Prácticas</h1>
+            <p>Liceo TP Gonzalo Guglielmi M • https://liceotpggm.cl • Área de Informática</p>
+        </div>
+
+        <div class="content-body">
+            
+            <!-- SECCIÓN 1: Campos de Destinatarios -->
+            <div>
+                <div class="section-title">
+                    <div class="section-badge">1</div>
+                    <h2>¿A quién va dirigido? Destinatarios: Para, CC y CCO</h2>
+                </div>
+
+                <div class="grid-3col">
+                    <div class="dest-card">
+                        <div class="dest-title"><span>👤</span> PARA (Principal)</div>
+                        <div class="dest-desc">Persona(s) responsable(s) de responder o resolver la solicitud.</div>
+                        <div class="dest-example">Ej: <code>profesor.jefe@liceotpggm.cl</code></div>
+                    </div>
+
+                    <div class="dest-card">
+                        <div class="dest-title"><span>👥</span> CC (Con Copia)</div>
+                        <div class="dest-desc">Personas que solo deben estar informadas sin obligación de responder.</div>
+                        <div class="dest-example">Ej: <code>inspectoriageneral@liceotpggm.cl</code></div>
+                    </div>
+
+                    <div class="dest-card highlight">
+                        <div class="dest-title"><span>🔒</span> CCO (Copia Oculta)</div>
+                        <div class="dest-desc"><strong>Obligatorio para apoderados:</strong> Nadie puede ver las direcciones de los demás.</div>
+                        <div class="dest-example">Ej: Nómina de 40 apoderados del curso</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 2: Anatomía de un Correo Formal -->
+            <div>
+                <div class="section-title">
+                    <div class="section-badge">2</div>
+                    <h2>Anatomía de un Mensaje Escolar Formal</h2>
+                </div>
+
+                <div class="email-mockup">
+                    <div class="mockup-header">
+                        <span>✉️ Mensaje Nuevo</span>
+                        <span>Liceo TP Gonzalo Guglielmi M</span>
+                    </div>
+                    <div class="mockup-body">
+                        <div class="mockup-row">
+                            <strong>Para:</strong> <span>profesor.tp@liceotpggm.cl</span>
+                        </div>
+                        <div class="mockup-row">
+                            <strong>Asunto:</strong> <span>[URGENTE] Entrega de Planillas de Notas Semestrales - 3° Medio TP</span>
+                        </div>
+                        <div style="color: #334155; line-height: 1.6;">
+                            <p><strong>Estimado(a) Profesor(a):</strong></p>
+                            <p style="margin: 8px 0;">Junto con saludar cordialmente, le recordamos que el plazo máximo para enviar las planillas de notas semestrales vence este viernes a las 14:00 hrs.</p>
+                            <p>Se adjunta la plantilla oficial en formato Excel para su llenado.</p>
+                            <p style="margin-top: 10px;">Atentamente,</p>
+                        </div>
+                        
+                        <div class="email-signature">
+                            <div class="sig-logo">TP</div>
+                            <div>
+                                <div style="font-weight: 700; color: #0f172a;">Equipo de Inspectoría / Secretaría</div>
+                                <div style="font-size: 11.5px; color: #64748b;">Liceo TP Gonzalo Guglielmi M</div>
+                                <div style="font-size: 11px; color: #c5221f; font-weight: 600;">🌐 <a href="https://liceotpggm.cl" target="_blank" style="color:#c5221f; text-decoration:none;">https://liceotpggm.cl</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="infographic-footer">
+            <span>© Liceo TP Gonzalo Guglielmi M • Encargado TIC: Cristian Valdebenito L.</span>
+            <button class="btn-action" onclick="window.print()">🖨️ Imprimir Infografía</button>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Completo: Excel 2019 Inicial - Liceo TP Gonzalo Guglielmi M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #065f46;
+            --primary-dark: #022c22;
+            --primary-light: #059669;
+            --accent: #d97706;
+            --accent-light: #fef3c7;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --success-light: #ecfdf5;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .page-wrapper { display: flex; min-height: 100vh; }
+
+        .sidebar {
+            width: 290px;
+            background: #022c22;
+            color: #e2e8f0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 24px 18px;
+            flex-shrink: 0;
+            border-right: 1px solid #064e3b;
+        }
+
+        .sidebar-brand {
+            padding-bottom: 18px;
+            border-bottom: 1px solid #064e3b;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-brand h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #6ee7b7;
+        }
+
+        .sidebar-brand p { font-size: 12px; color: #a7f3d0; margin-top: 4px; }
+
+        .nav-group-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #6ee7b7;
+            font-weight: 700;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            padding-left: 8px;
+        }
+
+        .nav-links { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+
+        .nav-links a {
+            display: block;
+            padding: 7px 10px;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 6px;
+            transition: 0.2s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover { background: rgba(255,255,255,0.08); color: #ffffff; transform: translateX(3px); }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 40px 50px;
+            max-width: 1050px;
+            background: #ffffff;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #064e3b 0%, #065f46 60%, #022c22 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 25px rgba(6, 95, 70, 0.15);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .hero p { font-size: 16px; color: #cbd5e1; max-width: 800px; }
+
+        h2.section-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            color: var(--primary-dark);
+            margin-top: 40px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        h3.topic-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            color: var(--primary);
+            margin-top: 32px;
+            margin-bottom: 14px;
+            padding-left: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .analogy-box {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            border-left: 5px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin: 18px 0 24px 0;
+        }
+
+        .analogy-header {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: #065f46;
+            margin-bottom: 6px;
+        }
+
+        .exercise-card {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 20px 0;
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1.5px solid #e2e8f0;
+        }
+
+        .exercise-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .exercise-badge {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .exercise-context {
+            background: #ffffff;
+            border-left: 3px solid var(--primary-light);
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            font-size: 13.5px;
+            color: #065f46;
+            margin-bottom: 14px;
+        }
+
+        .step-list { margin-left: 20px; font-size: 14px; }
+        .step-list li { margin-bottom: 8px; }
+
+        .expected-result {
+            margin-top: 14px;
+            background: var(--success-light);
+            border: 1px solid #a7f3d0;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #065f46;
+            display: flex;
+            gap: 8px;
+        }
+
+        .kbd {
+            font-family: 'JetBrains Mono', monospace;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-bottom: 2px solid #94a3b8;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        pre {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 14px 18px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            overflow-x: auto;
+            margin: 12px 0 16px 0;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .custom-table th { background: #065f46; color: white; padding: 12px 14px; text-align: left; }
+        .custom-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+        .custom-table tr:nth-child(even) { background: #f8fafc; }
+
+        .quiz-card {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-bottom: 18px;
+        }
+
+        .quiz-question { font-weight: 700; font-size: 15px; margin-bottom: 12px; }
+        .quiz-options { list-style: none; padding-left: 0; }
+        .quiz-options li { padding: 8px 12px; background: white; border: 1px solid #cbd5e1; border-radius: 6px; margin-bottom: 6px; font-size: 13.5px; }
+
+        .quiz-feedback {
+            background: #ecfdf5;
+            border-left: 3px solid var(--primary);
+            padding: 8px 12px;
+            font-size: 13px;
+            color: #065f46;
+            margin-top: 8px;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        @media print {
+            .sidebar, .btn-link, .no-print { display: none !important; }
+            .page-wrapper { display: block; }
+            .main-content { padding: 0; max-width: 100%; }
+            .hero { padding: 20px; background: #065f46 !important; color: white !important; -webkit-print-color-adjust: exact; }
+            .exercise-card, .analogy-box, .custom-table { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <aside class="sidebar no-print">
+            <div class="sidebar-brand">
+                <h2>Liceo TP Gonzalo Guglielmi M</h2>
+                <p>Módulo 3: Excel Inicial</p>
+            </div>
+
+            <div class="nav-group-title">Navegación</div>
+            <ul class="nav-links">
+                <li><a href="#presentacion">1. Enfoque Andragógico</a></li>
+                <li><a href="#objetivos">2. Objetivos de Aprendizaje</a></li>
+                <li><a href="#tiempos">3. Tiempos y Temario</a></li>
+                <li><a href="#tema1">Tema 1: Entorno y Celdas</a></li>
+                <li><a href="#tema2">Tema 2: Tipos de Datos y Notas</a></li>
+                <li><a href="#tema3">Tema 3: Fórmulas Esenciales</a></li>
+                <li><a href="#tema4">Tema 4: Formato de Tablas</a></li>
+                <li><a href="#tema5">Tema 5: Ordenar y Filtrar</a></li>
+                <li><a href="#tema6">Tema 6: Inmovilizar Paneles</a></li>
+                <li><a href="#tema7">Tema 7: Impresión en 1 Página</a></li>
+                <li><a href="#proyecto">Proyecto Integrador</a></li>
+                <li><a href="#rubrica">Pauta de Evaluación</a></li>
+                <li><a href="#cuestionario">Cuestionario de Salida</a></li>
+            </ul>
+
+            <div class="nav-group-title">Recursos Visuales</div>
+            <div style="padding: 6px 10px;">
+                <a href="guia_rapida_atajos_excel_inicial.html" target="_blank" class="btn-link" style="width: 100%; justify-content: center; margin-bottom: 6px;">📄 Hoja de Fórmulas</a>
+                <a href="infografia_excel_inicial.html" target="_blank" class="btn-link" style="width: 100%; justify-content: center; background:#0d9488;">📊 Infografía Visual</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="hero">
+                <span class="hero-badge">Manual Docente y Guía del Participante</span>
+                <h1>Microsoft Excel 2019: Nivel Inicial</h1>
+                <p>Liceo TP Gonzalo Guglielmi M • Fundamentos de planillas de cálculo, promedios automáticos, ordenamiento de nóminas e impresión profesional en 1 hoja.</p>
+            </div>
+
+            <section id="presentacion">
+                <h2 class="section-header">1. Presentación y Enfoque Andragógico del Módulo</h2>
+                <p>El <strong>Módulo 3: Excel Inicial</strong> está orientado al personal de inspectoría, secretaría, CRA y administración del <strong>Liceo TP Gonzalo Guglielmi M</strong>. Su objetivo es eliminar el miedo a las planillas y dominar el cálculo automático de notas y asistencias.</p>
+            </section>
+
+            <section id="objetivos">
+                <h2 class="section-header">2. Objetivos de Aprendizaje</h2>
+                <ol>
+                    <li><strong>Navegar por la cuadrícula</strong> reconociendo filas, columnas y hojas por curso.</li>
+                    <li><strong>Aplicar formatos de notas chilenas</strong> (escala 1.0 a 7.0 con 1 decimal exacto).</li>
+                    <li><strong>Construir fórmulas básicas</strong> (<code>=SUMA</code>, <code>=PROMEDIO</code>, <code>=MAX</code>, <code>=MIN</code>, <code>=CONTAR</code>).</li>
+                    <li><strong>Dar formato profesional a tablas</strong> con bordes, sombreados y texto ajustado.</li>
+                    <li><strong>Ordenar alfabéticamente</strong> y aplicar filtros rápidos de consulta.</li>
+                    <li><strong>Inmovilizar paneles</strong> para mantener títulos y nombres a la vista.</li>
+                    <li><strong>Configurar la impresión en 1 página de ancho</strong> sin cortar columnas.</li>
+                </ol>
+            </section>
+
+            <section id="tiempos">
+                <h2 class="section-header">3. Secuencia de Temas y Tiempos</h2>
+                <table class="custom-table">
+                    <thead>
+                        <tr><th>Unidad / Tema</th><th>Contenidos</th><th style="width:130px; text-align:center;">Tiempo</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Tema 1</strong></td><td>Entorno de Excel, celdas y gestión de hojas</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Tema 2</strong></td><td>Tipos de datos y formato de notas con 1 decimal</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Tema 3</strong></td><td>Las 5 fórmulas escolares (SUMA, PROMEDIO, MAX, MIN, CONTAR)</td><td style="text-align:center;">35 min</td></tr>
+                        <tr><td><strong>Tema 4</strong></td><td>Formato de celdas, bordes y estilos de tabla</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Tema 5</strong></td><td>Ordenar por apellido y filtrar por cursos/estados</td><td style="text-align:center;">25 min</td></tr>
+                        <tr><td><strong>Tema 6</strong></td><td>Inmovilizar paneles en listas largas</td><td style="text-align:center;">15 min</td></tr>
+                        <tr><td><strong>Tema 7</strong></td><td>Configuración de impresión económica en 1 página</td><td style="text-align:center;">20 min</td></tr>
+                        <tr><td><strong>Proyecto Integrador</strong></td><td>Planilla Maestra de Asistencia y Calificaciones</td><td style="text-align:center;">30 min</td></tr>
+                        <tr><td><strong>Evaluación y Cierre</strong></td><td>Rúbrica y cuestionario de salida</td><td style="text-align:center;">15 min</td></tr>
+                        <tr style="background:#ecfdf5; font-weight:bold;"><td colspan="2">Total Sesión Integral Módulo 3</td><td style="text-align:center; color:var(--primary);">200 min (~3h 20m)</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- TEMA 1 -->
+            <section id="tema1">
+                <h3 class="topic-header">TEMA 1: Entorno de Excel, Celdas y Gestión de Hojas</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Casillero de Profesores</div>
+                    <p>Cada celda es una casilla identificada por una Columna (Letra) y una Fila (Número). Las pestañas de abajo son las páginas del libro de clases.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 1.1: Coordenadas en Inventario del CRA</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Escribe el título en <code>A1</code> y encabezados en <code>B3:C3</code>.</li>
+                        <li>Usa el <strong>Cuadro de Nombres</strong> para saltar directo a la celda <code>E15</code>.</li>
+                        <li>Presiona <span class="kbd">Ctrl</span> + <span class="kbd">Inicio</span> para regresar instantáneamente a <code>A1</code>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Navegación ágil por las coordenadas de la cuadrícula.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 1.2: Gestión de Hojas por Cursos</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Renombra <code>Hoja1</code> como <code>1° Medio A</code> con doble clic.</li>
+                        <li>Agrega una hoja con <strong>[+]</strong> y nómbrala <code>2° Medio TP Electricidad</code>.</li>
+                        <li>Aplica color verde institucional a la pestaña.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Libro organizado por cursos con nombres y colores claros.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 2 -->
+            <section id="tema2">
+                <h3 class="topic-header">TEMA 2: Tipos de Datos y Formato de Notas (Decimales en Chile)</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Cajón de Números y Palabras</div>
+                    <p>Los textos van a la izquierda y los números a la derecha. Con los botones de decimales obligamos a Excel a mostrar notas en formato <code>6.0</code>.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 2.1: Datos de Matrícula y Moneda</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Ingresa RUN, fecha de matrícula y monto de cuota en <code>E4</code> (15000).</li>
+                        <li>Aplica formato <strong>Moneda</strong> para que aparezca como <code>$ 15.000</code>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Valores monetarios con signo peso y separadores de miles automáticos.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 2.2: Notas con 1 Decimal Exacto</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Ingresa notas en <code>F4:F6</code>: <code>6.5</code>, <code>7</code> y <code>4.8</code>.</li>
+                        <li>En <em>Inicio &gt; Número</em>, haz clic en <strong>Aumentar decimales</strong> para que el 7 se vea como <code>7.0</code>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Notas alineadas uniformemente con un decimal exacto.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 3 -->
+            <section id="tema3">
+                <h3 class="topic-header">TEMA 3: Las 5 Fórmulas Esenciales (SUMA, PROMEDIO, MAX, MIN, CONTAR)</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: La Calculadora Automática</div>
+                    <p>Toda fórmula inicia con <code>=</code>. El rango <code>D4:F4</code> significa "desde la celda D4 hasta la F4".</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 3.1: Promedio Semestral de Estudiantes</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>En <code>F4</code> escribe: <code>=PROMEDIO(C4:E4)</code> y presiona Enter.</li>
+                        <li>Haz doble clic en el punto verde de autorrelleno para copiar la fórmula a todos los estudiantes.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Promedios calculados al instante para toda la lista.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 3.2: Estadísticas del Curso (MAX, MIN, CONTAR)</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Calcula el promedio general con <code>=PROMEDIO(F4:F6)</code>.</li>
+                        <li>Encuentra la nota máxima con <code>=MAX(F4:F6)</code> y la mínima con <code>=MIN(F4:F6)</code>.</li>
+                        <li>Cuenta los evaluados con <code>=CONTAR(F4:F6)</code>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Cuadro estadístico completo listo para UTP.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 4 -->
+            <section id="tema4">
+                <h3 class="topic-header">TEMA 4: Formato de Celdas, Bordes y Estilos</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Rayado del Cuaderno</div>
+                    <p>Los bordes aseguran que la cuadrícula se imprima nítidamente. <em>Combinar y centrar</em> crea títulos grandes.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 4.1: Encabezado Institucional Combinado</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Selecciona <code>A1:F1</code> y haz clic en <strong>Combinar y centrar</strong>.</li>
+                        <li>Aplica relleno verde oscuro institucional y texto blanco en negrita.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Encabezado elegante que abarca todo el ancho de la planilla.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 4.2: Bordes y Ajuste de Texto</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Selecciona la tabla (<code>A3:F6</code>) y aplica <strong>Todos los bordes</strong>.</li>
+                        <li>En la celda de encabezado "Promedio Final", activa <strong>Ajustar texto</strong>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Cuadrícula visible y títulos de columna legibles en dos líneas.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 5 -->
+            <section id="tema5">
+                <h3 class="topic-header">TEMA 5: Ordenar por Apellido y Filtrar Registros</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: El Colador Inteligente</div>
+                    <p>Los filtros permiten consultar al instante los estudiantes de un curso o estado de matrícula sin borrar a los demás.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 5.1: Ordenamiento Alfabético Seguro</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Haz clic en la columna de nombres y en la pestaña <em>Datos</em> pulsa <strong>Ordenar de A a Z</strong>.</li>
+                        <li>Verifica que toda la fila de notas se mueve junto con el estudiante.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Lista ordenada alfabéticamente sin desvincular las notas.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 5.2: Filtros por Condición Escolar</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>En <em>Datos</em> activa <strong>Filtro</strong>.</li>
+                        <li>Haz clic en la flechita de la columna y filtra solo los <code>Prioritario SEP</code>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Visualización instantánea del grupo seleccionado.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 6 -->
+            <section id="tema6">
+                <h3 class="topic-header">TEMA 6: Inmovilizar Paneles en Nóminas Largas</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: La Cinta Adhesiva de Títulos</div>
+                    <p>Al bajar por una lista de 45 estudiantes, la fila superior queda fija para saber qué nota pertenece a cada columna.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 6.1: Inmovilizar Fila Superior</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Ve a <strong>Vista &gt; Inmovilizar &gt; Inmovilizar fila superior</strong>.</li>
+                        <li>Desplázate hacia abajo y observa cómo los títulos se mantienen fijos.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Encabezados siempre visibles al revisar listas largas.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 6.2: Inmovilizar Filas y Columnas Simultáneamente</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>Sitúate en <code>C4</code> y elige <strong>Inmovilizar paneles</strong>.</li>
+                        <li>Al moverte horizontalmente, los nombres de los estudiantes se quedan fijos a la izquierda.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Navegación fluida en planillas con muchos meses de notas.</div></div>
+                </div>
+            </section>
+
+            <!-- TEMA 7 -->
+            <section id="tema7">
+                <h3 class="topic-header">TEMA 7: Configuración de Impresión en 1 Página</h3>
+                <div class="analogy-box">
+                    <div class="analogy-header">💡 Analogía Escolar: Salvar la Hoja en Blanco</div>
+                    <p>La opción <em>Ajustar todas las columnas en una página</em> evita que la última columna quede huérfana en una segunda hoja.</p>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 7.1: Ajuste a 1 Página Horizontal</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>En <em>Disposición de página</em> cambia a orientación <strong>Horizontal</strong>.</li>
+                        <li>Presiona <span class="kbd">Ctrl</span> + <span class="kbd">P</span> y en la última casilla cambia a <strong>Ajustar todas las columnas en una página</strong>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>Planilla impresa completa y legible en una sola hoja.</div></div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-title">Ejercicio 7.2: Repetir Encabezados en Varias Hojas</div>
+                        <span class="exercise-badge">Paso a Paso</span>
+                    </div>
+                    <ol class="step-list">
+                        <li>En <em>Disposición de página &gt; Imprimir títulos</em>, selecciona la fila 3 en <em>Filas para repetir en extremo superior</em>.</li>
+                    </ol>
+                    <div class="expected-result"><span>✅</span> <div>La página 2 imprime automáticamente los títulos de columna arriba.</div></div>
+                </div>
+            </section>
+
+            <!-- PROYECTO INTEGRADOR -->
+            <section id="proyecto">
+                <h2 class="section-header">5. Actividad Integradora Final del Módulo</h2>
+                <div style="background:#ecfdf5; border:1.5px solid #a7f3d0; padding:20px; border-radius:8px; margin-bottom:20px;">
+                    <h3 style="color:var(--primary); font-family:'Outfit', sans-serif; font-size:18px; margin-bottom:8px;">Proyecto: "Planilla Maestra de Calificaciones y Estadísticas del Liceo TP Gonzalo Guglielmi M"</h3>
+                    <p><strong>Contexto:</strong> Diseñar la planilla oficial de cierre para 3° Medio TP con formato de notas (1 decimal), fórmulas de promedio, nota máxima, mínima, total evaluados, filtros activos e impresión ajustada a 1 página horizontal.</p>
+                </div>
+            </section>
+
+            <!-- RÚBRICA -->
+            <section id="rubrica">
+                <h2 class="section-header">6. Pauta de Evaluación del Proyecto Integrador</h2>
+                <table class="custom-table">
+                    <thead>
+                        <tr><th>Criterio de Evaluación</th><th>Indicadores de Logro</th><th style="width:120px; text-align:center;">Puntaje</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>1. Estructura y Formato</strong></td><td>Encabezado combinado verde institucional, notas con 1 decimal exacto.</td><td style="text-align:center; font-weight:bold;">20 pts</td></tr>
+                        <tr><td><strong>2. Fórmulas de Promedio</strong></td><td>Aplica correctamente <code>=PROMEDIO(...)</code> con autorrelleno hacia abajo.</td><td style="text-align:center; font-weight:bold;">25 pts</td></tr>
+                        <tr><td><strong>3. Estadísticas (MAX, MIN, CONTAR)</strong></td><td>Calcula nota máxima, mínima y total evaluados con fórmulas.</td><td style="text-align:center; font-weight:bold;">20 pts</td></tr>
+                        <tr><td><strong>4. Filtros y Ordenamiento</strong></td><td>Activa filtros y ordena alfabéticamente por apellido.</td><td style="text-align:center; font-weight:bold;">15 pts</td></tr>
+                        <tr><td><strong>5. Inmovilización de Paneles</strong></td><td>Inmoviliza paneles para desplazamiento continuo.</td><td style="text-align:center; font-weight:bold;">10 pts</td></tr>
+                        <tr><td><strong>6. Configuración de Impresión</strong></td><td>Configura vista horizontal ajustada a 1 página sin cortes.</td><td style="text-align:center; font-weight:bold;">10 pts</td></tr>
+                        <tr style="background:#ecfdf5; font-weight:bold;"><td colspan="2">Puntaje Total</td><td style="text-align:center; color:var(--primary);">100 pts</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- CUESTIONARIO -->
+            <section id="cuestionario">
+                <h2 class="section-header">7. Cuestionario de Cierre del Módulo (7 Preguntas)</h2>
+                
+                <div class="quiz-card">
+                    <div class="quiz-question">1. ¿Cuál es el primer carácter obligatorio para iniciar una fórmula en Excel?</div>
+                    <ul class="quiz-options">
+                        <li>a) Un punto (.)</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) El signo igual (=) (Correcta)</li>
+                        <li>c) Una comilla (")</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Toda fórmula debe iniciar con <code>=</code> para activar el motor de cálculo.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">2. Para promediar las notas de la celda C4 a la E4, ¿qué fórmula se escribe?</div>
+                    <ul class="quiz-options">
+                        <li>a) =SUMAR(C4:E4)/3</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) =PROMEDIO(C4:E4) (Correcta)</li>
+                        <li>c) =PROMEDIO(C4;E4)</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Los dos puntos (<code>:</code>) indican el rango continuo entre C4 y E4.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">3. ¿Qué significan los dos puntos (:) en =SUMA(A1:A10)?</div>
+                    <ul class="quiz-options">
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">a) Que suma todas las celdas DESDE A1 HASTA A10. (Correcta)</li>
+                        <li>b) Que solo suma A1 y A10.</li>
+                        <li>c) Que divide A1 por A10.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Representa un rango continuo de celdas.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">4. ¿Por qué aparecen signos numerales (#######) en una celda?</div>
+                    <ul class="quiz-options">
+                        <li>a) La fórmula está mala.</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) La columna es muy angosta; se soluciona ensanchándola. (Correcta)</li>
+                        <li>c) Es un virus.</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> No es un error, solo falta espacio visual para mostrar la cifra.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">5. ¿Qué función encuentra la nota más baja del curso?</div>
+                    <ul class="quiz-options">
+                        <li>a) =BAJA(...)</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) =MIN(...) (Correcta)</li>
+                        <li>c) =MENOR(...)</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> <code>=MIN(...)</code> extrae el menor valor numérico del rango.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">6. ¿Cómo evitar que los títulos de columna desaparezcan al bajar por una lista larga?</div>
+                    <ul class="quiz-options">
+                        <li>a) Combinar y centrar</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) Inmovilizar paneles (Inmovilizar fila superior) (Correcta)</li>
+                        <li>c) Bloquear celda</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> En <em>Vista &gt; Inmovilizar paneles</em> congelamos la vista de los encabezados.</div>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-question">7. Para que una planilla no salga cortada en dos hojas al imprimir, ¿qué opción se usa?</div>
+                    <ul class="quiz-options">
+                        <li>a) Sin escalado</li>
+                        <li style="font-weight:bold; background:#ecfdf5; border-color:#10b981;">b) Ajustar todas las columnas en una página (Correcta)</li>
+                        <li>c) Duplicar hojas</li>
+                    </ul>
+                    <div class="quiz-feedback">💡 <strong>Explicación:</strong> Escala el ancho de la tabla para que quepa en una sola hoja.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>
