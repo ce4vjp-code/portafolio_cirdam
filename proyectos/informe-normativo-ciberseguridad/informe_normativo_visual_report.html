@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe Normativo — Ciberseguridad y Datos Personales en DAEM y SLEP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+:root{--bg:#F7F4EF;--surface:#FFFFFF;--surface-2:#F2EEE8;--border:#E3DDD5;--border-2:#D0C9BF;--text:#1A1614;--text-2:#4A4440;--text-3:#7A7068;--orange:#CF6631;--orange-dim:#F5E6DF;--orange-mid:#E8CDB8;--green:#1A6B3C;--green-dim:#DFF0E8;--red:#A4161A;--red-dim:#FCE8E8;--blue:#1B5FA8;--blue-dim:#E0ECFA;--purple:#5E2D91;--purple-dim:#EEE5FB;--amber:#92540A;--amber-dim:#FEF3E0;--mono:'JetBrains Mono','Fira Code',monospace;--sans:'Inter',system-ui,sans-serif;--radius-sm:4px;--radius:8px;--radius-lg:12px;--sidebar-w:240px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:.9375rem;line-height:1.6;min-height:100vh}
+.shell{display:flex;min-height:100vh}
+.sidebar{width:var(--sidebar-w);flex-shrink:0;position:sticky;top:0;height:100vh;overflow-y:auto;border-right:1px solid var(--border);background:var(--surface);padding:32px 0;display:flex;flex-direction:column}
+.sidebar-brand{padding:0 20px 24px;border-bottom:1px solid var(--border);margin-bottom:20px}
+.brand-label{font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--orange);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.brand-title{font-size:.875rem;font-weight:700;color:var(--text);line-height:1.3}
+.nav-group-label{font-family:var(--mono);font-size:.6rem;font-weight:500;color:var(--text-3);letter-spacing:.14em;text-transform:uppercase;padding:0 20px;margin:16px 0 6px}
+.nav-link{display:flex;align-items:center;gap:8px;padding:6px 20px;font-size:.78rem;color:var(--text-2);text-decoration:none;transition:background .15s,color .15s}
+.nav-link:hover{background:var(--bg);color:var(--text)}
+.nav-link.active{color:var(--orange);font-weight:600}
+.nav-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;background:var(--border-2)}
+.nav-dot.green{background:var(--green)}.nav-dot.red{background:var(--red)}.nav-dot.blue{background:var(--blue)}.nav-dot.purple{background:var(--purple)}.nav-dot.amber{background:var(--amber)}
+.sidebar-footer{margin-top:auto;padding:20px;border-top:1px solid var(--border);font-family:var(--mono);font-size:.65rem;color:var(--text-3);line-height:1.7}
+.main{flex:1;min-width:0;padding:56px 64px;max-width:960px}
+.doc-header{padding-bottom:40px;border-bottom:1px solid var(--border);margin-bottom:48px}
+.doc-eyebrow{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.7rem;color:var(--text-3);letter-spacing:.08em;margin-bottom:16px;flex-wrap:wrap}
+.doc-eyebrow-sep{color:var(--border-2)}
+.doc-title{font-size:clamp(1.75rem,3vw,2.25rem);font-weight:700;line-height:1.15;letter-spacing:-.025em;color:var(--text);margin-bottom:12px}
+.doc-subtitle{font-size:1rem;color:var(--text-2);line-height:1.5;max-width:620px}
+.doc-meta{display:flex;align-items:center;gap:24px;margin-top:24px;flex-wrap:wrap}
+.meta-stat{display:flex;align-items:baseline;gap:6px}
+.meta-num{font-size:1.375rem;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+.meta-label{font-size:.8rem;color:var(--text-3)}
+.meta-sep{color:var(--border-2);font-size:1.2rem}
+.section{margin-bottom:56px}
+.section-anchor{scroll-margin-top:32px}
+.section-heading{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.section-num{font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--text-3);letter-spacing:.06em}
+h2{font-size:1.25rem;font-weight:700;letter-spacing:-.015em;color:var(--text)}
+h3{font-size:1.02rem;font-weight:600;margin:24px 0 10px;color:var(--text)}
+h4{font-size:.92rem;font-weight:600;margin:18px 0 8px;color:var(--text-2)}
+.section-desc{font-size:.875rem;color:var(--text-3);margin-bottom:24px;padding-left:36px}
+p{margin-bottom:14px;color:var(--text-2);line-height:1.65;font-size:.895rem}
+ul,ol{margin-bottom:14px;padding-left:22px}
+li{margin-bottom:5px;color:var(--text-2);font-size:.875rem;line-height:1.55}
+li strong{color:var(--text)}
+hr.section-sep{border:none;border-top:1px solid var(--border);margin:48px 0}
+
+/* Tables */
+.t-wrap{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;background:var(--surface);margin-bottom:24px;overflow-x:auto}
+.t-wrap table{width:100%;border-collapse:collapse}
+.t-wrap thead tr{background:var(--surface-2);border-bottom:1px solid var(--border)}
+.t-wrap th{font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--text-3);letter-spacing:.1em;text-transform:uppercase;padding:11px 16px;text-align:left;white-space:nowrap}
+.t-wrap tbody tr{border-bottom:1px solid var(--border);transition:background .1s}
+.t-wrap tbody tr:last-child{border-bottom:none}
+.t-wrap tbody tr:hover{background:var(--bg)}
+.t-wrap td{padding:12px 16px;vertical-align:top;font-size:.84rem;color:var(--text-2);line-height:1.5}
+.t-wrap td:first-child{font-weight:600;color:var(--text);white-space:nowrap}
+.t-wrap td strong{color:var(--text)}
+
+/* Priority list */
+.priority-list{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;background:var(--surface);margin-bottom:24px}
+.priority-row{display:grid;grid-template-columns:44px 1fr auto;align-items:start;gap:14px;padding:14px 18px;border-bottom:1px solid var(--border);transition:background .1s}
+.priority-row:last-child{border-bottom:none}
+.priority-row:hover{background:var(--bg)}
+.priority-idx{font-family:var(--mono);font-size:1.2rem;font-weight:700;color:var(--orange-mid);line-height:1.3}
+.priority-hook{font-family:var(--mono);font-size:.84rem;font-weight:500;color:var(--text);margin-bottom:3px}
+.priority-why{font-size:.8rem;color:var(--text-3);line-height:1.45}
+.priority-badge{font-family:var(--mono);font-size:.6rem;font-weight:600;padding:2px 7px;border-radius:var(--radius-sm);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;align-self:start}
+.badge-critical{color:var(--red);background:var(--red-dim);border:1px solid #F5C8C8}
+.badge-high{color:var(--amber);background:var(--amber-dim);border:1px solid #F0D090}
+.badge-medium{color:var(--blue);background:var(--blue-dim);border:1px solid #C8DCF5}
+
+/* Callouts */
+.callout{display:flex;gap:12px;padding:14px 16px;border-radius:var(--radius);margin-bottom:20px;font-size:.85rem}
+.callout-warn{background:var(--amber-dim);border:1px solid #F0D090}
+.callout-red{background:var(--red-dim);border:1px solid #F5C8C8}
+.callout-blue{background:var(--blue-dim);border:1px solid #C8DCF5}
+.callout-icon{font-size:.9rem;flex-shrink:0;line-height:1.5}
+.callout-body{line-height:1.5;color:var(--text-2);font-size:.84rem}
+.callout-body strong{color:var(--text)}
+
+/* Badges */
+.ev{display:inline-flex;align-items:center;font-family:var(--mono);font-size:.65rem;font-weight:500;padding:2px 7px;border-radius:var(--radius-sm);white-space:nowrap;margin-right:4px}
+.ev-green{color:var(--green);background:var(--green-dim)}
+.ev-red{color:var(--red);background:var(--red-dim)}
+.ev-blue{color:var(--blue);background:var(--blue-dim)}
+.ev-amber{color:var(--amber);background:var(--amber-dim)}
+
+/* Diagram */
+.diagram-block{background:var(--text);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:28px;overflow-x:auto}
+.diagram-caption{font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--orange);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+pre.diagram{font-family:var(--mono);font-size:.78rem;line-height:1.7;color:#D4C8BC;white-space:pre}
+pre.diagram .hl{color:#F5A673}
+pre.diagram .dim{color:#6B6058}
+
+/* Footer */
+.doc-footer{padding-top:32px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:.7rem;color:var(--text-3);flex-wrap:wrap;gap:12px}
+
+@media(max-width:860px){
+    .sidebar{display:none}
+    .main{padding:32px 20px}
+}
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <!-- SIDEBAR -->
+        <nav class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-label">Informe Normativo</div>
+                <div class="brand-title">Ciberseguridad & Datos<br>DAEM · SLEP</div>
+            </div>
+            
+            <div class="nav-group-label">Contenido</div>
+            <a href="#s01" class="nav-link"><div class="nav-dot green"></div>I. Resumen Ejecutivo</a>
+            <a href="#s02" class="nav-link"><div class="nav-dot blue"></div>II. Marco Normativo</a>
+            <a href="#s03" class="nav-link"><div class="nav-dot red"></div>III. Ciberseguridad (21.663)</a>
+            <a href="#s04" class="nav-link"><div class="nav-dot purple"></div>IV. Datos Personales (21.719)</a>
+            <a href="#s05" class="nav-link"><div class="nav-dot amber"></div>V. Brechas y Riesgos</a>
+            <a href="#s06" class="nav-link"><div class="nav-dot"></div>VI. Hoja de Ruta</a>
+            <a href="#s07" class="nav-link"><div class="nav-dot red"></div>VII. Conclusiones</a>
+            <a href="#s08" class="nav-link"><div class="nav-dot blue"></div>VIII. Referencias</a>
+            
+            <div class="sidebar-footer">
+                <div>Documento interno v2.1</div>
+                <div>Fecha: Agosto 2026</div>
+                <div>Actualizado con CGR y Mercado Público</div>
+            </div>
+        </nav>
+        
+        <!-- MAIN -->
+        <main class="main">
+            <header class="doc-header">
+                <div class="doc-eyebrow">
+                    INFORME TÉCNICO-NORMATIVO <span class="doc-eyebrow-sep">/</span> SECTOR EDUCACIONAL PÚBLICO <span class="doc-eyebrow-sep">/</span> AGOSTO 2026
+                </div>
+                <h1 class="doc-title">Impacto de la Ley de Ciberseguridad y Protección de Datos en DAEM y SLEP</h1>
+                <div class="doc-subtitle">Análisis jurídico-operativo de la Ley N° 21.663 y la Ley N° 21.719 con horizonte de vigencia plena a diciembre de 2026. Dirigido a directivos educacionales, encargados TI y equipos de cumplimiento.</div>
+                <div class="doc-meta">
+                    <div class="meta-stat"><span class="meta-num">8</span><span class="meta-label">Secciones</span></div>
+                    <div class="meta-sep">/</div>
+                    <div class="meta-stat"><span class="meta-num">3</span><span class="meta-label">Leyes analizadas (21.663, 21.719, 19.886)</span></div>
+                    <div class="meta-sep">/</div>
+                    <div class="meta-stat"><span class="meta-num">4</span><span class="meta-label">Fases de cumplimiento</span></div>
+                </div>
+            </header>
+            
+            <!-- DESCARGO -->
+            <div class="callout callout-warn">
+                <div class="callout-icon">⚠️</div>
+                <div class="callout-body">
+                    <strong>Descargo de responsabilidad:</strong> Este documento tiene carácter exclusivamente informativo-orientador y no constituye asesoría legal vinculante. Se recomienda la consulta con abogados especialistas en derecho público, ciberseguridad y protección de datos personales para la implementación específica.
+                </div>
+            </div>
+
+            <!-- ═══════════ § 01 — RESUMEN EJECUTIVO ═══════════ -->
+            <section id="s01" class="section section-anchor">
+                <div class="section-heading">
+                    <span class="section-num">§ 01</span>
+                    <h2>I. Resumen Ejecutivo</h2>
+                </div>
+                <div class="section-desc">Síntesis de hallazgos principales y obligaciones de mayor impacto operativo.</div>
+                
+                <p>La <strong>Ley N° 21.663</strong> (Ciberseguridad) y la <strong>Ley N° 21.719</strong> (Protección de Datos Personales, vigencia plena programada para el <strong>1 de diciembre de 2026</strong>) imponen a los órganos de la Administración del Estado un nuevo estándar de diligencia tecnológica y tutela. Este estándar transita desde un modelo históricamente reactivo e informal hacia uno de prevención, rendición de cuentas y fiscalización con sanciones efectivas.</p>
+                
+                <h3>Las 5 obligaciones de mayor impacto</h3>
+                <div class="priority-list">
+                    <div class="priority-row">
+                        <div class="priority-idx">01</div>
+                        <div>
+                            <div class="priority-hook">Gobernanza de Ciberseguridad</div>
+                            <div class="priority-why">SGSI, planes de respuesta a incidentes, designación de encargados y simulacros periódicos (art. 8, Ley 21.663).</div>
+                        </div>
+                        <div class="priority-badge badge-critical">Crítico</div>
+                    </div>
+                    <div class="priority-row">
+                        <div class="priority-idx">02</div>
+                        <div>
+                            <div class="priority-hook">Reporte Obligatorio de Incidentes</div>
+                            <div class="priority-why">Alerta temprana en 3 horas, reporte intermedio en 72 horas al CSIRT Nacional (art. 9, Ley 21.663).</div>
+                        </div>
+                        <div class="priority-badge badge-critical">Crítico</div>
+                    </div>
+                    <div class="priority-row">
+                        <div class="priority-idx">03</div>
+                        <div>
+                            <div class="priority-hook">Delegado de Protección de Datos (DPD)</div>
+                            <div class="priority-why">Obligatoriedad vinculada al Modelo de Prevención de Infracciones, sujeto a fiscalización de Contraloría (art. 49, Ley 21.719).</div>
+                        </div>
+                        <div class="priority-badge badge-critical">Crítico</div>
+                    </div>
+                    <div class="priority-row">
+                        <div class="priority-idx">04</div>
+                        <div>
+                            <div class="priority-hook">Gestión de Derechos ARCOP</div>
+                            <div class="priority-why">Canales formales para responder solicitudes, con implicancias directas en leyes como la de Identidad de Género.</div>
+                        </div>
+                        <div class="priority-badge badge-high">Alto</div>
+                    </div>
+                    <div class="priority-row">
+                        <div class="priority-idx">05</div>
+                        <div>
+                            <div class="priority-hook">Protección Reforzada de Menores</div>
+                            <div class="priority-why">Consentimiento del representante legal para menores de 16 años. EIPD obligatorias para tratamientos de alto riesgo.</div>
+                        </div>
+                        <div class="priority-badge badge-high">Alto</div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="section-sep">
+
+            <!-- ═══════════ § 02 — MARCO NORMATIVO ═══════════ -->
+            <section id="s02" class="section section-anchor">
+                <div class="section-heading">
+                    <span class="section-num">§ 02</span>
+                    <h2>II. Marco Normativo Aplicable</h2>
+                </div>
+                <div class="section-desc">Alcance subjetivo, naturaleza jurídica de DAEM/SLEP y relaciones normativas intersectoriales.</div>
+                
+                <h3>2.1. Ley N° 21.663 — Ciberseguridad</h3>
+                <p>Establece la institucionalidad nacional, creando la <strong>Agencia Nacional de Ciberseguridad (ANCI)</strong> como servicio público descentralizado con facultades sancionatorias. Crea el <strong>CSIRT Nacional</strong>. Los DAEM y SLEP, como órganos de la Administración del Estado, son sujetos obligados.</p>
+                
+                <h3>2.2. Ley N° 21.719 — Protección de Datos</h3>
+                <p>Reforma íntegramente la Ley N° 19.628. Crea la <strong>Agencia de Protección de Datos Personales (APDP)</strong>. <em>[Nota: se recomienda verificar el estado definitivo de su instalación a diciembre de 2026]</em>.</p>
+                
+                <h3>2.3. Interacción con Leyes del Sector Educación y Rol de la Superintendencia</h3>
+                <p>La <strong>Ley N° 20.370 (LGE)</strong> consagra el resguardo de la integridad de los estudiantes, extensible hoy al ámbito digital. La <strong>Ley N° 21.040</strong> ordena la transferencia de administración desde DAEM hacia SLEP.</p>
+                
+                <div class="callout callout-blue">
+                    <div class="callout-icon">ℹ️</div>
+                    <div class="callout-body">
+                        <strong>Rol de la Superintendencia de Educación:</strong> Es el fiscalizador sectorial primario. En caso de una filtración de datos que vulnere la integridad de un estudiante (ej. exposición de antecedentes de salud mental), la Superintendencia tiene facultades para instruir sumarios e imponer sanciones <strong>de forma paralela e independiente</strong> a la ANCI o la APDP.
+                    </div>
+                </div>
+                
+                <h3>2.4. Naturaleza Jurídica: DAEM vs. SLEP</h3>
+                <div class="t-wrap">
+                    <table>
+                        <thead><tr><th>Dimensión</th><th>DAEM (Régimen Municipal)</th><th>SLEP (Ley N° 21.040)</th></tr></thead>
+                        <tbody>
+                            <tr><td>Naturaleza</td><td>Dirección municipal. Sin personalidad jurídica.</td><td>Servicio público con personalidad jurídica y patrimonio propio.</td></tr>
+                            <tr><td>Responsable legal</td><td>Municipalidad (Alcalde).</td><td>SLEP (Director Ejecutivo).</td></tr>
+                            <tr><td>Ante Ley 21.719</td><td>Responsable de tratamiento: la Municipalidad.</td><td>Responsable de tratamiento: el SLEP.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <hr class="section-sep">
+
+            <!-- ═══════════ § 03 — CIBERSEGURIDAD ═══════════ -->
+            <section id="s03" class="section section-anchor">
+                <div class="section-heading">
+                    <span class="section-num">§ 03</span>
+                    <h2>III. Obligaciones en Ciberseguridad (Ley N° 21.663)</h2>
+                </div>
+                <div class="section-desc">Gobernanza, medidas técnicas, reporte de incidentes y régimen sancionatorio.</div>
+                
+                <h3>a) Gobernanza y Medidas Técnicas (art. 8)</h3>
+                <ul>
+                    <li><strong>Gobernanza:</strong> SGSI, planes de continuidad, simulacros, y designación de encargado de ciberseguridad.</li>
+                    <li><strong>Técnicas:</strong> Autenticación multifactor (MFA), parcheo de servidores, segmentación de red, respaldos inmutables y cifrado.</li>
+                </ul>
+                
+                <h3>b) Reporte de incidentes (art. 9)</h3>
+                <div class="t-wrap">
+                    <table>
+                        <thead><tr><th>Tipo de reporte</th><th>Plazo máximo</th><th>Contenido mínimo</th></tr></thead>
+                        <tbody>
+                            <tr><td>Alerta temprana</td><td><span class="ev ev-red">3 horas</span></td><td>Identificación del incidente, sistemas afectados, gravedad.</td></tr>
+                            <tr><td>Reporte intermedio</td><td><span class="ev ev-amber">72 horas</span></td><td>Detalle de sistemas comprometidos, datos afectados, contención.</td></tr>
+                            <tr><td>Reporte final</td><td><span class="ev ev-blue">30 días</span></td><td><em>[Regido por Ley 19.880 sobre días hábiles admin.]</em> Análisis completo.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>c) Régimen sancionatorio</h3>
+                <p>Las multas administradas por la ANCI alcanzan hasta <strong>10.000 UTM</strong> (graves) y <strong>20.000 UTM</strong> (gravísimas). Para órganos del Estado, a estas multas se suma la responsabilidad administrativa y sumarios contra las jefaturas.</p>
+            </section>
+
+            <hr class="section-sep">
+
+            <!-- ═══════════ § 04 — DATOS PERSONALES ═══════════ -->
+            <section id="s04" class="section section-anchor">
+                <div class="section-heading">
+                    <span class="section-num">§ 04</span>
+                    <h2>IV. Protección de Datos Personales (Ley N° 21.719)</h2>
+                </div>
+                <div class="section-desc">Derechos ARCOP, EIPD, DPD, fiscalización de Contraloría y menores de edad.</div>
+                
+                <h3>a) Derechos ARCOP y Cruces Normativos</h3>
+                <p>Respuesta en <strong>30 días corridos</strong> para Acceso, Rectificación, Cancelación, Oposición y Portabilidad (2 días hábiles para Bloqueo).</p>
+                <div class="callout callout-blue">
+                    <div class="callout-icon">ℹ️</div>
+                    <div class="callout-body">
+                        <strong>Cruce con Ley de Identidad de Género (Ley N° 21.120):</strong> El derecho de <em>Rectificación</em> interactúa con el derecho de estudiantes trans a ser reconocidos por su nombre social. Sistemas como SIGE o libros de clases digitales deben contemplar flujos expeditos de rectificación para cumplir ambas leyes.
+                    </div>
+                </div>
+                
+                <h3>b) Delegado de Protección de Datos (DPD) y Contraloría</h3>
+                <p>La designación del DPD (art. 49) es exigible si la organización opta por certificar un <strong>Modelo de Prevención de Infracciones</strong>. Para DAEM y SLEP, esto es estratégicamente ineludible.</p>
+                <div class="callout callout-warn">
+                    <div class="callout-icon">⚠️</div>
+                    <div class="callout-body">
+                        <strong>Fiscalización de la CGR:</strong> La Contraloría General de la República integrará progresivamente estos estándares en sus pautas de auditoría pública. Esto transforma la adopción del Modelo y la designación del DPD en un imperativo de probidad administrativa fiscalizado directamente por la CGR.
+                    </div>
+                </div>
+
+                <h3>c) Datos de menores de edad</h3>
+                <div class="callout callout-red">
+                    <div class="callout-icon">🔒</div>
+                    <div class="callout-body">
+                        <strong>Menores de 16 años:</strong> El tratamiento requiere el consentimiento del representante legal. Las Evaluaciones de Impacto (EIPD) son obligatorias para uso de biometría, videovigilancia escolar o datos PIE.
+                    </div>
+                </div>
+            </section>
+
+            <hr class="section-sep">
+
+            <!-- ═══════════ § 05 — BRECHAS ═══════════ -->
+            <section id="s05" class="section section-anchor">
+                <div class="section-heading">
+                    <span class="section-num">§ 05</span>
+                    <h2>V. Brechas y Riesgos Identificados</h2>
+                </div>
+                <div class="section-desc">Diagnóstico basal del ecosistema educativo público de cara a diciembre de 2026.</div>
+                
+                <div class="t-wrap">
+                    <table>
+                        <thead><tr><th>Brecha</th><th>Descripción</th><th>Nivel de riesgo</th></tr></thead>
+                        <tbody>
+                            <tr><td>Compras Públicas (Ley 19.886)</td><td>Licitaciones de software sin especificaciones de ciberseguridad.</td><td><span class="ev ev-red">Crítico</span></td></tr>
+                            <tr><td>Infraestructura y Presupuesto</td><td>Equipos obsoletos y partidas municipales sin rubros de ciberseguridad.</td><td><span class="ev ev-red">Crítico</span></td></tr>
+                            <tr><td>Shadow IT e Informalidad</td><td>Docentes usando apps no autorizadas. WhatsApp para notas médicas.</td><td><span class="ev ev-red">Crítico</span></td></tr>
+                            <tr><td>Protocolos</td><td>Inexistencia de planes de respuesta. Cultura de ocultamiento.</td><td><span class="ev ev-amber">Alto</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>5.7. Compras Públicas y Adquisición Tecnológica</h3>
+                <p>La contratación de licencias mediante <strong>Mercado Público</strong> suele basarse en precio. Ahora, las bases de licitación deberán incorporar obligatoriamente cláusulas sobre residencia de datos, certificaciones ISO y cumplimiento de las leyes 21.663/21.719.</p>
+            </section>
+
+            <hr class="section-sep">
+
+            <!-- ═══════════ § 06 — HOJA DE RUTA ═══════════ -->
+            <section id="s06" class="section section-anchor">
+                <div class="section-heading">
+                    <span class="section-num">§ 06</span>
+                    <h2>VI. Hoja de Ruta de Cumplimiento</h2>
+                </div>
+                <div class="section-desc">Plan de acción en 4 fases con horizonte a diciembre de 2026.</div>
+                
+                <div class="diagram-block">
+                    <div class="diagram-caption">// ROADMAP DE CUMPLIMIENTO — AGOSTO A DICIEMBRE 2026</div>
+                    <pre class="diagram">
+<span class="hl">FASE 1: DIAGNÓSTICO</span> (Meses 0-2)
+  ├── Mapeo de datos personales y activos TI
+  ├── Gap Analysis vs Leyes 21.663 / 21.719
+  └── Auditoría de contratos y <span class="hl">bases tipo en Mercado Público</span>
+
+<span class="hl">FASE 2: DISEÑO</span> (Meses 2-4)
+  ├── Designación de DPD y Encargado Ciberseguridad
+  ├── Modelo de Prevención de Infracciones (art. 49)
+  └── Actualización de <span class="hl">cláusulas de licitación</span> y adendas
+
+<span class="hl">FASE 3: IMPLEMENTACIÓN</span> (Meses 4-8)
+  ├── Despliegue técnico: MFA, segmentación, respaldos
+  ├── Erradicación de flujos informales de datos
+  └── Capacitación obligatoria del personal
+
+<span class="dim">FASE 4: MONITOREO</span> (Permanente)
+  ├── Auditorías semestrales de accesos
+  └── Integración en matriz de riesgos (<span class="dim">Auditorías CGR</span>)
+                    </pre>
+                </div>
+            </section>
+
+            <hr class="section-sep">
+
+            <!-- ═══════════ § 07 — CONCLUSIONES ═══════════ -->
+            <section id="s07" class="section section-anchor">
+                <div class="section-heading">
+                    <span class="section-num">§ 07</span>
+                    <h2>VII. Conclusiones y Recomendaciones</h2>
+                </div>
+                <div class="section-desc">Síntesis normativa y recomendaciones priorizadas.</div>
+                
+                <p>El incumplimiento expone a los establecimientos a sumarios administrativos, intervención de la Superintendencia de Educación, auditorías de Contraloría y multas fiscales de hasta 40.000 UTM.</p>
+                
+                <h3>Recomendaciones priorizadas</h3>
+                <div class="priority-list">
+                    <div class="priority-row">
+                        <div class="priority-idx">01</div>
+                        <div>
+                            <div class="priority-hook">Cero Tolerancia a la Informalidad</div>
+                            <div class="priority-why">Erradicar el tránsito de datos sensibles por WhatsApp y correos personales. Es el riesgo más inminente.</div>
+                        </div>
+                        <div class="priority-badge badge-critical">Prioritario</div>
+                    </div>
+                    <div class="priority-row">
+                        <div class="priority-idx">02</div>
+                        <div>
+                            <div class="priority-hook">Actualización en Mercado Público</div>
+                            <div class="priority-why">Cambiar el estándar de compras. Ninguna herramienta de software debe contratarse si no garantiza los estándares de la Ley 21.719.</div>
+                        </div>
+                        <div class="priority-badge badge-critical">Prioritario</div>
+                    </div>
+                    <div class="priority-row">
+                        <div class="priority-idx">03</div>
+                        <div>
+                            <div class="priority-hook">Nombramiento Centralizado del DPD</div>
+                            <div class="priority-why">Designación inmediata a nivel de DAEM/SLEP para generar economías de escala procedimentales y adelantarse a la CGR.</div>
+                        </div>
+                        <div class="priority-badge badge-high">Alto</div>
+                    </div>
+                </div>
+                
+                <div class="callout callout-red">
+                    <div class="callout-icon">🚨</div>
+                    <div class="callout-body">
+                        <strong>Advertencia — Plazo Diciembre 2026:</strong> El 1 de diciembre de 2026 marca el fin del período preparatorio para la ley de datos. <strong>El costo de la adecuación preventiva es diametralmente inferior al costo político, económico y reputacional del incumplimiento.</strong>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="section-sep">
+
+            <!-- ═══════════ § 08 — REFERENCIAS ═══════════ -->
+            <section id="s08" class="section section-anchor">
+                <div class="section-heading">
+                    <span class="section-num">§ 08</span>
+                    <h2>VIII. Referencias Normativas</h2>
+                </div>
+                
+                <ol>
+                    <li><strong>Ley N° 21.663</strong>, Ley Marco sobre Ciberseguridad e Infraestructura Crítica.</li>
+                    <li><strong>Ley N° 21.719</strong>, Protección de Datos Personales.</li>
+                    <li><strong>Ley N° 21.040</strong>, Sistema de Educación Pública.</li>
+                    <li><strong>Ley N° 20.370</strong>, Ley General de Educación.</li>
+                    <li><strong>Ley N° 18.695</strong>, Orgánica Constitucional de Municipalidades.</li>
+                    <li><strong>Ley N° 19.886</strong>, Ley de Compras Públicas.</li>
+                    <li><strong>Ley N° 21.120</strong>, Ley de Identidad de Género.</li>
+                    <li><strong>Ley N° 19.880</strong>, Bases de los Procedimientos Administrativos.</li>
+                    <li><strong>Decreto Supremo N° 295/2024</strong> (Reglamento incidentes).</li>
+                    <li><strong>Instrucciones y oficios</strong> de la CGR, Superintendencia de Educación, ANCI y APDP.</li>
+                </ol>
+            </section>
+
+            <!-- FOOTER -->
+            <div class="doc-footer">
+                <span>Informe Técnico-Normativo v2.1 — Agosto 2026</span>
+                <span>Documento interno · Carácter informativo-orientador</span>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.section-anchor');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+                        });
+                    }
+                });
+            }, { rootMargin: '-60px 0px -55% 0px', threshold: 0 });
+            sections.forEach(sec => observer.observe(sec));
+        });
+    </script>
+</body>
+</html>
