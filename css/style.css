@@ -78,13 +78,20 @@ body::before {
   position: relative;
 }
 
-/* Hero Badges & Avatar Layout */
-.hero-badges-wrapper {
+/* Hero Badges & Avatar Layout (Triad) */
+.hero-badges-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.hero-badges-top-row {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 36px;
-  margin-bottom: 32px;
 }
 
 .avatar-container {
@@ -145,12 +152,16 @@ body::before {
   animation: float 6s ease-in-out infinite;
 }
 
-.cert-badge-link:nth-child(1) {
+.hero-badges-top-row .cert-badge-link:nth-child(1) {
   animation-delay: 0.8s;
 }
 
-.cert-badge-link:nth-child(3) {
+.hero-badges-top-row .cert-badge-link:nth-child(3) {
   animation-delay: 1.6s;
+}
+
+.cert-badge-bottom {
+  animation-delay: 1.2s;
 }
 
 .cert-badge-link:hover {
@@ -504,7 +515,11 @@ body::before {
     padding: 60px 0 40px;
   }
   
-  .hero-badges-wrapper {
+  .hero-badges-container {
+    gap: 12px;
+  }
+
+  .hero-badges-top-row {
     gap: 12px;
   }
   
