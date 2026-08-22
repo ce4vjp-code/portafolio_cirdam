@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>PowerScan3D - Documentación Técnica y Funcional</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <style>
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: #0f172a; color: #e2e8f0; }
+        .cover-image { width: 100%; max-height: 80vh; object-fit: cover; border-bottom: 4px solid #10b981; }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .gradient-text { background: linear-gradient(90deg, #34d399, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .risk-critico { color: #f43f5e; font-weight: bold; }
+        .risk-alto { color: #f59e0b; font-weight: bold; }
+        .risk-medio { color: #eab308; font-weight: bold; }
+        .risk-bajo { color: #10b981; font-weight: bold; }
+    </style>
+</head>
+<body class='antialiased'>
+
+    <!-- Cover Page -->
+    <div class='relative w-full'>
+        <img src='./cover.jpg' alt='PowerScan3D Cover' class='cover-image'>
+        <div class='absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent'></div>
+        <div class='absolute bottom-10 left-10 p-8 glass-panel rounded-xl shadow-2xl max-w-3xl'>
+            <h1 class='text-5xl font-extrabold text-white mb-2'>PowerScan3D <span class='text-emerald-400'>Alpha 0.2.0</span></h1>
+            <h2 class='text-2xl text-slate-300'>Manual Técnico y Funcional Definitivo</h2>
+            <p class='mt-4 text-emerald-300 font-mono'>Sistema Autónomo de Inspección de Servidumbres Eléctricas</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class='max-w-6xl mx-auto px-6 py-12 space-y-16'>
+
+        <!-- Section 1: Introducción -->
+        <section class='glass-panel p-8 rounded-2xl'>
+            <h3 class='text-3xl font-bold mb-6 gradient-text border-b border-slate-700 pb-2'>1. Arquitectura del Sistema</h3>
+            <p class='text-lg leading-relaxed mb-4'>PowerScan3D es una suite de herramientas de fotogrametría e Inteligencia Artificial diseñada para automatizar la detección de riesgos de vegetación en líneas de transmisión eléctrica. La arquitectura se compone de tres pilares fundamentales:</p>
+            <div class='grid grid-cols-1 md:grid-cols-3 gap-6 mt-8'>
+                <div class='bg-slate-800 p-6 rounded-xl border border-slate-600 hover:border-emerald-500 transition-colors'>
+                    <h4 class='text-xl font-bold text-emerald-400 mb-2'>1. Nodo Fotogramétrico (SfM)</h4>
+                    <p class='text-sm text-slate-400'>Motor C++ basado en NodeODM que convierte miles de fotografías de drones (JPG con EXIF/GPS) en Modelos Digitales de Superficie (DSM) y Ortofotos de ultra alta resolución. Todo procesado localmente mediante Docker.</p>
+                </div>
+                <div class='bg-slate-800 p-6 rounded-xl border border-slate-600 hover:border-blue-500 transition-colors'>
+                    <h4 class='text-xl font-bold text-blue-400 mb-2'>2. Motor de IA (DeepForest)</h4>
+                    <p class='text-sm text-slate-400'>Microservicio Python/FastAPI que aloja una red neuronal profunda (RetinaNet) pre-entrenada para detección de copas de árboles (Crown Detection). Ejecuta inferencia acelerada para aislar la vegetación invasiva.</p>
+                </div>
+                <div class='bg-slate-800 p-6 rounded-xl border border-slate-600 hover:border-purple-500 transition-colors'>
+                    <h4 class='text-xl font-bold text-purple-400 mb-2'>3. Interfaz de Usuario (WPF + JS)</h4>
+                    <p class='text-sm text-slate-400'>Aplicación C#/.NET 10 de escritorio que orquesta los servicios. Utiliza CefSharp para renderizar un mapa satelital interactivo (Leaflet) y procesa topología geoespacial mediante NetTopologySuite.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Funcionalidades de la Interfaz -->
+        <section class='glass-panel p-8 rounded-2xl'>
+            <h3 class='text-3xl font-bold mb-6 gradient-text border-b border-slate-700 pb-2'>2. Características y UI (Frontend)</h3>
+            <ul class='space-y-4 text-slate-300'>
+                <li class='flex items-start'>
+                    <span class='text-emerald-400 mr-3'>▹</span>
+                    <div><strong class='text-white'>Carga de Vuelos y Mapas (KMZ/KML):</strong> Interfaz para subir tramos de red eléctrica y definir el ancho del pasillo de servidumbre (corredor). El mapa se centra automáticamente en las coordenadas de la red.</div>
+                </li>
+                <li class='flex items-start'>
+                    <span class='text-emerald-400 mr-3'>▹</span>
+                    <div><strong class='text-white'>Visor Leaflet Interactivo:</strong> Mapa base de OpenStreetMap / Satellite con capacidad de paneo, zoom, y superposición de geometrías SVG/GeoJSON de alto rendimiento.</div>
+                </li>
+                <li class='flex items-start'>
+                    <span class='text-emerald-400 mr-3'>▹</span>
+                    <div><strong class='text-white'>Interruptores de Capas (Toggles):</strong> Panel flotante que permite encender y apagar a voluntad: 
+                        <ul class='list-disc ml-6 mt-2 text-sm text-slate-400'>
+                            <li>El corredor poligonal translúcido.</li>
+                            <li>Los marcadores de los árboles detectados (clasificados por color de riesgo).</li>
+                            <li>Radios de caída cilíndrica de la vegetación (sombras de impacto).</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class='flex items-start'>
+                    <span class='text-emerald-400 mr-3'>▹</span>
+                    <div><strong class='text-white'>Procesamiento de Modelos 3D (DSM/DTM):</strong> Carga silenciosa en memoria de los archivos TIF generados por fotogrametría, con indicadores visuales verdes ("DSM: OK") inyectados directamente al UI.</div>
+                </li>
+                <li class='flex items-start'>
+                    <span class='text-emerald-400 mr-3'>▹</span>
+                    <div><strong class='text-white'>Seguros Anti-Falsificación (Strict Mode):</strong> Botón "Análisis Real" protegido con validaciones estrictas; requiere un KMZ de red y una Ortofoto cargada, abortando el proceso si faltan datos en lugar de generar "árboles fantasma".</div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Section 3: IA y Motor GIS -->
+        <section class='glass-panel p-8 rounded-2xl'>
+            <h3 class='text-3xl font-bold mb-6 gradient-text border-b border-slate-700 pb-2'>3. Algoritmos Matemáticos y Redes Neuronales</h3>
+            
+            <div class='mb-6'>
+                <h4 class='text-2xl font-semibold text-white mb-3'>El pipeline de Inferencia Neuronal</h4>
+                <p class='text-slate-300 mb-4'>Cuando el usuario solicita un escaneo, el sistema no analiza toda la foto a ciegas. Utiliza matemáticas vectoriales para optimizar la carga:</p>
+                <ol class='list-decimal ml-6 space-y-2 text-slate-400'>
+                    <li>El backend C# extrae los polígonos de la red eléctrica, proyecta las coordenadas geográficas a metros, añade el <code class='text-pink-400'>1.5x</code> del ancho del pasillo, y se lo envía al contenedor Python.</li>
+                    <li>Python usa <code class='text-pink-400'>rasterio.mask</code> para recortar dinámicamente la Ortofoto (gigabytes de tamaño) y quedarse solo con los píxeles útiles.</li>
+                    <li>La red <code class='text-pink-400'>DeepForest (RetinaNet + ResNet50)</code> escanea el recorte y devuelve Bounding Boxes superpuestas. Se aplica <em>Non-Max Suppression (NMS)</em> para eliminar duplicados y contar árboles reales.</li>
+                </ol>
+            </div>
+
+            <div class='mb-4'>
+                <h4 class='text-2xl font-semibold text-white mb-3'>Motor Topológico 3D (C#)</h4>
+                <p class='text-slate-300 mb-4'>El corazón matemático del análisis de riesgo. El sistema C# lee cada árbol detectado y hace lo siguiente:</p>
+                <ul class='space-y-4 text-slate-300'>
+                    <li class='bg-slate-800 p-4 rounded-lg'>
+                        <strong>1. Extracción de Altura Z:</strong> Ubica el píxel exacto del árbol en el archivo TIF usando las etiquetas de georreferencia (<code class='text-blue-300'>ModelTiepoint</code> y <code class='text-blue-300'>ModelPixelScale</code>), convirtiendo los canales RGB codificados a una elevación absoluta.
+                    </li>
+                    <li class='bg-slate-800 p-4 rounded-lg'>
+                        <strong>2. Interpolación Catenaria de Cables:</strong> El sistema asume los segmentos rectos del KMZ y determina la elevación de los cables en el punto más cercano ortogonalmente al árbol.
+                    </li>
+                    <li class='bg-slate-800 p-4 rounded-lg'>
+                        <strong>3. Análisis de Clasificación de Riesgo:</strong>
+                        <ul class='mt-2 ml-4 space-y-1 font-mono text-sm'>
+                            <li class='risk-critico'>CRITICO (Rojo): Árbol dentro del pasillo y a &lt; 4m verticales de los conductores.</li>
+                            <li class='risk-alto'>ALTO (Naranja): Fuera del pasillo, pero su altura + copa alcanza para caer sobre la red (Riesgo Cilíndrico 3D).</li>
+                            <li class='risk-medio'>MEDIO (Amarillo): Dentro del pasillo legal, pero muy debajo de la línea de contacto.</li>
+                            <li class='risk-bajo'>BAJO (Verde): Seguro. Fuera del radio de caída.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 4: Evolución del Desarrollo -->
+        <section class='glass-panel p-8 rounded-2xl'>
+            <h3 class='text-3xl font-bold mb-6 gradient-text border-b border-slate-700 pb-2'>4. Evolución y Refinamientos (Alpha 0.2.0)</h3>
+            <p class='text-slate-300 mb-4'>El proyecto ha sufrido una purga intensiva de bugs de integración. Las mejoras críticas incluyeron:</p>
+            <div class='overflow-x-auto'>
+                <table class='w-full text-left text-slate-300 text-sm'>
+                    <thead class='bg-slate-800 text-white'>
+                        <tr>
+                            <th class='p-4 rounded-tl-lg'>Incidente / Bug</th>
+                            <th class='p-4'>Causa Raíz</th>
+                            <th class='p-4 rounded-tr-lg'>Solución Implementada</th>
+                        </tr>
+                    </thead>
+                    <tbody class='divide-y divide-slate-700'>
+                        <tr class='hover:bg-slate-800/50'>
+                            <td class='p-4 font-semibold text-rose-400'>Polígonos Fantasmas</td>
+                            <td class='p-4'>La interfaz dibujaba un corredor inventado si el KMZ real tardaba en cargar.</td>
+                            <td class='p-4'>Se reemplazó <code class='text-xs'>MockDataService</code> con <code class='text-xs'>GenerateMultiCorridorPolygons()</code> basado 100% en el KMZ.</td>
+                        </tr>
+                        <tr class='hover:bg-slate-800/50'>
+                            <td class='p-4 font-semibold text-rose-400'>Árboles Invisibles (Traducción JSON)</td>
+                            <td class='p-4'>Python enviaba coordenadas como <code class='text-xs'>{"lat", "lon"}</code>, pero C# esperaba <code class='text-xs'>{"Latitude", "Longitude"}</code>. Esto provocaba un crash silencioso del parser JsonDocument.</td>
+                            <td class='p-4'>Reescritura de las llaves en <code class='text-xs'>GeoTiffService.cs</code> y normalización de la confianza matemática.</td>
+                        </tr>
+                        <tr class='hover:bg-slate-800/50'>
+                            <td class='p-4 font-semibold text-rose-400'>Timeout Silencioso (12 min vs 10 min)</td>
+                            <td class='p-4'>El análisis del modelo tomaba 11 min 19 seg, pero el HttpClient de .NET abortaba silenciosamente la conexión a los 10 minutos.</td>
+                            <td class='p-4'>Se elevó el <code class='text-xs'>client.Timeout</code> a 60 minutos y se integraron notificaciones visuales (Toasts) de error a la UI.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+                <!-- Section 5: Galería de la Interfaz -->
+        <section class='glass-panel p-8 rounded-2xl'>
+            <h3 class='text-3xl font-bold mb-6 gradient-text border-b border-slate-700 pb-2'>5. Interfaz en Acción</h3>
+            <p class='text-slate-300 mb-6'>Capturas reales del sistema operando y procesando la fotogrametría.</p>
+            <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                <div class='overflow-hidden rounded-xl border border-slate-700 bg-slate-800 group shadow-lg'>
+                    <img src='./Imagenes%20reporte/2.png' alt='Vista Principal' class='w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110 cursor-zoom-in' onclick='openModal(this.src)'>
+                    <div class='p-3 text-sm text-slate-400 text-center border-t border-slate-700'>Análisis Forestal y Riesgos</div>
+                </div>
+                <div class='overflow-hidden rounded-xl border border-slate-700 bg-slate-800 group shadow-lg'>
+                    <img src='./Imagenes%20reporte/Captura%20de%20pantalla%202026-08-21%20180548.png' alt='Captura 1' class='w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110 cursor-zoom-in' onclick='openModal(this.src)'>
+                    <div class='p-3 text-sm text-slate-400 text-center border-t border-slate-700'>Detección Inteligente</div>
+                </div>
+                <div class='overflow-hidden rounded-xl border border-slate-700 bg-slate-800 group shadow-lg'>
+                    <img src='./Imagenes%20reporte/carga%20tiff.png' alt='Carga Tiff' class='w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110 cursor-zoom-in' onclick='openModal(this.src)'>
+                    <div class='p-3 text-sm text-slate-400 text-center border-t border-slate-700'>Carga de Ortofoto (TIF)</div>
+                </div>
+                <div class='overflow-hidden rounded-xl border border-slate-700 bg-slate-800 group shadow-lg'>
+                    <img src='./Imagenes%20reporte/inventario.png' alt='Inventario' class='w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110 cursor-zoom-in' onclick='openModal(this.src)'>
+                    <div class='p-3 text-sm text-slate-400 text-center border-t border-slate-700'>Visor de Inventario</div>
+                </div>
+                <div class='overflow-hidden rounded-xl border border-slate-700 bg-slate-800 group shadow-lg'>
+                    <img src='./Imagenes%20reporte/kmz.png' alt='KMZ' class='w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110 cursor-zoom-in' onclick='openModal(this.src)'>
+                    <div class='p-3 text-sm text-slate-400 text-center border-t border-slate-700'>Módulo Red Eléctrica (KMZ)</div>
+                </div>
+                <div class='overflow-hidden rounded-xl border border-slate-700 bg-slate-800 group shadow-lg'>
+                    <img src='./Imagenes%20reporte/metricas.png' alt='Métricas' class='w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110 cursor-zoom-in' onclick='openModal(this.src)'>
+                    <div class='p-3 text-sm text-slate-400 text-center border-t border-slate-700'>Panel de Métricas</div>
+                </div>
+                <div class='overflow-hidden rounded-xl border border-slate-700 bg-slate-800 group shadow-lg'>
+                    <img src='./Imagenes%20reporte/paneles.png' alt='Paneles' class='w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110 cursor-zoom-in' onclick='openModal(this.src)'>
+                    <div class='p-3 text-sm text-slate-400 text-center border-t border-slate-700'>Paneles de Control UI</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class='text-center text-slate-500 pt-8 border-t border-slate-800'>
+            <p>Reporte Generado por <span class='text-emerald-500 font-bold'>DeepMind Antigravity</span></p>
+            <p class='text-sm mt-2'>Desarrollador: <a href='https://github.com/ce4vjp-code' target='_blank' class='text-blue-400 hover:text-blue-300 transition-colors'>@ce4vjp-code</a> | Web: <a href='https://cirdam.duckdns.org/' target='_blank' class='text-blue-400 hover:text-blue-300 transition-colors'>cirdam.duckdns.org</a></p>
+        </footer>
+    </div>
+    <!-- Lightbox Modal -->
+    <div id='imageModal' class='hidden fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm cursor-zoom-out transition-opacity' onclick='closeModal()'>
+        <button class='absolute top-6 right-6 text-slate-300 hover:text-white text-5xl font-light focus:outline-none'>&times;</button>
+        <img id='modalImage' src='' alt='Vista Ampliada' class='max-w-[95vw] max-h-[95vh] object-contain rounded-lg shadow-2xl border border-slate-700'>
+    </div>
+
+    <script>
+        function openModal(src) {
+            document.getElementById('modalImage').src = src;
+            document.getElementById('imageModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            document.getElementById('imageModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
